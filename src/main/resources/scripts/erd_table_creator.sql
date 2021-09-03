@@ -16,7 +16,7 @@ CREATE TABLE `Users` (
                          PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `Types` (
+CREATE TABLE IF NOT EXISTS `Types` (
                          `id` bigint auto_increment,
                          `type` varchar(100) not null,
                          PRIMARY KEY (`id`)
