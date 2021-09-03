@@ -1,3 +1,9 @@
+DROP DATABASE if exists capstone_db;
+
+CREATE DATABASE capstone_db;
+
+USE capstone_db;
+
 CREATE TABLE `Users` (
                          `id` bigint  not null auto_increment,
                          `full_name` varchar(75) not null,
