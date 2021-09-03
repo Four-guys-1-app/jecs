@@ -19,6 +19,7 @@ src/main/resources/application.properties
 *.iws
 *.iml
 *.ipr
+keys.js
 
 ### NetBeans ###
 /nbproject/private/
@@ -33,4 +34,3 @@ build/
 ### VS Code ###
 .vscode/
 
-keys.js
