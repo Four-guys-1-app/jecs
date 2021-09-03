@@ -24,14 +24,14 @@ CREATE TABLE `Types` (
 
 CREATE TABLE `Posts` (
                          `id` bigint auto_increment,
-                         `event_type` varchar(100),
+                         `event_id` bigint,
                          `title` varchar(150) not null,
                          `body` text not null,
                          `create_date` datetime not null,
                          `user_id` bigint,
                          PRIMARY KEY (`id`),
                          FOREIGN KEY (`user_id`) REFERENCES `Users`(`id`),
-                         FOREIGN KEY (`event_type`) REFERENCES `Types`(`type`)
+                         FOREIGN KEY (`event_id`) REFERENCES `Types`(`id`)
 );
 
 CREATE TABLE `Locations` (
@@ -49,14 +49,14 @@ CREATE TABLE `Locations` (
 CREATE TABLE `Events` (
                           `id` bigint auto_increment,
                           `owner_id` bigint not null,
-                          `event_type` varchar(50) not null,
+                          `event_id` bigint,
                           `title` varchar(150) not null,
                           `description` text not null,
                           `date_created` datetime not null,
                           `location_id` bigint not null,
                           `outdoor` tinyint(1) not null,
                           PRIMARY KEY (`id`),
-                          FOREIGN KEY (`event_type`) REFERENCES `Types`(`type`),
+                          FOREIGN KEY (`event_id`) REFERENCES `Types`(`id`),
                           FOREIGN KEY (`owner_id`) REFERENCES `Users`(`id`)
 );
 
@@ -93,4 +93,3 @@ CREATE TABLE `event_dates` (
                                `date` datetime,
                                FOREIGN KEY (`event_id`) REFERENCES `Events`(`id`)
 );
-
