@@ -1,15 +1,24 @@
 package com.codeup.capstonestarter.data;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table (name = "eventTypes")
+@Table (name = "Types")
 public class EventsType {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
     private String name;
 
     public EventsType() {}
+
+    public EventsType(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
     public Long getId() {
         return id;
@@ -27,8 +36,5 @@ public class EventsType {
         this.name = name;
     }
 
-    public EventsType(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+
 }
