@@ -1,9 +1,10 @@
 package com.codeup.capstonestarter.data;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
-@Table (name = "Type")
+@Table (name = "types")
 public class Type {
 
     @Id
@@ -13,7 +14,10 @@ public class Type {
     @Column(nullable = false)
     private String type;
 
-    public Type() {}
+    public Type() {
+    }
+    @OneToMany(mappedBy = "type")
+    private Collection<Event> events;
 
     public Type(Long id, String type) {
         this.id = id;

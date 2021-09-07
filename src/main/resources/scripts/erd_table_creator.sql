@@ -46,7 +46,7 @@ CREATE TABLE `Locations` (
                              PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `Events` (
+CREATE TABLE `Event` (
                           `id` bigint auto_increment,
                           `owner_id` bigint not null,
                           `event_id` bigint,
@@ -71,7 +71,7 @@ CREATE TABLE `Comments` (
                             PRIMARY KEY (`id`),
                             FOREIGN KEY (`user_id`) REFERENCES `Users`(`id`),
                             FOREIGN KEY (`post_id`) REFERENCES `Posts`(`id`),
-                            FOREIGN KEY (`event_id`) REFERENCES `Events`(`id`)
+                            FOREIGN KEY (`event_id`) REFERENCES `Event`(`id`)
 );
 
 CREATE TABLE `users_event_types` (
@@ -85,11 +85,11 @@ CREATE TABLE `User_event` (
                               `user_id` bigint,
                               `event_id` bigint,
                               FOREIGN KEY (`user_id`) REFERENCES `Users`(`id`),
-                              FOREIGN KEY (`event_id`) REFERENCES `Events`(`id`)
+                              FOREIGN KEY (`event_id`) REFERENCES `Event`(`id`)
 );
 
 CREATE TABLE `event_dates` (
                                `event_id` bigint,
                                `date` datetime,
-                               FOREIGN KEY (`event_id`) REFERENCES `Events`(`id`)
+                               FOREIGN KEY (`event_id`) REFERENCES `Event`(`id`)
 );
