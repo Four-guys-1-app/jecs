@@ -4,11 +4,7 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-<<<<<<< HEAD
-@Table(name = "Type")
-=======
 @Table (name = "types")
->>>>>>> 0a8e7c1585d1de50dfcb0a65cb4aa1786dad3993
 public class Type {
 
     @Id
@@ -18,15 +14,10 @@ public class Type {
     @Column(nullable = false)
     private String type;
 
-<<<<<<< HEAD
     public Type() {
     }
-=======
     @OneToMany(mappedBy = "type")
     private Collection<Event> events;
-
-    public Type() {}
->>>>>>> 0a8e7c1585d1de50dfcb0a65cb4aa1786dad3993
 
     public Type(Long id, String type) {
         this.id = id;
