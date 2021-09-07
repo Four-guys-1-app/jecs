@@ -3,21 +3,21 @@ package com.codeup.capstonestarter.data;
 import javax.persistence.*;
 
 @Entity
-@Table (name = "Types")
-public class EventsType {
+@Table (name = "EventsTypes")
+public class EventsTypes {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
-    private String name;
+    private String type;
 
-    public EventsType() {}
+    public EventsTypes() {}
 
-    public EventsType(Long id, String name) {
+    public EventsTypes(Long id, String type) {
         this.id = id;
-        this.name = name;
+        this.type = type;
     }
 
     public Long getId() {
@@ -28,12 +28,12 @@ public class EventsType {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getType() {
+        return type;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setType(String type) {
+        this.type = type;
     }
 
 
