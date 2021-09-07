@@ -3,8 +3,8 @@ package com.codeup.capstonestarter.data;
 import javax.persistence.*;
 
 @Entity
-@Table (name = "EventsTypes")
-public class EventsTypes {
+@Table (name = "Type")
+public class Type {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,9 +13,9 @@ public class EventsTypes {
     @Column(nullable = false)
     private String type;
 
-    public EventsTypes() {}
+    public Type() {}
 
-    public EventsTypes(Long id, String type) {
+    public Type(Long id, String type) {
         this.id = id;
         this.type = type;
     }
