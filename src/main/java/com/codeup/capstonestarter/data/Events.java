@@ -31,9 +31,11 @@ public class Events {
     @Column(nullable = false)
     private Long owner_id;
 
-    public Events () {}
+    public Events() {
+    }
 
-    public Events(Long id, String title, Date date_created, String description, Long event_type_id, Long location_id, char outdoor, Long owner_id) {
+    public Events(Long id, String title, Date date_created, String description, Long event_type_id,
+                  Long location_id, char outdoor, Long owner_id) {
         this.id = id;
         this.title = title;
         this.date_created = date_created;

@@ -3,7 +3,7 @@ package com.codeup.capstonestarter.data;
 import javax.persistence.*;
 
 @Entity
-@Table (name = "Type")
+@Table(name = "Type")
 public class Type {
 
     @Id
@@ -13,7 +13,8 @@ public class Type {
     @Column(nullable = false)
     private String type;
 
-    public Type() {}
+    public Type() {
+    }
 
     public Type(Long id, String type) {
         this.id = id;
