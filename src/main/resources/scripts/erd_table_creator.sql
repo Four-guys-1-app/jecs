@@ -54,7 +54,7 @@ CREATE TABLE `Events` (
                           `description` text not null,
                           `date_created` datetime not null,
                           `location_id` bigint not null,
-                          `outdoor` tinyint(1) not null,
+                          `outdoor` char(1) not null,
                           PRIMARY KEY (`id`),
                           FOREIGN KEY (`event_id`) REFERENCES `Types`(`id`),
                           FOREIGN KEY (`owner_id`) REFERENCES `Users`(`id`)
