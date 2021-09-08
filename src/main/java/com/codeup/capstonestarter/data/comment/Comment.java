@@ -1,4 +1,9 @@
-package com.codeup.capstonestarter.data;
+package com.codeup.capstonestarter.data.comment;
+
+import com.codeup.capstonestarter.data.event.Event;
+import com.codeup.capstonestarter.data.post.Post;
+import com.codeup.capstonestarter.data.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -20,26 +25,28 @@ public class Comment {
     @Column(nullable = false)
     private Date postedDate;
 
-    @Column(nullable = false)
-    private Long user;
-
-    @Column(nullable = false)
-    private Long event;
+    @ManyToOne
+    @JsonIgnoreProperties("comments")
+    private Event event;
 
     @ManyToOne
     private Post post;
 
+    @ManyToOne
+    @JsonIgnoreProperties("comments")
+    private User user;
+
     public Comment() {
     }
 
-    public Comment(Long id, String title, String content, Date postedDate, Long user, Long event, Post post) {
+    public Comment(Long id, String title, String content, Date postedDate, Event event, Post post, User user) {
         this.id = id;
         this.title = title;
         Content = content;
         this.postedDate = postedDate;
-        this.user = user;
         this.event = event;
         this.post = post;
+        this.user = user;
     }
 
     public Long getId() {
@@ -74,19 +81,11 @@ public class Comment {
         this.postedDate = postedDate;
     }
 
-    public Long getUser() {
-        return user;
-    }
-
-    public void setUser(Long user) {
-        this.user = user;
-    }
-
-    public Long getEvent() {
+    public Event getEvent() {
         return event;
     }
 
-    public void setEvent(Long event) {
+    public void setEvent(Event event) {
         this.event = event;
     }
 
@@ -96,5 +95,13 @@ public class Comment {
 
     public void setPost(Post post) {
         this.post = post;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

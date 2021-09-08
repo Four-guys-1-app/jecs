@@ -1,4 +1,8 @@
-package com.codeup.capstonestarter.data;
+package com.codeup.capstonestarter.data.post;
+
+import com.codeup.capstonestarter.data.comment.Comment;
+import com.codeup.capstonestarter.data.type.Type;
+import com.codeup.capstonestarter.data.user.User;
 
 import javax.persistence.*;
 import java.util.Collection;

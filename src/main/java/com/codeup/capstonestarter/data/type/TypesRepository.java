@@ -1,4 +1,4 @@
-package com.codeup.capstonestarter.data;
+package com.codeup.capstonestarter.data.type;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

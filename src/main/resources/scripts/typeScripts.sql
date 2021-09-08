@@ -1,6 +1,6 @@
 USE capstone_db;
 
-INSERT INTO Type (type)
+INSERT INTO Types (type)
 VALUES ('Hiking'), ('Yoga'), ('Swimming'), ('Frisbee'), ('Gardening'),
     ('Skiing'), ('Snowboarding'), ('Surfing'), ('Golf'), ('Camping'), ('Boating'), ('Bowling'),
     ('Paddle boarding'), ('Tennis'), ('Mountain biking'), ('Nordic skiing'), ('Snorkeling'),

@@ -1,7 +1,7 @@
 package com.codeup.capstonestarter.web;
 
-import com.codeup.capstonestarter.data.TypesRepository;
-import com.codeup.capstonestarter.data.Type;
+import com.codeup.capstonestarter.data.type.TypesRepository;
+import com.codeup.capstonestarter.data.type.Type;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
