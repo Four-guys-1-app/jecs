@@ -1,4 +1,6 @@
-package com.codeup.capstonestarter.data;
+package com.codeup.capstonestarter.data.location;
+
+import com.codeup.capstonestarter.data.event.Event;
 
 import javax.persistence.*;
 
@@ -31,10 +33,14 @@ public class Location {
     @Column(nullable = false)
     private String postalCode;
 
+    @OneToOne
+    private Event event;
+    //TODO: ask about one to one, many to one, etc in constructor.
+
     public Location() {
     }
 
-    public Location(Long id, String addressLine1, String addressLine2, String city, String state, double latitude, double longitude, String postalCode) {
+    public Location(Long id, String addressLine1, String addressLine2, String city, String state, double latitude, double longitude, String postalCode, Event event) {
         this.id = id;
         this.addressLine1 = addressLine1;
         this.addressLine2 = addressLine2;
@@ -43,6 +49,7 @@ public class Location {
         this.latitude = latitude;
         this.longitude = longitude;
         this.postalCode = postalCode;
+        this.event = event;
     }
 
     public Long getId() {
@@ -107,5 +114,13 @@ public class Location {
 
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
+    }
+
+    public Event getEvent() {
+        return event;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
     }
 }
