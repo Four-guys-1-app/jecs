@@ -87,3 +87,11 @@ function getEventsHtml(events) {
                 </div>
                 `).join('')
 }
+
+
+
+export function EventEvents()  {
+    //search function
+
+
+}

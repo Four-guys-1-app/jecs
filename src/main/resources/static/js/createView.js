@@ -12,7 +12,13 @@ export default function createView(URI) {
 
     let route = router(URI);
 
-    // if route is invalid, return a 404 page
+    if (!route) {
+        render(null, router('/error'));
+        return;
+    }
+
+    render(null, router('/loading'));
+
 
     // change view to loading screen
 

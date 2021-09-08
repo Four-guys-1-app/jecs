@@ -1,3 +1,5 @@
+import Navbar from "./views/partials/Navbar.js";
+
 
 /**
  * Pushes the current URI to the URL bar and sets the HTML of the app div.
@@ -6,7 +8,7 @@
  */
 export default function render(props, route) {
     const app = document.querySelector('#app');
-    const title = `REST Blog - ${route.title}`;
+    const title = `JECS - ${route.title}`;
     history.pushState(props, title, route.uri);
     document.title = title;
 
