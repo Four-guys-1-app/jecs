@@ -28,6 +28,7 @@ public class Event {
     private String description;
 
     @ManyToOne
+    @JsonIgnoreProperties({"events", "posts"})
     private Type type;
 
     @OneToOne

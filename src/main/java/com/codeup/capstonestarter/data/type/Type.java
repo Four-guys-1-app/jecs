@@ -21,6 +21,7 @@ public class Type {
     public Type() {
     }
     @OneToMany(mappedBy = "type")
+    @JsonIgnoreProperties("type")
     private Collection<Event> events;
 
     @ManyToMany(
