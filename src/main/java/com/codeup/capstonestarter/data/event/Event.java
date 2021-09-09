@@ -36,9 +36,6 @@ public class Event {
     @Column(nullable = false)
     private char outdoor;
 
-    @Column(nullable = false)
-    private Long owner;
-
     @OneToMany(mappedBy = "event", cascade = CascadeType.REMOVE)
     @JsonIgnoreProperties("event")
     private Collection<Comment> comments;
@@ -47,7 +44,7 @@ public class Event {
     @JsonIgnoreProperties("events")
     private Collection<EventDates> eventDates;
 
-
+    // Who created the event
     @ManyToOne
     @JsonIgnoreProperties("events")
     private User user;
@@ -69,7 +66,7 @@ public class Event {
 
     public Event() {}
 
-    public Event(Long id, String title, Date dateCreated, String description, Type type, Location location, char outdoor, Long owner, Collection<Comment> comments, Collection<EventDates> eventDates, User user, Collection<User> users) {
+    public Event(Long id, String title, Date dateCreated, String description, Type type, Location location, char outdoor, Collection<Comment> comments, Collection<EventDates> eventDates, User user, Collection<User> users) {
         this.id = id;
         this.title = title;
         this.dateCreated = dateCreated;
@@ -77,7 +74,6 @@ public class Event {
         this.type = type;
         this.location = location;
         this.outdoor = outdoor;
-        this.owner = owner;
         this.comments = comments;
         this.eventDates = eventDates;
         this.user = user;
@@ -138,14 +134,6 @@ public class Event {
 
     public void setOutdoor(char outdoor) {
         this.outdoor = outdoor;
-    }
-
-    public Long getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Long owner) {
-        this.owner = owner;
     }
 
     public Collection<Comment> getComments() {

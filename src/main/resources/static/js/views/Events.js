@@ -1,11 +1,28 @@
 export default function Events(props) {
     return `
-    <header>
-    <h1>Events</h1>
-    </header>
     <div class="container">
-        <div>
-            <button type="button" class="mb-5">Create Event</button>
+        
+        <header>
+            <h1 id="event-header" class="mb-4">Events</h1>
+        </header>
+        
+        <div class="container">
+            <div class="d-flex justify-content-between">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="searchby-title" placeholder="Search by title...">
+                </div>
+                <div>
+                    <p>-- or --</p>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="searchby-zip" placeholder="Search by zipcode">
+                </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <div class="form-group">
+                    <button type="button" class="form-control" id="e-search">Search</button>
+                </div>
+            </div>
         </div>
     
         <div class="modal fade" id="ModalCenter" data-backdrop="static" data-keyboard="false" tabindex="-1"
@@ -62,12 +79,18 @@ export default function Events(props) {
             </div>
         </div>
         
+        <!-- UNDER CONSTRUCTION BELOW...
+        <div>
+            <button type="button" class="mb-5" data-toggle="modal" data-target="#ModalCenter">Create Event</button>
+        </div> 
+        
         <div class="event-map">
-    <!--        map goes here-->
+            map goes here
         </div>
         <div id="event-list">
-            ${getEventsHtml(props.events)}  // check actual value
-        </div>
+           (call getEventsHtml here)  check actual value
+        </div> 
+        -->
     </div>
     `;
 }
@@ -91,7 +114,29 @@ function getEventsHtml(events) {
 
 
 export function EventEvents()  {
-    //search function
+    $("#e-search").click(function() {
+        let titleSearch = $("#searchby-title");
+        let zipSearch = $("#searchby-zip");
+
+        // if both inputs are blank or both have a value, throw an alert
+        if (titleSearch.val() === "" && zipSearch.val() === "") {
+            alert("Please enter a title or a zip code...");
+            return;
+        } else if (titleSearch.val() !== "" && zipSearch.val() !== "") {
+            alert("Please enter either a title or a zip code...");
+            return;
+        }
+
+        if (titleSearch.val() !== "" && titleSearch.val().length < 256) {
+
+        }
+    })
+
+    const getEvents = async () => {
+        const response = await fetch("http://localhost:8080/api/events");
+        const jsonRes = await response.json();
+        console.log(jsonRes);
+    }
 
 
 }

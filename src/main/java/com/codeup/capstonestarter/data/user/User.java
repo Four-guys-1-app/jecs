@@ -39,9 +39,9 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Role role = Role.U;
+    private Role role = Role.u;
 
-    public enum Role {A, U}
+    public enum Role {a, u}
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     @JsonIgnoreProperties("user")

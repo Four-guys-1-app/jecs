@@ -12,16 +12,16 @@ public class Location {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column
     private String addressLine1;
 
-    @Column(nullable = false)
+    @Column
     private String addressLine2;
 
-    @Column(nullable = false)
+    @Column
     private String city;
 
-    @Column(nullable = false)
+    @Column
     private String state;
 
     @Column(nullable = false)
@@ -50,6 +50,17 @@ public class Location {
         this.longitude = longitude;
         this.postalCode = postalCode;
         this.event = event;
+    }
+
+    public Location(Long id, String addressLine1, String addressLine2, String city, String state, double latitude, double longitude, String postalCode) {
+        this.id = id;
+        this.addressLine1 = addressLine1;
+        this.addressLine2 = addressLine2;
+        this.city = city;
+        this.state = state;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.postalCode = postalCode;
     }
 
     public Long getId() {
