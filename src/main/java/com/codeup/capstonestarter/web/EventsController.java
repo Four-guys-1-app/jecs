@@ -5,6 +5,7 @@ import com.codeup.capstonestarter.data.event.EventRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Locale;
 
 @RestController
 @RequestMapping(value = "/api/events", headers = "Accept=application/json")
@@ -15,6 +16,7 @@ public class EventsController {
     public EventsController(EventRepository eventRepository) {
         this.eventRepository = eventRepository;
     }
+
 
     @GetMapping
     private List<Event> getEvents() {return eventRepository.findAll();}
@@ -30,13 +32,15 @@ public class EventsController {
     }
 
     @GetMapping("{title}")
-    private Event getByKeyword(@PathVariable String title) {
+    private List<Event> getByKeyword(String title) {
         try {
+            title = title.toLowerCase();
             return eventRepository.searchByTitleLike(title);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return null;
     }
+
 
 }
