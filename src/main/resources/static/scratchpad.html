@@ -90,6 +90,69 @@
 </div>
 
 
+<!--reformat of the above-->
+<div>
+    <div class="d-flex justify-content-between">
+        <div class="form-group">
+            <input type="text" class="form-control" id="searchby" placeholder="Search by event title, date created('YYYY-MM-DD'), or zip code(12345)...">
+        </div>
+        <div class="form-group">
+            <button type="button" class="form-control" id="e-search">Search</button>
+        </div>
+    </div>
+</div>
+
+
+
+<!--Event card layouts below-->
+<div class="card mb-3" data-id="${event.id}" >
+    <div class="card-header d-flex justify-content-between">
+        <p class="event-title">${event.title}</p><p class="event-user" data-id="${event.user.id}">by: ${event.user.username}</p>
+    </div>
+    <div class="card-body">
+        <p class="card-text">${event.description}</p>
+    </div>
+    <div class="card-footer d-flex">
+        <p>${event.type.type}</p>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 mt-3">
+            <div class="card" data-id="${event.user.id}">
+                <div class="d-flex card-horizontal">
+<!--                    <div class="img-square-wrapper">-->
+<!--                        <img class="" src="http://via.placeholder.com/150x90" alt="Card image cap">-->
+<!--                    </div>-->
+                    <div class="card-body">
+                        <h4 class="card-title">${event.title}</h4>
+                        <p class="card-text">${event.description}</p>
+                        <p class="card-text">Event created by: ${event.user.username}</p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Activity: ${event.type.type}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

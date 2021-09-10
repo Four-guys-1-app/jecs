@@ -47,7 +47,7 @@ public class Event {
 
     // Who created the event
     @ManyToOne
-    @JsonIgnoreProperties("events")
+    @JsonIgnoreProperties({"events", "email", "password", "bio", "postalCode", "comments", "posts", "types", "subEvents"})
     private User user;
 
     @ManyToMany(

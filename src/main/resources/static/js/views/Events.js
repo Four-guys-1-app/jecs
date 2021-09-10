@@ -6,24 +6,17 @@ export default function Events(props) {
             <h1 id="event-header" class="mb-4">Events</h1>
         </header>
         
-        <div class="container">
+        <div>
             <div class="d-flex justify-content-between">
                 <div class="form-group">
-                    <input type="text" class="form-control" id="searchby-title" placeholder="Search by title...">
+                    <input type="text" class="form-control" id="searchby" placeholder="Search by event title, date created('YYYY-MM-DD'), or zip code(12345)...">
                 </div>
-                <div>
-                    <p>-- or --</p>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" id="searchby-zip" placeholder="Search by zipcode">
-                </div>
-            </div>
-            <div class="d-flex justify-content-center">
                 <div class="form-group">
                     <button type="button" class="form-control" id="e-search">Search</button>
                 </div>
             </div>
         </div>
+
     
         <div class="modal fade" id="ModalCenter" data-backdrop="static" data-keyboard="false" tabindex="-1"
              role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
@@ -87,25 +80,36 @@ export default function Events(props) {
         <div class="event-map">
             map goes here
         </div>
-        <div id="event-list">
-           (call getEventsHtml here)  check actual value
-        </div> 
         -->
+        <div id="event-list">
+         
+        </div> 
+        
     </div>
     `;
 }
 
 function getEventsHtml(events) {
     return events.map(event => `
-                <div class="card mb-3" data-id="${event.id}" >
-                    <div class="card-header d-flex justify-content-between">
-                        <p class="event-title">${event.title}</p><p class="event-user" data-id="${event.user.id}">by: ${event.user.username}</p>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">${event.content}</p>
-                    </div>
-                    <div class="card-footer d-flex">
-                        <p>${event.type}</p>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 mt-3">
+                            <div class="card" data-id="${event.user.id}">
+                                <div class="d-flex card-horizontal">
+                                    <div class="img-square-wrapper">
+                                        <img class="" src="http://via.placeholder.com/150x90" alt="Card image cap">
+                                    </div>
+                                    <div class="card-body">
+                                        <h4 class="card-title">${event.title}</h4>
+                                        <p class="card-text">${event.description}</p>
+                                        <p class="card-text">Event created by: ${event.user.username}</p>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <small class="text-muted">Activity: ${event.type.type}</small>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 `).join('')
@@ -115,27 +119,56 @@ function getEventsHtml(events) {
 
 export function EventEvents()  {
     $("#e-search").click(function() {
-        let titleSearch = $("#searchby-title");
-        let zipSearch = $("#searchby-zip");
+        const searchInput = $("#searchby");
 
-        // if both inputs are blank or both have a value, throw an alert
-        if (titleSearch.val() === "" && zipSearch.val() === "") {
-            alert("Please enter a title or a zip code...");
+        if (searchInput.val() === "") {
+            alert("Please enter a search value to proceed...");
             return;
-        } else if (titleSearch.val() !== "" && zipSearch.val() !== "") {
-            alert("Please enter either a title or a zip code...");
+        } else if (searchInput.val().length > 255) {
+            alert("You have entered too many characters.  Please try again.");
             return;
         }
 
-        if (titleSearch.val() !== "" && titleSearch.val().length < 256) {
+        let apiUrl = buildUrl(searchInput.val());
 
-        }
+        getEvents(apiUrl);
+
+        // if (titleSearch.val() !== "" && titleSearch.val().length < 256) {
+        //     getEvents(titleSearch.val());
+        // }
     })
 
-    const getEvents = async () => {
-        const response = await fetch("http://localhost:8080/api/events");
+    const getEvents = async (url) => {
+        const response = await fetch(url);
         const jsonRes = await response.json();
         console.log(jsonRes);
+        return jsonRes;
+    }
+
+    const buildUrl = searchItem => {
+        const baseUrl = `http://localhost:8080/api/events/`;
+        let fetchUrl;
+
+        const zipPatt = /\d{5}/;
+        const datePatt = /\d{4}-\d{2}-\d{2}/;
+        const titlePatt = /[\s\S]{1,255}/;
+
+        switch (true) {
+            case datePatt.test(searchItem):
+                fetchUrl = baseUrl + `date?dateCreated=${searchItem}`;
+                break;
+            case zipPatt.test(searchItem):
+                fetchUrl = baseUrl + `postalCode?postalCode=${searchItem}`;
+                break;
+            case titlePatt.test(searchItem):
+                fetchUrl = baseUrl + `title?title=${searchItem}`;
+                break;
+            default:
+                console.log("The search value is not valid");
+        }
+
+        return fetchUrl;
+
     }
 
 
