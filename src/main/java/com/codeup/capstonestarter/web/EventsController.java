@@ -31,11 +31,31 @@ public class EventsController {
         return null;
     }
 
-    @GetMapping("{title}")
-    private List<Event> getByKeyword(String title) {
+    @GetMapping("/title")
+    private List<Event> getByKeyword(@RequestParam String title) {
         try {
             title = title.toLowerCase();
             return eventRepository.searchByTitleLike(title);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
+    @GetMapping("/date")
+    private List<Event> getByDate(@RequestParam String date) {
+        try {
+            return eventRepository.searchByDateLike(date);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
+    @GetMapping("/postalCode")
+    private List<Event> getByZip(@RequestParam String postalCode) {
+        try {
+            return eventRepository.searchByZipCodeLike(postalCode);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
