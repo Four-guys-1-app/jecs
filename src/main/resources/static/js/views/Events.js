@@ -106,6 +106,7 @@ export function EventEvents()  {
 
         let apiUrl = buildUrl(searchInput.val());
 
+        eventDiv.empty();
         getEvents(eventDiv, apiUrl);
 
     })
@@ -114,6 +115,9 @@ export function EventEvents()  {
         const response = await fetch(url);
         const jsonRes = await response.json();
         console.log(jsonRes);
+        if (jsonRes.length === 0) {
+            element.append(`<div class="container-fluid justify-content-center"><h4>-- No events found --</h4></div>`)
+        }
         element.append( jsonRes.map(event => `
                 <div class="container-fluid">
                     <div class="row">
