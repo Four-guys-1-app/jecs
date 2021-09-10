@@ -89,8 +89,32 @@ export default function Events(props) {
     `;
 }
 
-function getEventsHtml(events) {
-    return events.map(event => `
+
+
+export function EventEvents()  {
+    $("#e-search").click(function() {
+        const searchInput = $("#searchby");
+        const eventDiv = $("#event-list");
+
+        if (searchInput.val() === "") {
+            alert("Please enter a search value to proceed...");
+            return;
+        } else if (searchInput.val().length > 255) {
+            alert("You have entered too many characters.  Please try again.");
+            return;
+        }
+
+        let apiUrl = buildUrl(searchInput.val());
+
+        getEvents(eventDiv, apiUrl);
+
+    })
+
+    const getEvents = async (element, url) => {
+        const response = await fetch(url);
+        const jsonRes = await response.json();
+        console.log(jsonRes);
+        element.append( jsonRes.map(event => `
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12 mt-3">
@@ -112,37 +136,8 @@ function getEventsHtml(events) {
                         </div>
                     </div>
                 </div>
-                `).join('')
-}
+                `).join(''))
 
-
-
-export function EventEvents()  {
-    $("#e-search").click(function() {
-        const searchInput = $("#searchby");
-
-        if (searchInput.val() === "") {
-            alert("Please enter a search value to proceed...");
-            return;
-        } else if (searchInput.val().length > 255) {
-            alert("You have entered too many characters.  Please try again.");
-            return;
-        }
-
-        let apiUrl = buildUrl(searchInput.val());
-
-        getEvents(apiUrl);
-
-        // if (titleSearch.val() !== "" && titleSearch.val().length < 256) {
-        //     getEvents(titleSearch.val());
-        // }
-    })
-
-    const getEvents = async (url) => {
-        const response = await fetch(url);
-        const jsonRes = await response.json();
-        console.log(jsonRes);
-        return jsonRes;
     }
 
     const buildUrl = searchItem => {
