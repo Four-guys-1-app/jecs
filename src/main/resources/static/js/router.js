@@ -2,6 +2,7 @@ import Events, {EventEvents} from "./views/Events.js";
 import Home, {HomeEvent} from "./views/Home.js";
 import Loading from "./views/Loading.js";
 import Error404 from "./views/Error.js";
+import About, {AboutEvent} from "./views/About.js";
 
 /**
  * Returns the route object for a specific route based on the given URI
@@ -37,7 +38,14 @@ export default function router(URI) {
             state: {},
             uri: location.pathname,
             title: 'ERROR',
-        }
+        },
+        '/about': {
+            returnView: About,
+            state: {},
+            uri: '/',
+            title: "About",
+            viewEvent: AboutEvent
+        },
 
 
     };
