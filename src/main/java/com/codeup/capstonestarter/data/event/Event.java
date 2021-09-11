@@ -8,6 +8,7 @@ import com.codeup.capstonestarter.data.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Date;
 
@@ -22,9 +23,9 @@ public class Event {
     private String title;
 
     @Column(nullable = false)
-    private Date dateCreated;
+    private LocalDateTime dateCreated;  // Date is deprecated..?
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "text")
     private String description;
 
     @ManyToOne
@@ -67,19 +68,6 @@ public class Event {
 
     public Event() {}
 
-    public Event(Long id, String title, Date dateCreated, String description, Type type, Location location, char outdoor, Collection<Comment> comments, Collection<EventDates> eventDates, User user, Collection<User> users) {
-        this.id = id;
-        this.title = title;
-        this.dateCreated = dateCreated;
-        this.description = description;
-        this.type = type;
-        this.location = location;
-        this.outdoor = outdoor;
-        this.comments = comments;
-        this.eventDates = eventDates;
-        this.user = user;
-        this.users = users;
-    }
 
     public Long getId() {
         return id;
@@ -97,11 +85,11 @@ public class Event {
         this.title = title;
     }
 
-    public Date getDateCreated() {
+    public LocalDateTime getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(Date dateCreated) {
+    public void setDateCreated(LocalDateTime dateCreated) {
         this.dateCreated = dateCreated;
     }
 
