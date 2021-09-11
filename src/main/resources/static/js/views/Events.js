@@ -155,6 +155,7 @@ export function EventEvents()  {
         switch (true) {
             case datePatt.test(searchItem):
                 fetchUrl = baseUrl + `date?dateCreated=${searchItem}`;
+                console.log(`Search item is '${searchItem}'`);
                 break;
             case zipPatt.test(searchItem):
                 fetchUrl = baseUrl + `postalCode?postalCode=${searchItem}`;

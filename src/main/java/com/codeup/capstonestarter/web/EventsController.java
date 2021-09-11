@@ -4,8 +4,12 @@ import com.codeup.capstonestarter.data.event.Event;
 import com.codeup.capstonestarter.data.event.EventRepository;
 import org.springframework.web.bind.annotation.*;
 
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.List;
-import java.util.Locale;
 
 @RestController
 @RequestMapping(value = "/api/events", headers = "Accept=application/json")
@@ -43,9 +47,13 @@ public class EventsController {
     }
 
     @GetMapping("/date")
-    private List<Event> getByDate(@RequestParam String date) {
+    private List<Event> getByDate(@RequestParam String dateCreated) {
         try {
-            return eventRepository.searchByDateLike(date);
+            LocalDate date = LocalDate.parse(dateCreated);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            // DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.valueOf("yyyy-MM-dd"));
+            String dateText = date.format(formatter);
+            return eventRepository.findEventByDateLike(dateText);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

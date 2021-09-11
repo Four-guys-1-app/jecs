@@ -18,11 +18,12 @@ public class Type {
     @Column(nullable = false)
     private String type;
 
-    public Type() {
-    }
     @OneToMany(mappedBy = "type")
     @JsonIgnoreProperties("type")
     private Collection<Event> events;
+
+    public Type() {
+    }
 
     @ManyToMany(
             fetch = FetchType.LAZY,
