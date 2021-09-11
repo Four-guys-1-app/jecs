@@ -7,6 +7,7 @@ import com.codeup.capstonestarter.data.type.Type;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.Email;
 import java.util.Collection;
 
@@ -34,7 +35,7 @@ public class User {
     @Column(nullable = false, columnDefinition = "text")
     private String bio;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 5)
     private String postalCode;
 
     @Enumerated(EnumType.STRING)
@@ -86,22 +87,6 @@ public class User {
 
 
     public User() {
-    }
-
-    public User(Long id, String fullName, String username, String email, String password, String bio, String postalCode, Role role, Collection<Comment> comments, Collection<Event> events, Collection<Post> posts, Collection<Type> types, Collection<Event> subEvents) {
-        this.id = id;
-        this.fullName = fullName;
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.bio = bio;
-        this.postalCode = postalCode;
-        this.role = role;
-        this.comments = comments;
-        this.events = events;
-        this.posts = posts;
-        this.types = types;
-        this.subEvents = subEvents;
     }
 
     public Long getId() {

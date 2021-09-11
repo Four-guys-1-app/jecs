@@ -23,7 +23,8 @@ public class Event {
     private String title;
 
     @Column(nullable = false)
-    private LocalDateTime dateCreated;  // Date is deprecated..?
+    // @Temporal(TemporalType.TIMESTAMP)
+    private String dateCreated;  // Date is deprecated..?
 
     @Column(nullable = false, columnDefinition = "text")
     private String description;
@@ -51,6 +52,7 @@ public class Event {
     @JsonIgnoreProperties({"events", "email", "password", "bio", "postalCode", "comments", "posts", "types", "subEvents"})
     private User user;
 
+    // Who subscribes to the event
     @ManyToMany(
             fetch = FetchType.LAZY,
             cascade = {CascadeType.MERGE, CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH},
@@ -85,11 +87,11 @@ public class Event {
         this.title = title;
     }
 
-    public LocalDateTime getDateCreated() {
+    public String getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(LocalDateTime dateCreated) {
+    public void setDateCreated(String dateCreated) {
         this.dateCreated = dateCreated;
     }
 

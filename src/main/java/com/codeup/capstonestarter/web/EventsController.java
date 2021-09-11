@@ -49,11 +49,10 @@ public class EventsController {
     @GetMapping("/date")
     private List<Event> getByDate(@RequestParam String dateCreated) {
         try {
-            LocalDate date = LocalDate.parse(dateCreated);
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            // DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.valueOf("yyyy-MM-dd"));
-            String dateText = date.format(formatter);
-            return eventRepository.findEventByDateLike(dateText);
+            // LocalDateTime date = LocalDateTime.parse(dateCreated);
+            // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
+            // String dateText = date.format(formatter);
+            return eventRepository.findEventByDateLike(dateCreated);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -63,7 +62,7 @@ public class EventsController {
     @GetMapping("/postalCode")
     private List<Event> getByZip(@RequestParam String postalCode) {
         try {
-            return eventRepository.searchByZipCodeLike(postalCode);
+            return eventRepository.searchByZipCodeLike(Integer.parseInt(postalCode));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
