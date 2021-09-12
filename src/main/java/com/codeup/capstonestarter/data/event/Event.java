@@ -24,7 +24,7 @@ public class Event {
 
     @Column(nullable = false)
     // @Temporal(TemporalType.TIMESTAMP)
-    private String dateCreated;  // Date is deprecated..?
+    private LocalDateTime dateCreated;  // Date is deprecated..?
 
     @Column(nullable = false, columnDefinition = "text")
     private String description;
@@ -87,11 +87,11 @@ public class Event {
         this.title = title;
     }
 
-    public String getDateCreated() {
+    public LocalDateTime getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(String dateCreated) {
+    public void setDateCreated(LocalDateTime dateCreated) {
         this.dateCreated = dateCreated;
     }
 
