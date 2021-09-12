@@ -49,10 +49,9 @@ public class EventsController {
     @GetMapping("/date")
     private List<Event> getByDate(@RequestParam String dateCreated) {
         try {
-            // LocalDateTime date = LocalDateTime.parse(dateCreated);
-            // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
-            // String dateText = date.format(formatter);
-            return eventRepository.findEventByDateLike(dateCreated);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            // LocalDate.parse(dateCreated, formatter).atStartOfDay()
+            return eventRepository.findEventByDateLike(LocalDate.parse(dateCreated, formatter));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
