@@ -19,6 +19,6 @@ public interface EventRepository extends JpaRepository <Event, Long> {
     // List<Author> getAuthorsByFirstName(String firstName);
 
     @Query("SELECT e from Event e where e.location.postalCode like %:term%")
-    List<Event> searchByZipCodeLike(@Param("term") String term);
+    List<Event> searchByZipCodeLike(@Param("term") int term);
 
 }
