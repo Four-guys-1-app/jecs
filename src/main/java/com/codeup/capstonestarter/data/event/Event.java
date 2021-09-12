@@ -33,7 +33,7 @@ public class Event {
     @JsonIgnoreProperties({"events", "posts"})
     private Type type;
 
-    @OneToOne
+    @OneToOne(mappedBy = "event")
     private Location location;
 
     @Column(nullable = false)

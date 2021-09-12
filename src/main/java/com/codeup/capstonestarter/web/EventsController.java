@@ -6,9 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.util.List;
 
 @RestController
@@ -50,8 +48,7 @@ public class EventsController {
     private List<Event> getByDate(@RequestParam String dateCreated) {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            // LocalDate.parse(dateCreated, formatter).atStartOfDay()
-            return eventRepository.findEventByDateLike(LocalDate.parse(dateCreated, formatter));
+            return eventRepository.findEventByDate(LocalDate.parse(dateCreated, formatter));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -66,6 +63,11 @@ public class EventsController {
             System.out.println(e.getMessage());
         }
         return null;
+    }
+
+    @PostMapping
+    private void createEvent(@RequestBody Event newEvent) {
+
     }
 
 
