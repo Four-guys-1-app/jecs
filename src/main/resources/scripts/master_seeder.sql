@@ -38,3 +38,47 @@ VALUES ('Hello', 'This is a test bodyChislic andouille ball tip ribeye. Tongue t
        ('Paddle Boarding', 'It is like surfing but not reallyDoner frankfurter pig, pork chop kielbasa boudin ball tip burgdoggen hamburger cow pastrami andouille cupim bacon ground round. Sausage pork prosciutto tail t-bone, kevin meatball. Short loin pork belly beef ribs meatloaf capicola. Chicken hamburger ground round turducken pork chop t-bone venison salami biltong shoulder sirloin pork meatloaf buffalo strip steak. Jowl tri-tip tail, leberkas kielbasa strip steak picanha alcatra pork spare ribs turkey pork chop brisket t-bone shoulder.', '2021-09-10 09:15:44', 4, 40),
        ('Base Jumping', 'Who needs airplanes? Doner frankfurter pig, pork chop kielbasa boudin ball tip burgdoggen hamburger cow pastrami andouille cupim bacon ground round. Sausage pork prosciutto tail t-bone, kevin meatball. Short loin pork belly beef ribs meatloaf capicola. Chicken hamburger ground round turducken pork chop t-bone venison salami biltong shoulder sirloin pork meatloaf buffalo strip steak. Jowl tri-tip tail, leberkas kielbasa strip steak picanha alcatra pork spare ribs turkey pork chop brisket t-bone shoulder.', '2021-09-10 10:15:12', 3, 6),
        ('Rock Climbing', 'I just watched cliffhanger on Netflix and stallone made it look good. Doner frankfurter pig, pork chop kielbasa boudin ball tip burgdoggen hamburger cow pastrami andouille cupim bacon ground round. Sausage pork prosciutto tail t-bone, kevin meatball. Short loin pork belly beef ribs meatloaf capicola. Chicken hamburger ground round turducken pork chop t-bone venison salami biltong shoulder sirloin pork meatloaf buffalo strip steak. Jowl tri-tip tail, leberkas kielbasa strip steak picanha alcatra pork spare ribs turkey pork chop brisket t-bone shoulder.', '2021-09-10 10:36:45', 6, 33);
+
+
+INSERT INTO locations(address_line1, address_line2, city, latitude, longitude, postal_code, state)
+VALUES (null, null, null, 30.24386812395879, -97.71888645202037, '78741', null),
+       (null, null, null, 30.249084239380977, -97.71205036541915, '78741', null),
+       (null, null, null, 30.23257098441853, -97.73663903452575, '78741', null),
+       ('8005 E Sprague Ave', null, 'Spokane Valley', 47.657364025307686, -117.29739710526263, '99212', 'Washington'),
+       (null, null, null, 47.69531911916843, -117.3040398939753, '99212', null),
+       (null, null, null, 47.6648462070234, -116.81396931106491, '83814', null),
+       (null, null, null, 45.884412650098454, -68.96677871439176, '04462', null),
+       ('18 Briers Way', null, 'Vassalboro', 44.41297673846316, -69.66994147453403, '04989', 'Maine'),
+       ('81 Main St', null, 'Madison', 44.79765558122037, -69.88177260073076, '04950', 'Maine');
+
+INSERT INTO events(date_created, description, outdoor, title, type_id, user_id, location_id)
+VALUES ('2021-09-12 11:39:12',
+        'Bacon ipsum dolor amet pork picanha pork loin pancetta. Leberkas swine kevin pancetta, venison sirloin ham hock beef ribs hamburger bresaola turducken turkey. Ground round picanha cow shankle tail flank. Cow ground round kielbasa pastrami ball tip tongue.',
+        'y', 'Most bass contest', 19, 8, 1),
+       ('2021-09-01 10:05:10',
+        'Bacon ipsum dolor amet pork picanha pork loin pancetta. Leberkas swine kevin pancetta, venison sirloin ham hock beef ribs hamburger bresaola turducken turkey. Ground round picanha cow shankle tail flank. Cow ground round kielbasa pastrami ball tip tongue.',
+        'y', 'Hiking at dawn', 1, 4, 2),
+       ('2021-09-02 17:54:23',
+        'Bacon ipsum dolor amet pork picanha pork loin pancetta. Leberkas swine kevin pancetta, venison sirloin ham hock beef ribs hamburger bresaola turducken turkey. Ground round picanha cow shankle tail flank. Cow ground round kielbasa pastrami ball tip tongue.',
+        'y', 'Camping on the shoreline', 10, 7, 6),
+       ('2021-09-07 08:30:01',
+        'Bacon ipsum dolor amet pork picanha pork loin pancetta. Leberkas swine kevin pancetta, venison sirloin ham hock beef ribs hamburger bresaola turducken turkey. Ground round picanha cow shankle tail flank. Cow ground round kielbasa pastrami ball tip tongue.',
+        'y', 'Frisbee with the dogs', 4, 6, 5),
+       ('2021-09-05 20:45:36',
+        'Bacon ipsum dolor amet pork picanha pork loin pancetta. Leberkas swine kevin pancetta, venison sirloin ham hock beef ribs hamburger bresaola turducken turkey. Ground round picanha cow shankle tail flank. Cow ground round kielbasa pastrami ball tip tongue.',
+        'n', 'Bowling after sunset. BYOB', 12, 4, 4),
+       ('2021-09-04 07:38:22',
+        'Bacon ipsum dolor amet pork picanha pork loin pancetta. Leberkas swine kevin pancetta, venison sirloin ham hock beef ribs hamburger bresaola turducken turkey. Ground round picanha cow shankle tail flank. Cow ground round kielbasa pastrami ball tip tongue.',
+        'y', 'Bring your mountain bikes to mount Katahdin', 15, 3, 7),
+       ('2021-09-08 15:11:55',
+        'Bacon ipsum dolor amet pork picanha pork loin pancetta. Leberkas swine kevin pancetta, venison sirloin ham hock beef ribs hamburger bresaola turducken turkey. Ground round picanha cow shankle tail flank. Cow ground round kielbasa pastrami ball tip tongue.',
+        'n', 'Indoor paintball tournament', 40, 2, 8),
+       ('2021-09-05 19:47:46',
+        'Bacon ipsum dolor amet pork picanha pork loin pancetta. Leberkas swine kevin pancetta, venison sirloin ham hock beef ribs hamburger bresaola turducken turkey. Ground round picanha cow shankle tail flank. Cow ground round kielbasa pastrami ball tip tongue.',
+        'n', 'How good are you with compound bows?', 37, 1, 9),
+       ('2021-09-01 10:19:26',
+        'Bacon ipsum dolor amet pork picanha pork loin pancetta. Leberkas swine kevin pancetta, venison sirloin ham hock beef ribs hamburger bresaola turducken turkey. Ground round picanha cow shankle tail flank. Cow ground round kielbasa pastrami ball tip tongue.',
+        'y', 'Biking group starting on Parker Lane.', 48, 6, 3),
+       ('2021-09-01 12:21:31',
+        'Bacon ipsum dolor amet pork picanha pork loin pancetta. Leberkas swine kevin pancetta, venison sirloin ham hock beef ribs hamburger bresaola turducken turkey. Ground round picanha cow shankle tail flank. Cow ground round kielbasa pastrami ball tip tongue.',
+        'n', 'Lets bust shots', 38, 5, 9);
