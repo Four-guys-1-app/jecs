@@ -1,9 +1,11 @@
 package com.codeup.capstonestarter.data.location;
 
 import com.codeup.capstonestarter.data.event.Event;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
+import java.util.Collection;
 
 @Entity
 @Table(name = "locations")
@@ -34,8 +36,9 @@ public class Location {
     @Column(nullable = false, length = 5)
     private String postalCode;
 
-    @OneToOne
-    private Event event;
+    @OneToMany(mappedBy = "location")
+    @JsonIgnoreProperties("location")
+    private Collection<Event> events;
 
     public Location() {
     }
@@ -104,11 +107,11 @@ public class Location {
         this.postalCode = postalCode;
     }
 
-    public Event getEvent() {
-        return event;
+    public Collection<Event> getEvents() {
+        return events;
     }
 
-    public void setEvent(Event event) {
-        this.event = event;
+    public void setEvents(Collection<Event> events) {
+        this.events = events;
     }
 }

@@ -23,8 +23,7 @@ public class Event {
     private String title;
 
     @Column(nullable = false)
-    // @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime dateCreated;  // Date is deprecated..?
+    private LocalDateTime dateCreated;
 
     @Column(nullable = false, columnDefinition = "text")
     private String description;
@@ -33,7 +32,7 @@ public class Event {
     @JsonIgnoreProperties({"events", "posts"})
     private Type type;
 
-    @OneToOne(mappedBy = "event")
+    @ManyToOne
     private Location location;
 
     @Column(nullable = false)
