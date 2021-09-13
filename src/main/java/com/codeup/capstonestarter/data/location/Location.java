@@ -4,7 +4,6 @@ import com.codeup.capstonestarter.data.event.Event;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import javax.validation.constraints.Digits;
 import java.util.Collection;
 
 @Entity
@@ -42,6 +41,7 @@ public class Location {
 
     public Location() {
     }
+
 
     public Long getId() {
         return id;

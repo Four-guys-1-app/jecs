@@ -2,6 +2,7 @@ package com.codeup.capstonestarter.data.type;
 
 import com.codeup.capstonestarter.data.event.Event;
 import com.codeup.capstonestarter.data.post.Post;
+import com.codeup.capstonestarter.data.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -22,8 +23,10 @@ public class Type {
     @JsonIgnoreProperties("type")
     private Collection<Event> events;
 
-    public Type() {
-    }
+
+    @OneToMany(mappedBy = "type")
+    @JsonIgnoreProperties("type")
+    private Collection<Post> posts;
 
     @ManyToMany(
             fetch = FetchType.LAZY,
@@ -32,18 +35,14 @@ public class Type {
     @JoinTable(
             name="user_type",
             joinColumns = {@JoinColumn(name = "type_id", nullable = false, updatable = false)},
-            inverseJoinColumns = {@JoinColumn(name="post_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name="user_id", nullable = false, updatable = false)},
             foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT),
             inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT)
     )
     @JsonIgnoreProperties("types")
-    private Collection<Post> posts;
+    private Collection<User> user;
 
-    public Type(Long id, String type, Collection<Event> events, Collection<Post> posts) {
-        this.id = id;
-        this.type = type;
-        this.events = events;
-        this.posts = posts;
+    public Type() {
     }
 
     public Long getId() {
@@ -76,5 +75,13 @@ public class Type {
 
     public void setPosts(Collection<Post> posts) {
         this.posts = posts;
+    }
+
+    public Collection<User> getUser() {
+        return user;
+    }
+
+    public void setUser(Collection<User> user) {
+        this.user = user;
     }
 }
