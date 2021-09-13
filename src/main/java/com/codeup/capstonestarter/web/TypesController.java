@@ -19,7 +19,7 @@ public class TypesController {
 
 
     @GetMapping
-    private List<Type> getEventsByType() {
+    private List<Type> getAll() {
         return typesRepository.findAll();
     }
 

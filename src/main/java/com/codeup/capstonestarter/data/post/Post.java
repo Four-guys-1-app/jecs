@@ -3,6 +3,7 @@ package com.codeup.capstonestarter.data.post;
 import com.codeup.capstonestarter.data.comment.Comment;
 import com.codeup.capstonestarter.data.type.Type;
 import com.codeup.capstonestarter.data.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -17,6 +18,7 @@ public class Post {
     private Long id;
 
     @ManyToOne
+    @JsonIgnoreProperties({"events", "posts", "user"})
     private Type type;
 
     @Column(nullable = false)
@@ -29,6 +31,7 @@ public class Post {
     private LocalDateTime createDate;
 
     @ManyToOne
+    @JsonIgnoreProperties({"events", "email", "password", "bio", "postalCode", "comments", "posts", "types", "subEvents"})
     private User user;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
