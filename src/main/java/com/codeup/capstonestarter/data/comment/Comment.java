@@ -6,7 +6,7 @@ import com.codeup.capstonestarter.data.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "comments")
@@ -23,13 +23,14 @@ public class Comment {
     private String Content;
 
     @Column(nullable = false)
-    private Date postedDate;
+    private LocalDateTime postedDate;
 
     @ManyToOne
     @JsonIgnoreProperties("comments")
     private Event event;
 
     @ManyToOne
+    @JsonIgnoreProperties("comments")
     private Post post;
 
     @ManyToOne
@@ -39,15 +40,6 @@ public class Comment {
     public Comment() {
     }
 
-    public Comment(Long id, String title, String content, Date postedDate, Event event, Post post, User user) {
-        this.id = id;
-        this.title = title;
-        Content = content;
-        this.postedDate = postedDate;
-        this.event = event;
-        this.post = post;
-        this.user = user;
-    }
 
     public Long getId() {
         return id;
@@ -73,11 +65,11 @@ public class Comment {
         Content = content;
     }
 
-    public Date getPostedDate() {
+    public LocalDateTime getPostedDate() {
         return postedDate;
     }
 
-    public void setPostedDate(Date postedDate) {
+    public void setPostedDate(LocalDateTime postedDate) {
         this.postedDate = postedDate;
     }
 

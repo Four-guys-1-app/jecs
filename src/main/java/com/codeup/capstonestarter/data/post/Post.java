@@ -5,8 +5,8 @@ import com.codeup.capstonestarter.data.type.Type;
 import com.codeup.capstonestarter.data.user.User;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Collection;
-import java.util.Date;
 
 @Entity
 @Table(name = "posts")
@@ -26,7 +26,7 @@ public class Post {
     private String body;
 
     @Column(nullable = false)
-    private Date createDate;
+    private LocalDateTime createDate;
 
     @ManyToOne
     private User user;
@@ -36,15 +36,6 @@ public class Post {
 
     public Post(){}
 
-    public Post(Long id, Type type, String title, String body, Date createDate, User user, Collection<Comment> comments) {
-        this.id = id;
-        this.type = type;
-        this.title = title;
-        this.body = body;
-        this.createDate = createDate;
-        this.user = user;
-        this.comments = comments;
-    }
 
     public Long getId() {
         return id;
@@ -78,11 +69,11 @@ public class Post {
         this.body = body;
     }
 
-    public Date getCreateDate() {
+    public LocalDateTime getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(LocalDateTime createDate) {
         this.createDate = createDate;
     }
 

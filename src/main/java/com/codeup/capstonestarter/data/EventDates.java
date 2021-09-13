@@ -2,10 +2,9 @@ package com.codeup.capstonestarter.data;
 
 import com.codeup.capstonestarter.data.event.Event;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "event_dates")
@@ -20,7 +19,24 @@ public class EventDates {
     private Event event;
 
     @Column(nullable = false)
-    private Date date;
+    private LocalDateTime date;
 
+    public EventDates() {
+    }
 
+    public Event getEvent() {
+        return event;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
 }

@@ -10,7 +10,7 @@ VALUES ('Hiking'), ('Yoga'), ('Swimming'), ('Frisbee'), ('Gardening'),
     ('Football'), ('Weight lifting'), ('Volleyball'), ('Base jumping'), ('Hiking'),
     ('Archery'), ('Firing range'), ('Zip lining'), ('Paintball'), ('Kickball'),
     ('Kayaking'), ('Rafting'), ('Crossfit'), ('Soccer'), ('Baseball'), ('Running'),
-    ('Cycling'), ('Gardening');
+    ('Cycling'), ('Gardening'), ('Walking'), ('Gym group'), ('General');
 
 
 

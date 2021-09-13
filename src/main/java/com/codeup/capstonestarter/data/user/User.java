@@ -32,7 +32,7 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false, columnDefinition = "text")
+    @Column(columnDefinition = "text")
     private String bio;
 
     @Column(nullable = false, length = 5)
@@ -63,7 +63,7 @@ public class User {
             targetEntity = Type.class)
     @JoinTable(
             name="user_type",
-            joinColumns = {@JoinColumn(name = "post_id", nullable = false, updatable = false)},
+            joinColumns = {@JoinColumn(name = "user_id", nullable = false, updatable = false)},
             inverseJoinColumns = {@JoinColumn(name="type_id", nullable = false, updatable = false)},
             foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT),
             inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT)
@@ -85,9 +85,9 @@ public class User {
     @JsonIgnoreProperties("users")
     private Collection<Event> subEvents;
 
-
     public User() {
     }
+
 
     public Long getId() {
         return id;
