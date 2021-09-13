@@ -1,8 +1,10 @@
 package com.codeup.capstonestarter.web;
 
+import com.codeup.capstonestarter.data.event.Event;
 import com.codeup.capstonestarter.data.post.BlogsRepository;
 import com.codeup.capstonestarter.data.post.Post;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,8 +22,18 @@ public class BlogController {
 
 
     @GetMapping
-    private List<Post> getPosts() {
+    private List<Post> getAll() {
         return blogsRepository.findAll();
+    }
+
+    @GetMapping("{id}")
+    private Post getById(@PathVariable Long id) {
+        try {
+            return blogsRepository.findById(id).get();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 
 }

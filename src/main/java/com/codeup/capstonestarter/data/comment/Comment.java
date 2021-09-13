@@ -34,7 +34,7 @@ public class Comment {
     private Post post;
 
     @ManyToOne
-    @JsonIgnoreProperties("comments")
+    @JsonIgnoreProperties({"events", "email", "password", "bio", "postalCode", "comments", "posts", "types", "subEvents"})
     private User user;
 
     public Comment() {

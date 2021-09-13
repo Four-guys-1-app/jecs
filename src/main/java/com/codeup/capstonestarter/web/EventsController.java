@@ -21,10 +21,10 @@ public class EventsController {
 
 
     @GetMapping
-    private List<Event> getEvents() {return eventRepository.findAll();}
+    private List<Event> getAll() {return eventRepository.findAll();}
 
     @GetMapping("{id}")
-    private Event getEventById(@PathVariable Long id) {
+    private Event getById(@PathVariable Long id) {
         try {
             return eventRepository.findById(id).get();
         } catch (Exception e) {

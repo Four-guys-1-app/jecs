@@ -1,7 +1,7 @@
 USE capstone_db;
 
 INSERT INTO Types (type)
-VALUES ('Hiking'), ('Yoga'), ('Swimming'), ('Frisbee'), ('Gardening'),
+VALUES ('General Discussion'), ('Hiking'), ('Yoga'), ('Swimming'), ('Frisbee'), ('Gardening'),
     ('Skiing'), ('Snowboarding'), ('Surfing'), ('Golf'), ('Camping'), ('Boating'), ('Bowling'),
     ('Paddle boarding'), ('Tennis'), ('Mountain biking'), ('Nordic skiing'), ('Snorkeling'),
     ('Backpacking'), ('Fishing'), ('Water skiing'), ('Jet skiing'), ('Horseback Riding'),
@@ -10,7 +10,7 @@ VALUES ('Hiking'), ('Yoga'), ('Swimming'), ('Frisbee'), ('Gardening'),
     ('Football'), ('Weight lifting'), ('Volleyball'), ('Base jumping'), ('Hiking'),
     ('Archery'), ('Firing range'), ('Zip lining'), ('Paintball'), ('Kickball'),
     ('Kayaking'), ('Rafting'), ('Crossfit'), ('Soccer'), ('Baseball'), ('Running'),
-    ('Cycling'), ('Gardening'), ('Walking'), ('Gym group'), ('General');
+    ('Cycling'), ('Gardening'), ('Walking'), ('Gym group');
 
 
 
