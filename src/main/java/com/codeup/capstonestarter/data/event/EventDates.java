@@ -1,4 +1,4 @@
-package com.codeup.capstonestarter.data;
+package com.codeup.capstonestarter.data.event;
 
 import com.codeup.capstonestarter.data.event.Event;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
