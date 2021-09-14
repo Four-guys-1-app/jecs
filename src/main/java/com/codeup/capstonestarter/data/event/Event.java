@@ -1,6 +1,5 @@
 package com.codeup.capstonestarter.data.event;
 
-import com.codeup.capstonestarter.data.EventDates;
 import com.codeup.capstonestarter.data.comment.Comment;
 import com.codeup.capstonestarter.data.location.Location;
 import com.codeup.capstonestarter.data.type.Type;
