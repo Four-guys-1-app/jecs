@@ -2,6 +2,7 @@ package com.codeup.capstonestarter.web;
 
 import com.codeup.capstonestarter.data.user.User;
 import com.codeup.capstonestarter.data.user.UserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,10 +11,12 @@ import java.util.List;
 @RequestMapping(value = "/api/users", headers = "Accept=application/json")
 public class UsersController {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UsersController(UserRepository userRepository){
+    public UsersController(UserRepository userRepository, PasswordEncoder passwordEncoder){
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping
@@ -22,19 +25,20 @@ public class UsersController {
     }
 
     @PostMapping
-    private void createUser(@RequestBody User myUser) {
+    private void create(@RequestBody User myUser) {
+        myUser.setPassword(passwordEncoder.encode(myUser.getPassword()));
         userRepository.save(myUser);
 
     }
 
     @PutMapping("{id}")
-    private void updateUser(@RequestBody User myUser, @PathVariable Long id) {
+    private void update(@RequestBody User myUser, @PathVariable Long id) {
         userRepository.save(myUser);
 
     }
 
     @DeleteMapping("{id}")
-    private void deleteUser(@PathVariable Long id){
+    private void delete(@PathVariable Long id){
         userRepository.deleteById(id);
     }
 }

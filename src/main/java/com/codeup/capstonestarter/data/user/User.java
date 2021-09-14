@@ -4,6 +4,7 @@ import com.codeup.capstonestarter.data.comment.Comment;
 import com.codeup.capstonestarter.data.event.Event;
 import com.codeup.capstonestarter.data.post.Post;
 import com.codeup.capstonestarter.data.type.Type;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -30,6 +31,7 @@ public class User {
     private String email;
 
     @Column(nullable = false)
+    @JsonIgnore
     private String password;
 
     @Column(columnDefinition = "text")
@@ -49,7 +51,7 @@ public class User {
     private Collection<Comment> comments;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
-    @JsonIgnoreProperties("user")
+    @JsonIgnoreProperties({"user"})
     private Collection<Event> events;
 
 
@@ -83,7 +85,7 @@ public class User {
             inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT)
     )
     @JsonIgnoreProperties("users")
-    private Collection<Event> subEvents;
+    private Collection<Event> subscribedEvents;
 
     public User() {
     }
@@ -186,10 +188,10 @@ public class User {
     }
 
     public Collection<Event> getSubEvents() {
-        return subEvents;
+        return subscribedEvents;
     }
 
     public void setSubEvents(Collection<Event> subEvents) {
-        this.subEvents = subEvents;
+        this.subscribedEvents = subEvents;
     }
 }

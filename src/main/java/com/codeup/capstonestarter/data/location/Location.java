@@ -114,4 +114,5 @@ public class Location {
     public void setEvents(Collection<Event> events) {
         this.events = events;
     }
+
 }
