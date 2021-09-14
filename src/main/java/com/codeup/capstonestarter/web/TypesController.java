@@ -33,6 +33,7 @@ public class TypesController {
         return null;
     }
 
+
     @GetMapping("type")
     private List<Event> getByType(@RequestParam String type){
         try {
@@ -45,5 +46,6 @@ public class TypesController {
         return null;
 
     }
+
 
 }

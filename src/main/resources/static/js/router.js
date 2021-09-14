@@ -12,7 +12,7 @@ import Blog, {BlogEvent} from "./views/blogView.js";
  */
 export default function router(URI) {
     const routes = {
-        '/home': {
+        '/': {
             returnView: Home,
             state: {},
             uri: '/',
