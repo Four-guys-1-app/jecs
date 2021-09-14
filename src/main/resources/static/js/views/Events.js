@@ -2,21 +2,20 @@ export default function Events(props) {
     return `
     <div class="container">
         
-        <header>
+        <header class="d-flex justify-content-center">
             <h1 id="event-header" class="mb-4">Events</h1>
         </header>
         
-        <div>
-            <div class="d-flex justify-content-between">
-                <div class="form-group">
-                    <input type="text" class="form-control" id="searchby" placeholder="Search by event title, date created('YYYY-MM-DD'), or zip code(12345)...">
-                </div>
-                <div class="form-group">
-                    <button type="button" class="form-control" id="e-search">Search</button>
-                </div>
+        <!-- Temporary img wrapper class and placeholder image for the map -->
+        <div class="input-group mb-3">
+            <input id="searchby" type="text" class="form-control" placeholder="Search by event title, date created('YYYY-MM-DD'), or zip code(12345)..." aria-label="Search by event title, date created('YYYY-MM-DD'), or zip code(12345)..." aria-describedby="e-search">
+            <div class="input-group-append">
+                <span class="input-group-text" id="e-search"><a href="">Search</a></span>
             </div>
         </div>
-
+        <div id="event-map" class="img-square-wrapper my-4 d-flex justify-content-center">
+            <img class="" src="http://via.placeholder.com/1050x700" alt="Card image cap">
+        </div>
     
         <div class="modal fade" id="ModalCenter" data-backdrop="static" data-keyboard="false" tabindex="-1"
              role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
@@ -133,8 +132,9 @@ export function EventEvents()  {
                                         <p class="card-text">Event created by: ${event.user.username}</p>
                                     </div>
                                 </div>
-                                <div class="card-footer">
+                                <div class="card-footer d-flex justify-content-between">
                                     <small class="text-muted">Activity: ${event.type.type}</small>
+                                    <small class="text-muted">Zip code: ${event.location.postalCode}</small>
                                 </div>
                             </div>
                         </div>

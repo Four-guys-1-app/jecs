@@ -28,10 +28,11 @@ public class Event {
     private String description;
 
     @ManyToOne
-    @JsonIgnoreProperties({"events", "posts"})
+    @JsonIgnoreProperties({"events", "posts", "user"})
     private Type type;
 
     @ManyToOne
+    @JsonIgnoreProperties("events")
     private Location location;
 
     @Column(nullable = false)
