@@ -22,15 +22,17 @@ export function BlogEvent(){
         let apiUrl2 = `http://localhost:8080/api/events/`
 
 
-        const getTypes = async (element, url) =>{
-            const response = await fetch(url);
-            const jsonRes = await response.json();
-            console.log(jsonRes);
 
-            element.append( jsonRes.map(event => `
-                            
+            const getTypes = async (element, url) => {
+                const response = await fetch(url);
+                const jsonRes = await response.json();
+                console.log(jsonRes);
+
+                element.append(jsonRes.map(event => `
+                            <h5>${event.type}</h5>
                 `).join(''))
-        }
+            };
+
 
         const getCards = async (element, url) => {
             const response = await fetch(url);
@@ -65,15 +67,52 @@ export function BlogEvent(){
         getCards(blogDiv, apiUrl2);
         getTypes(eventDiv, apiUrl);
 
+
+
     });
 
-    $(".appendBoi").append(`<div class="container">
+    const buildUrl = searchItem => {
+        const baseUrl = `http://localhost:8080/api/events/`;
+        let fetchUrl;
+
+        const typePatt = /[\s\S]{1,255}/;
+
+        switch (true){
+            case typePatt.test(searchItem):
+                fetchUrl = baseUrl + `type?type=${searchItem}`;
+
+            default:
+                console.log("the search not valid.")
+        }
+
+    $("#submitType").click(function ()  {
+        const searchInput = $("#typeSelection")
+        const eventDiv = $("#blogCards")
+
+        if (searchInput.val() === "") {
+            alert("Please enter a search value to proceed...");
+            return;
+        } else if (searchInput.val().length > 255) {
+            alert("You have entered too many characters.  Please try again.");
+            return;
+        }
+
+        let apiUrl = buildUrl(searchInput.val());
+
+        eventDiv.empty();
+        getCards(eventDiv, apiUrl);
+
+    })
+
+    }
+
+        $(".appendBoi").append(`<div class="container">
             <div class="d-flex flex-direction: column">
                <div class="w-25 p-3 ml-0" id="typesList">
                     <div class="form-group">
                           <label for="name-selection">Type Name</label>
-                           <input type="text" class="form-control" id="name-selection">
-                           <input type="submit" id="submit" value="Submit" class="btn btn-dark">
+                           <input type="text" class="form-control" id="typeSelection">
+                           <input type="submit" id="submitType" value="Submit" class="btn btn-dark">
                      
                </div>
             </div>
