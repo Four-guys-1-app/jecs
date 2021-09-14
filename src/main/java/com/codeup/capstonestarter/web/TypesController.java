@@ -34,16 +34,16 @@ public class TypesController {
         return null;
     }
 
-    @GetMapping
-    private Type getByName(){
-        try {
-            return typesRepository.ge().get();
+//    @GetMapping
+//    private Type getByName(){
+//        try {
+////            return typesRepository.find().get();
+//
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//        }
+//        return null;
 
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return null;
-
-    }
+//    }
 
 }
