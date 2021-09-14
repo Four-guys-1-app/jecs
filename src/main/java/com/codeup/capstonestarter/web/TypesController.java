@@ -34,4 +34,16 @@ public class TypesController {
         return null;
     }
 
+    @GetMapping
+    private Type getByName(){
+        try {
+            return typesRepository.ge().get();
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+
+    }
+
 }
