@@ -14,6 +14,125 @@ export default function Navbar(props) {
                     <a class="nav-item nav-link" href="/about" data-link>About</a>
                 </div>
             </div>
+            
+             <div>
+                <button type="button" class="mb-5" data-toggle="modal" data-target="#RegisterCenter" id="reg-button">Register</button>
+            </div> 
+        
+            <div>
+                <button type="button" class="mb-5" data-toggle="modal" data-target="#ModalCenter">Create Event</button>
+            </div> 
         </nav>
+            <div class="modal fade" id="ModalCenter" data-backdrop="static" data-keyboard="false" tabindex="-1"
+                 role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="ModalLongTitle">Create Event</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+        
+                            <form>
+                                <div class="form-group">
+                                    <label for="e-title">Event Title</label>
+                                    <input type="text" class="form-control" id="e-title" placeholder="">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="e-description">Post Content</label>
+                                    <textarea class="form-control" id="e-description" rows="3" placeholder="Event details..."></textarea>
+                                </div>
+        
+                                <div class="form-group">
+                                    <label for="e-title">Event Title</label>
+                                    <input type="text" class="form-control" id="e-title" placeholder="">
+                                </div>
+        
+                                <div class="form-group">
+                                    <label for="e-location">Event location</label>
+                                    <div id="user-event-creation-map">
+                                        <!-- map here-->
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <!-- dropdown for event type goes here-->
+                                </div>
+                                
+                                <div>
+                                    <!-- yes or no dropdown for outdoor-->
+                                </div>
+                                
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="myButton" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="myButton" id="create-event" data-dismiss="modal">Create Event
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+              <div class="modal fade" id="RegisterCenter" data-backdrop="static" data-keyboard="false" tabindex="-1"
+                 role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="ModalLongTitle">Create Event</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+        
+                            <form>
+                                <div class="form-group">
+                                    <label for="e-title">Event Title</label>
+                                    <input type="text" class="form-control" id="e-title" placeholder="">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="e-description">Post Content</label>
+                                    <textarea class="form-control" id="e-description" rows="3" placeholder="Event details..."></textarea>
+                                </div>
+        
+                                <div class="form-group">
+                                    <label for="e-title">Event Title</label>
+                                    <input type="text" class="form-control" id="e-title" placeholder="">
+                                </div>
+        
+                                <div class="form-group">
+                                    <label for="e-location">Event location</label>
+                                    <div id="user-event-creation-map">
+                                        <!-- map here-->
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <!-- dropdown for event type goes here-->
+                                </div>
+                                
+                                <div>
+                                    <!-- yes or no dropdown for outdoor-->
+                                </div>
+                                
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="myButton" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="myButton" id="create-event" data-dismiss="modal">Create Event
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
     `;
 }
