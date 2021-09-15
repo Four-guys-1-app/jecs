@@ -26,6 +26,16 @@ public class BlogController {
         return blogsRepository.findAll();
     }
 
+    @GetMapping("/postByType/{id}")
+    private List<Post> getByType(@PathVariable Long id) {
+        try {
+            return blogsRepository.findByType(id);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
     @GetMapping("{id}")
     private Post getById(@PathVariable Long id) {
         try {

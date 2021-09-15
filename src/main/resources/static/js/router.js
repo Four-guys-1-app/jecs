@@ -49,7 +49,9 @@ export default function router(URI) {
         },
         '/blog': {
             returnView: Blog,
-            state: {},
+            state: {
+                types: `/api/types`
+            },
             uri: '/',
             title: "Blog",
             viewEvent: BlogEvent
