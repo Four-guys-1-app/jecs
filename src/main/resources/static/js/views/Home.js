@@ -22,4 +22,8 @@ $('.h1').css("margin", "auto")
 
 export function HomeEvent() {
 
+    $(`#create-event`).click(function () {
+        console.log(this.val());
+    })
+
 }

@@ -12,7 +12,7 @@ export default function Navbar(props) {
                     <a class="nav-item nav-link" href="/blog" data-link>Blog</a>
                     <a class="nav-item nav-link" href="/account" data-link>Account</a>
                     <a class="nav-item nav-link" href="/about" data-link>About</a>
-                    <button class="nav-item" id="nav-btn" href="/login" data-toggle="modal" data-target="#ModalLogin">Login</button>
+                    <a class="nav-item nav-link" href="/login" data-toggle="modal" data-target="#ModalLogin">Login</a>
                 </div>
             </div>
             
@@ -136,30 +136,49 @@ export default function Navbar(props) {
                 </div>
             </div>
             
-            <div class="popup" id="ModalLogin" >
-            <span class="border border-dark"></span>
-                <div class="close-btn">&times;</div>
-                <div class="form">
-                    <h2> Log in</h2>
-                    <div class="form-element">
-                        <label for="user name">User name</label>
-                        <input type="text" id="user name" placeholder="User name">
-                    </div>
-                    <div class="form-element">
-                        <label for="password">Password</label>
-                        <input type="Password" id="Password" placeholder="Enter Password">
-                    </div>
-                    <div class="form-element">
-                        <input type="checkbox" id="remember-me">
-                        <label for="remember-me">Remember me</label>
-                    </div>
-                    <div class="form-element">
-                        <button>Sign in</button>
-                    </div>
-                    <div class="form-element">
-                        <a href="#">Forgot Password?</a>
+            
+            <div class="modal fade" id="ModalLogin" data-backdrop="static" data-keyboard="false" tabindex="-1"
+            role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="ModalLongTitle">Log in</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+            
+                            <form>
+                                <div class="form-group">
+                                    <label for="e-title">Username</label>
+                                    <input type="text" class="form-control" id="e-title" placeholder="Enter Username">
+                                </div>
+            
+                                <div class="form-group">
+                                    <label for="e-title">Password</label>
+                                    <input type="text" class="form-control" id="e-title" placeholder="Enter Password">
+                                </div>
+                                
+                                <div class="form-element">
+                                    <input type="checkbox" id="remember-me">
+                                    <label for="remember-me">Remember me</label>
+                                </div>
+                                
+                                <div class="form-element">
+                                    <a href="#">Forgot Password?</a>
+                                </div>
+                                
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="myButton" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="myButton" id="create-event" data-dismiss="modal">Sign In</button>
+                        </div>
                     </div>
                 </div>
             </div>
+            
+            $
     `;
 }
