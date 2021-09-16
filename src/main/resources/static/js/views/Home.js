@@ -9,6 +9,9 @@ export default function Home(props) {
                     This is the home page text.
                 </p>    
             </div>
+            
+            
+            
         </main>
     `;
 }
@@ -18,5 +21,9 @@ $('.h1').css("margin", "auto")
 
 
 export function HomeEvent() {
+
+    $(`#create-event`).click(function () {
+        console.log(this.val());
+    })
 
 }
