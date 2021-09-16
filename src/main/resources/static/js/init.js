@@ -4,12 +4,16 @@ import createView from './createView.js';
  * When the DOM loads, build the view given the current endpoint.
  */
 function loadViewOnPageRequest() {
-    window.addEventListener('DOMContentLoaded', function() {
+    window.addEventListener('DOMContentLoaded', function () {
         //TODO: Switched to location.pathname so the route would be accurate to current view
         createView(location.pathname);
+        // For dynamic usage of the tag selector when creating a new post
+        var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+            removeItemButton: true
+        });
     });
 
-    window.addEventListener('popstate', function(){
+    window.addEventListener('popstate', function () {
         console.log(history.getState);
         history.back();
     });
@@ -28,23 +32,9 @@ function addListenerToNavLinks() {
     });
 }
 
-// For dynamic usage of the tag selector when creating a new post
-function tagSelectorSupport() {
-    (function (){
-        var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
-            removeItemButton: true
-        });
-    })()
-}
 
-/* Event Listeners for navbar buttons */
-function navbarEventListeners() {
-
-}
 
 export default function init() {
     loadViewOnPageRequest();
     addListenerToNavLinks();
-    tagSelectorSupport();
-    navbarEventListeners();
 }

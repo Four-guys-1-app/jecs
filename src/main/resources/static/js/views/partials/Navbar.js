@@ -87,53 +87,54 @@ export default function Navbar(props) {
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="ModalLongTitle">Create Event</h5>
+                            <h5 class="modal-title" id="ModalLongTitle">Sign Up</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
         
-                            <form>
+                            <form id="reg-input">
                                 <div class="form-group">
-                                    <label for="e-title">Event Title</label>
-                                    <input type="text" class="form-control" id="e-title" placeholder="">
+                                    <label for="e-title">Full Name</label>
+                                    <input type="text" class="form-control reg-fields" id="r-name" required>
                                 </div>
-                                
                                 <div class="form-group">
-                                    <label for="e-description">Post Content</label>
-                                    <textarea class="form-control" id="e-description" rows="3" placeholder="Event details..."></textarea>
+                                    <label for="e-title">Email</label>
+                                    <input type="text" class="form-control reg-fields" id="r-email" required>
                                 </div>
-        
                                 <div class="form-group">
-                                    <label for="e-title">Event Title</label>
-                                    <input type="text" class="form-control" id="e-title" placeholder="">
+                                    <label for="e-title">Zip Code</label>
+                                    <input type="text" class="form-control reg-fields" id="r-zip" required>
                                 </div>
-        
                                 <div class="form-group">
-                                    <label for="e-location">Event location</label>
-                                    <div id="user-event-creation-map">
-                                        <!-- map here-->
-                                    </div>
+                                    <label for="e-title">Username</label>
+                                    <input type="text" class="form-control reg-fields" id="r-username" required>
                                 </div>
-                                
-                                <div>
-                                    <!-- dropdown for event type goes here-->
+                                <div class="form-group">
+                                    <label for="e-title">Password</label>
+                                    <input type="password" class="form-control reg-fields" id="r-password" required>
                                 </div>
-                                
-                                <div>
-                                    <!-- yes or no dropdown for outdoor-->
+                                <div class="form-group">
+                                    <label for="e-title">Confirm Password</label>
+                                    <input type="password" class="form-control reg-fields" id="r-confirm" required>
                                 </div>
-                                
-                            </form>
+                                <div class="form-group">
+                                    <label for="e-description">Bio</label>
+                                    <textarea class="form-control reg-fields" id="r-bio" rows="3" placeholder="Tell us about yourself"></textarea>
+                                </div>
+
+                              </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="myButton" data-dismiss="modal">Cancel</button>
-                            <button type="button" class="myButton" id="create-event" data-dismiss="modal">Create Event
+                            <button type="button" class="myButton" id="create-user" data-dismiss="modal">Submit
                             </button>
                         </div>
                     </div>
                 </div>
+<<<<<<< HEAD
+=======
             </div>
             
             
@@ -179,6 +180,11 @@ export default function Navbar(props) {
                 </div>
             </div>
             
+<<<<<<< HEAD
             
+=======
+            $
+>>>>>>> 3d57995343320bf0ed6407205d91376c586f4a3f
+>>>>>>> 86154037c2f32006f793b7642c4b010bc20b4942
     `;
 }
