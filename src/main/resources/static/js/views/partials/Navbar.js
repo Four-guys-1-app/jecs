@@ -116,7 +116,7 @@ export default function Navbar(props) {
                                 </div>
                                 <div class="form-group">
                                     <label for="e-title">Confirm Password</label>
-                                    <input type="text" class="form-control" id="r-Confirm" placeholder="">
+                                    <input type="text" class="form-control" id="r-confirm" placeholder="">
                                 </div>
                                 <div class="form-group">
                                     <label for="e-description">Bio</label>
