@@ -9,12 +9,12 @@ import java.util.List;
 import java.util.Locale;
 
 @RestController
-@RequestMapping(value = "/api/eventTypes", headers = "Accept=application/json")
+@RequestMapping(value = "/api/types", headers = "Accept=application/json")
 public class TypesController {
 
     private final TypesRepository typesRepository;
 
-    public TypesController(TypesRepository eventsTypeRepository) {this.typesRepository = eventsTypeRepository;}
+    public TypesController(TypesRepository typesRepository) {this.typesRepository = typesRepository;}
 
 
     @GetMapping
@@ -31,20 +31,6 @@ public class TypesController {
             System.out.println(e.getMessage());
         }
         return null;
-    }
-
-
-    @GetMapping("type")
-    private List<Event> getByType(@RequestParam String type){
-        try {
-            type = type.toLowerCase(Locale.ROOT);
-            return typesRepository.searchByTypeLike(type);
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return null;
-
     }
 
 

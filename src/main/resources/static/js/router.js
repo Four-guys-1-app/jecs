@@ -14,7 +14,9 @@ export default function router(URI) {
     const routes = {
         '/': {
             returnView: Home,
-            state: {},
+            state: {
+                types: `/api/types`
+            },
             uri: '/',
             title: "Home",
             viewEvent: HomeEvent
@@ -22,7 +24,8 @@ export default function router(URI) {
         '/events': {
             returnView: Events,
             state: {
-                events: '/api/events'
+                events: '/api/events',
+                types: `/api/types`
             },
             uri: '/events',
             title: "Events",
@@ -49,7 +52,9 @@ export default function router(URI) {
         },
         '/blog': {
             returnView: Blog,
-            state: {},
+            state: {
+                types: `/api/types`
+            },
             uri: '/',
             title: "Blog",
             viewEvent: BlogEvent
