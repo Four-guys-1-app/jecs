@@ -28,7 +28,23 @@ function addListenerToNavLinks() {
     });
 }
 
+// For dynamic usage of the tag selector when creating a new post
+function tagSelectorSupport() {
+    (function (){
+        var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+            removeItemButton: true
+        });
+    })()
+}
+
+/* Event Listeners for navbar buttons */
+function navbarEventListeners() {
+
+}
+
 export default function init() {
     loadViewOnPageRequest();
     addListenerToNavLinks();
+    tagSelectorSupport();
+    navbarEventListeners();
 }
