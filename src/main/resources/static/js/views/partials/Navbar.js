@@ -152,12 +152,12 @@ export default function Navbar(props) {
                             <form>
                                 <div class="form-group">
                                     <label for="e-title">Username</label>
-                                    <input type="text" class="form-control" id="e-title" placeholder="Enter Username">
+                                    <input type="text" class="form-control" id="u-username" placeholder="Enter Username">
                                 </div>
             
                                 <div class="form-group">
                                     <label for="e-title">Password</label>
-                                    <input type="text" class="form-control" id="e-title" placeholder="Enter Password">
+                                    <input type="text" class="form-control" id="u-password" placeholder="Enter Password">
                                 </div>
                                 
                                 <div class="form-element">
@@ -173,12 +173,12 @@ export default function Navbar(props) {
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="myButton" data-dismiss="modal">Cancel</button>
-                            <button type="button" class="myButton" id="create-event" data-dismiss="modal">Sign In</button>
+                            <button type="submit" class="myButton" id="auth-user" data-dismiss="modal">Sign In</button>
                         </div>
                     </div>
                 </div>
             </div>
             
-            $
+            
     `;
 }
