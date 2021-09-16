@@ -291,8 +291,15 @@
 
 
 
+<div class="row d-flex justify-content-start my-3">
+    <div class="col-md-6">
+        <select id="choices-multiple-remove-button" placeholder="Choose your interests" multiple>
+            ${props.types.map(type => `<option value="${type.id}">${type.type}</option>`)}
+        </select>
+    </div>
+</div>
 
-
+            <!-- ${props.types.forEach(type => `<option data-attribute="${type.id}" value="${type.type}">${type.type}</option>`)}-->
 
 
 
