@@ -6,9 +6,9 @@ export default function Blog(props) {
                 </div>
             </div>
             
-            <div class="container">
-                <div class="d-flex flex-direction: column">
-                    <div class="w-25 p-3 ml-0" id="typesList">
+            <div class="container m-1 ">
+                <div class="d-flex flex-direction: column no-gutters" id="listoftypes">
+                    <div class="w-25 ml-0 border " id="typesList">
                         ${props.types.map(type => `
                         <h5 data-id="${type.id}" class="listTypes"><a href="#">${type.type}</a></h5>
                         `).join('')}
@@ -79,8 +79,6 @@ export function BlogEvent(){
                 </div>
                 `).join(''))
         }
-
-
 
     });
 
