@@ -9,6 +9,9 @@ export default function Home(props) {
                     This is the home page text.
                 </p>    
             </div>
+            
+            
+            
         </main>
     `;
 }

@@ -12,6 +12,7 @@ export default function Navbar(props) {
                     <a class="nav-item nav-link" href="/blog" data-link>Blog</a>
                     <a class="nav-item nav-link" href="/account" data-link>Account</a>
                     <a class="nav-item nav-link" href="/about" data-link>About</a>
+                    <button class="nav-item" id="nav-btn" href="/login" data-toggle="modal" data-target="#ModalLogin">Login</button>
                 </div>
             </div>
             
@@ -131,6 +132,32 @@ export default function Navbar(props) {
                             <button type="button" class="myButton" id="create-event" data-dismiss="modal">Create Event
                             </button>
                         </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="popup" id="ModalLogin" >
+            <span class="border border-dark"></span>
+                <div class="close-btn">&times;</div>
+                <div class="form">
+                    <h2> Log in</h2>
+                    <div class="form-element">
+                        <label for="user name">User name</label>
+                        <input type="text" id="user name" placeholder="User name">
+                    </div>
+                    <div class="form-element">
+                        <label for="password">Password</label>
+                        <input type="Password" id="Password" placeholder="Enter Password">
+                    </div>
+                    <div class="form-element">
+                        <input type="checkbox" id="remember-me">
+                        <label for="remember-me">Remember me</label>
+                    </div>
+                    <div class="form-element">
+                        <button>Sign in</button>
+                    </div>
+                    <div class="form-element">
+                        <a href="#">Forgot Password?</a>
                     </div>
                 </div>
             </div>
