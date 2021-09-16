@@ -1,4 +1,6 @@
 import Navbar from "./views/partials/Navbar.js";
+import fetchData from "./fetchData";
+import createView from "./createView";
 
 
 /**
@@ -54,6 +56,192 @@ export default function render(props, route) {
     if (route.viewEvent){
         route.viewEvent();
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // $(`#auth-user`).click(function () {
+    //     let username = $(`#u-username`).val();
+    //     let password = $(`#u-password`).val();
+    //
+    //     console.log(username);
+    //     console.log(password);
+    //
+    //     fetch('https://localhost8080/api/users', {
+    //         method: 'POST',
+    //         body: 'grant_type=client_credentials&client_id=' + username + '&client_secret=' + password,
+    //         headers: {
+    //             'Content-Type': 'application/x-www-form-urlencoded'
+    //         }
+    //     }).then(function (resp) {
+    //
+    //         // Return the response as JSON
+    //         return resp.json();
+    //
+    //     }).then(function (data) {
+    //
+    //         // Log the API data
+    //         console.log('token', data);
+    //
+    //     }).catch(function (err) {
+    //
+    //         // Log any errors
+    //         console.log('something went wrong', err);
+    //
+    //     });
+    //     });
+
+
 
 }
 /* Event Listeners for navbar buttons */

@@ -7,26 +7,29 @@ export default function Blog(props) {
             </div>
             
             <div class="container m-1 ">
-                <div class="d-flex flex-direction: column no-gutters" id="listoftypes">
-                    <div class="w-25 ml-0 border " id="typesList">
-                        ${props.types.map(type => `
-                        <h5 data-id="${type.id}" class="listTypes"><a href="#">${type.type}</a></h5>
-                        `).join('')}
             
+                    <div class="d-flex flex-direction: column" id="listoftypes">
+                        <div class="w-25 ml-0 border " id="typesList">
+                        
+                            
+                                ${props.types.map(type => `
+                                <h5 data-id="${type.id}" class="listTypes"><a href="#">${type.type}</a></h5>
+                                `).join('')}
+                            </div>
+                
                     </div>
-                </div>
-            
-                <div class="w-50 p-3 d-flex justify-content-center flex-wrap">
-                    <div id="blogCards" class="container">
-            
+                
+                    <div class="w-50 p-3 d-flex justify-content-center flex-wrap">
+                        <div id="blogCards" class="container">
+                
+                        </div>
+                
                     </div>
-            
-                </div>
-            
-                <div class="w-25 p-3"><p>Hello</p></div>
-            
-            
-            </div>             
+                
+                    <div class="w-25 p-3"><p>Hello</p></div>
+                
+                
+                </div>    
       
    `;
 
@@ -79,6 +82,12 @@ export function BlogEvent(){
                 </div>
                 `).join(''))
         }
+
+        $(`.listTypes`).css({
+            "overflow": "hidden",
+            "display": "table",
+            "width": "auto"
+        });
 
     });
 
