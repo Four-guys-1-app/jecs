@@ -86,7 +86,7 @@ export default function Navbar(props) {
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="ModalLongTitle">Create Event</h5>
+                            <h5 class="modal-title" id="ModalLongTitle">Sign Up</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -95,44 +95,42 @@ export default function Navbar(props) {
         
                             <form>
                                 <div class="form-group">
-                                    <label for="e-title">Event Title</label>
-                                    <input type="text" class="form-control" id="e-title" placeholder="">
+                                    <label for="e-title">Full Name</label>
+                                    <input type="text" class="form-control" id="r-name" placeholder="">
                                 </div>
-                                
                                 <div class="form-group">
-                                    <label for="e-description">Post Content</label>
-                                    <textarea class="form-control" id="e-description" rows="3" placeholder="Event details..."></textarea>
+                                    <label for="e-title">Email</label>
+                                    <input type="text" class="form-control" id="r-email" placeholder="">
                                 </div>
-        
                                 <div class="form-group">
-                                    <label for="e-title">Event Title</label>
-                                    <input type="text" class="form-control" id="e-title" placeholder="">
+                                    <label for="e-title">Zip Code</label>
+                                    <input type="text" class="form-control" id="r-zip" placeholder="">
                                 </div>
-        
                                 <div class="form-group">
-                                    <label for="e-location">Event location</label>
-                                    <div id="user-event-creation-map">
-                                        <!-- map here-->
-                                    </div>
+                                    <label for="e-title">Username</label>
+                                    <input type="text" class="form-control" id="r-username" placeholder="">
                                 </div>
-                                
-                                <div>
-                                    <!-- dropdown for event type goes here-->
+                                <div class="form-group">
+                                    <label for="e-title">Password</label>
+                                    <input type="text" class="form-control" id="r-password" placeholder="">
                                 </div>
-                                
-                                <div>
-                                    <!-- yes or no dropdown for outdoor-->
+                                <div class="form-group">
+                                    <label for="e-title">Confirm Password</label>
+                                    <input type="text" class="form-control" id="r-Confirm" placeholder="">
                                 </div>
-                                
-                            </form>
+                                <div class="form-group">
+                                    <label for="e-description">Bio</label>
+                                    <textarea class="form-control" id="r-bio" rows="3" placeholder="Tell us about yourself"></textarea>
+                                </div>
+
+                              </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="myButton" data-dismiss="modal">Cancel</button>
-                            <button type="button" class="myButton" id="create-event" data-dismiss="modal">Create Event
+                            <button type="button" class="myButton" id="create-event" data-dismiss="modal">Submit
                             </button>
                         </div>
                     </div>
                 </div>
-            </div>
     `;
 }
