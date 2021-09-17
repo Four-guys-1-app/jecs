@@ -1,6 +1,6 @@
 import Navbar from "./views/partials/Navbar.js";
-import fetchData from "./fetchData";
-import createView from "./createView";
+import fetchData from "./fetchData.js";
+import createView from "./createView.js";
 
 
 /**

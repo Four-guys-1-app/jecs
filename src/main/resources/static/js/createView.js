@@ -17,10 +17,11 @@ export default function createView(URI) {
         return;
     }
 
+    // change view to loading screen
     render(null, router('/loading'));
 
 
-    // change view to loading screen
+
 
     let request = {
         headers: getHeaders()
