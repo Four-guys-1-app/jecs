@@ -4,6 +4,7 @@ import Loading from "./views/Loading.js";
 import Error404 from "./views/Error.js";
 import About, {AboutEvent} from "./views/About.js";
 import Blog, {BlogEvent} from "./views/blogView.js";
+import EventView, {EventViewEvent} from "./views/EventView.js";
 
 /**
  * Returns the route object for a specific route based on the given URI
@@ -30,6 +31,16 @@ export default function router(URI) {
             uri: '/events',
             title: "Events",
             viewEvent: EventEvents
+        },
+        '/event': {
+            returnView: EventView,
+            state: {
+                event: '/api/events/1',
+                // types: `/api/types`
+            },
+            uri: '/event',
+            title: "EventView",
+            viewEvent: EventViewEvent
         },
         '/loading': {
             returnView: Loading,

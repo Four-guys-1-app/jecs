@@ -1,3 +1,8 @@
+import {getHeaders} from "../auth.js";
+import fetchData from "../fetchData.js";
+import render from "../render.js";
+import router from "../router.js";
+
 export default function Events(props) {
     return `
     <div class="container">
@@ -31,8 +36,6 @@ export default function Events(props) {
     `;
 }
 
-
-
 export function EventEvents()  {
     $("#e-search").click(function() {
         const searchInput = $("#searchby");
@@ -50,8 +53,17 @@ export function EventEvents()  {
 
         eventDiv.empty();
         getEvents(eventDiv, apiUrl);
-
     })
+
+     window.viewDetails = (eventId) => {
+        let route = router("/event");
+        let request = {
+            headers: getHeaders()
+        }
+        fetchData({event: `/api/events/${eventId}`}, request).then((props) => {
+            render(props, route);
+        });
+    }
 
     const getEvents = async (element, url) => {
         const response = await fetch(url);
@@ -60,13 +72,14 @@ export function EventEvents()  {
         if (jsonRes.length === 0) {
             element.append(`<div class="container-fluid justify-content-center"><h4>-- No events found --</h4></div>`)
         }
+
         element.append( jsonRes.map(event => `
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12 mt-3">
                             <div class="card" data-id="${event.user.id}">
                                 <div class="d-flex card-horizontal">
-                                    <div class="img-square-wrapper">
+                                    <div class="img-square-wrapper" onclick="viewDetails(${event.id})">
                                         <img class="" src="http://via.placeholder.com/150x90" alt="Card image cap">
                                     </div>
                                     <div class="card-body">
