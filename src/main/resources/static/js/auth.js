@@ -1,5 +1,5 @@
-import fetchData from "./fetchData";
-import createView from "./createView";
+import fetchData from "./fetchData.js";
+import createView from "./createView.js";
 
 /**
  * Adds a login event to allow the user to initially obtain a new OAuth2.0 token
