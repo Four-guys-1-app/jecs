@@ -6,6 +6,7 @@ import com.codeup.jecsnetwork.data.post.Post;
 import com.codeup.jecsnetwork.data.type.Type;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -30,7 +31,7 @@ public class User {
     private String email;
 
     @Column(nullable = false)
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @Column(columnDefinition = "text")
@@ -89,6 +90,14 @@ public class User {
     public User() {
     }
 
+    public User(String fullName, String username, String email, String password, String bio, String postalCode) {
+        this.fullName = fullName;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.bio = bio;
+        this.postalCode = postalCode;
+    }
 
     public Long getId() {
         return id;

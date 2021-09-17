@@ -24,7 +24,7 @@ public class UsersController {
         return userRepository.findAll();
     }
 
-    @PostMapping
+    @PostMapping("/create")
     private void create(@RequestBody User myUser) {
         myUser.setPassword(passwordEncoder.encode(myUser.getPassword()));
         userRepository.save(myUser);

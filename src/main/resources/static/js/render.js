@@ -249,19 +249,31 @@ function navbarEventListeners() {
 
     $("#create-user").click(function (){
 
-        let fullName = $("#r-name").val();
-        let email = $("#r-email").val();
-        let zip = $("#r-zip").val();
-        let username = $("#r-username").val();
+        let fullName = $("#r-name").val().trim();
+        let email = $("#r-email").val().trim();
+        let zip = $("#r-zip").val().trim();
+        let username = $("#r-username").val().trim();
         let password = $("#r-password").val();
         let confirmPassword = $("#r-confirm").val();
         let bio = $("#r-bio").val();
-        // const $parent = $("#choices-multiple-remove-button");
-        // let catIds = $parent.children('option').map(function() {
-        //     return { id: parseInt($(this).val())};
-        // })
+
+        if (zip.length !== 5) {
+            alert("Zip code must in 5 digit format");
+            return;
+        }
+
+        if (validatePassword(password) !== true) {
+            console.log(password);
+            alert("Password is not long enough, or is not at least 8 characters");
+            return;
+        }
+
+        if (confirmPassword !== password) {
+
+        }
 
 
+        console.log(validateEmail(email));
 
         console.log(fullName);
         console.log(email);
@@ -269,21 +281,33 @@ function navbarEventListeners() {
         console.log(password);
         console.log(confirmPassword);
         console.log(bio);
+
+
+
+        // const $parent = $("#choices-multiple-remove-button");
+        // let catIds = $parent.children('option').map(function() {
+        //     return { id: parseInt($(this).val())};
+        // })
         // console.log(catIds);
+
+
+
+
 
         // This line goes inside the object that we create
         // types: $.makeArray(catIds)
 
-        // if (validateEmail(email) === false){
-        //     alert("Invalid Email address, please try again");
-        //     return;
-        // }
 
-
-
-        function validateEmail(email) {
-            const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            return re.test(String(email).toLowerCase());
-        }
     })
+}
+
+function validatePassword(password) {
+    const passReg = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})/;
+    return passReg.test(password);
+}
+
+
+function validateEmail(email) {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
 }
