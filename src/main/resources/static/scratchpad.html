@@ -357,8 +357,21 @@
 
 
 
+-------------------------------------------section for dynamic event type selection------------------------------------------------------
 
+// // For dynamic usage of the tag selector when creating a new post
+// var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+//     removeItemButton: true
+// });
 
+// const $parent = $("#choices-multiple-remove-button");
+// let catIds = $parent.children('option').map(function() {
+//     return { id: parseInt($(this).val())};
+// })
+// console.log(catIds);
+
+// This line goes inside the object that we create
+// types: $.makeArray(catIds)
 
 
 <div class="row d-flex justify-content-start my-3">
@@ -370,9 +383,21 @@
 </div>
 
             <!-- ${props.types.forEach(type => `<option data-attribute="${type.id}" value="${type.type}">${type.type}</option>`)}-->
+-------------------------------------------------------------------------------------------------
 
 
 
+
+// function validatePassword(password) {
+//     const passReg = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,25})/;
+//     return passReg.test(password);
+// }
+//
+//
+// function validateEmail(email) {
+//     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+//     return re.test(String(email).toLowerCase());
+// }
 
 
 

@@ -1,6 +1,7 @@
 import Navbar from "./views/partials/Navbar.js";
 import fetchData from "./fetchData.js";
 import createView from "./createView.js";
+import {getHeaders} from "./auth.js";
 
 
 /**
@@ -80,49 +81,6 @@ export default function render(props, route) {
         });
 
 
-        // document.addEventListener('DOMContentLoaded', function (e) {
-        //
-        //     const user_form = document.getElementById('user_form');
-        //
-        //     user_form.addEventListener('submit', function (event) {
-        //
-        //         console.log('form submit');
-        //
-        //         event.preventDefault();
-        //         event.stopPropagation();
-        //
-        //         let valid_form = false;
-        //
-        //         if (user_form.checkValidity() !== false) {
-        //             valid_form = true;
-        //         }
-        //
-        //         user_form.classList.add('was-validated');
-        //
-        //         if (valid_form) {
-        //             console.log('valid form');
-        //         } else {
-        //             console.log('invalid ');
-        //         }
-        //
-        //     }, false);
-        //
-        // });
-
-
-
-
-        // // For dynamic usage of the tag selector when creating a new post
-        // var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
-        //     removeItemButton: true
-        // });
-        // navbarEventListeners();
-
-
-
-
-        // $('.mdb-select').materialSelect();
-
         function checkInputs() {
             let isValid = true;
             $('.reg-fields').filter('[required]').each(function () {
@@ -149,7 +107,7 @@ export default function render(props, route) {
 
         checkInputs();
 
-        // navbarEventListeners();
+        navbarEventListeners();
     })
 
     // add events AFTER view is added to DOM
@@ -308,24 +266,6 @@ function navbarEventListeners() {
         let confirmPassword = $("#r-confirm").val();
         let bio = $("#r-bio").val();
 
-        if (zip.length !== 5) {
-            alert("Zip code must in 5 digit format");
-            return;
-        }
-
-        if (validatePassword(password) !== true) {
-            console.log(password);
-            alert("Password is not long enough, or is not at least 8 characters");
-            return;
-        }
-
-        if (confirmPassword !== password) {
-
-        }
-
-
-        console.log(validateEmail(email));
-
         console.log(fullName);
         console.log(email);
         console.log(zip);
@@ -333,28 +273,33 @@ function navbarEventListeners() {
         console.log(confirmPassword);
         console.log(bio);
 
+        let postObj = {
+            fullName: fullName,
+            username: username,
+            email: email,
+            password: password,
+            bio: bio,
+            postalCode: zip
+        }
+        postObj = JSON.stringify(postObj);
 
-        // const $parent = $("#choices-multiple-remove-button");
-        // let catIds = $parent.children('option').map(function() {
-        //     return { id: parseInt($(this).val())};
-        // })
-        // console.log(catIds);
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8080/api/users/create",
+            contentType: getHeaders(),
+            data: postObj,
+            success: function (result) {
+                console.log(result);
+                $("form[name='register']").validate().resetForm();
+            },
+            error: function (result) {
+                console.log("Caught error for ajax call");
+                console.log(result);
+                alert("There was an issue with registration.  Please try again later.")
+            }
+        })
 
-
-        // This line goes inside the object that we create
-        // types: $.makeArray(catIds)
 
 
     })
 }
-
-// function validatePassword(password) {
-//     const passReg = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,25})/;
-//     return passReg.test(password);
-// }
-//
-//
-// function validateEmail(email) {
-//     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-//     return re.test(String(email).toLowerCase());
-// }

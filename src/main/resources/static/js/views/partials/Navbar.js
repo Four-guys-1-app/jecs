@@ -89,7 +89,7 @@ export default function Navbar(props) {
                         </div>
                         <div class="modal-body">
             
-                            <form class="needs-validation container" id="register" name="register" novalidate>
+                            <form class="needs-validation container" id="register" name="register">
             
                                 <div class="md-form mb-3">
                                     <i class="fas fa-address-card prefix grey-text d-flex"></i>
