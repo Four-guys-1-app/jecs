@@ -1,4 +1,4 @@
-package com.codeup.jecsnetwork.data.errors;
+package com.codeup.jecsnetwork.errors;
 
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;

@@ -43,13 +43,8 @@ export default function Navbar(props) {
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label for="e-description">Post Content</label>
+                                    <label for="e-description">Event information</label>
                                     <textarea class="form-control" id="e-description" rows="3" placeholder="Event details..."></textarea>
-                                </div>
-        
-                                <div class="form-group">
-                                    <label for="e-title">Event Title</label>
-                                    <input type="text" class="form-control" id="e-title" placeholder="">
                                 </div>
         
                                 <div class="form-group">
@@ -82,7 +77,7 @@ export default function Navbar(props) {
             
             
             
-            
+            <!-- Will possibly refactor this, and the other forms to bootstrap 5 in the future -->
             <div class="modal fade" id="RegisterCenter" data-user_id="0" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="user_modal_title" aria-hidden="true">
                 <div class="modal-dialog modal-lg modal-notify modal-info" role="document">
                     <div class="modal-content">
@@ -96,58 +91,53 @@ export default function Navbar(props) {
             
                             <form class="needs-validation container" id="register" name="register" novalidate>
             
-                                <div class="md-form">
+                                <div class="md-form mb-3">
                                     <i class="fas fa-address-card prefix grey-text d-flex"></i>
-                                    <input type="text" class="form-control validate" id="r-name" name="fullname" required />
-                                    <label for="r-name">Full name</label>
+                                    <input type="text" class="form-control validate reg-fields" id="r-name" name="fullname" placeholder="Full name" required />
+                                <!-- <label for="r-name"></label>-->
                                 </div>
             
-                                <div class="md-form">
+                                <div class="md-form mb-3">
                                     <i class="fas fa-user-tag prefix grey-text d-flex"></i>
-                                    <input type="text" class="form-control validate" id="r-username" name="username" required />
-                                    <label for="r-username">Username</label>
+                                    <input type="text" class="form-control validate reg-fields" id="r-username" name="username" placeholder="Username" required />
+                                <!-- <label for="r-username"></label>-->
                                 </div>
             
-                                <div class="md-form">
+                                <div class="md-form mb-3">
                                     <i class="fa fa-fw fa-at prefix grey-text d-flex"></i>
-                                    <input type="email" class="form-control validate" id="r-email" name="email" required />
-                                    <label for="r-email">E-Mail Address</label>
+                                    <input type="email" class="form-control validate reg-fields" id="r-email" name="email" placeholder="E-Mail Address" required />
+                                <!-- <label for="r-email"></label>-->
                                 </div>
             
-                                <div class="md-form">
+                                <div class="md-form mb-3">
                                     <i class="fas fa-sort-numeric-up prefix grey-text d-flex"></i>
-                                    <input type="text" class="form-control validate" id="r-zip" name="zip" required />
-                                    <label for="r-zip">Zip code</label>
+                                    <input type="text" class="form-control validate reg-fields" id="r-zip" name="zip" placeholder="Zip code" required />
+                                <!-- <label for="r-zip"></label>-->
+                                </div>
+                                
+                                <div class="md-form mb-3">
+                                    <i class="fa fa-fw fa-key prefix grey-text d-flex"></i>
+                                    <input type="password" class="form-control validate reg-fields" id="r-password" name="password" placeholder="Password" required />
+                                <!-- <label for="r-password"></label>-->
+                                </div>
+                                
+                                <div class="md-form mb-3">
+                                    <i class="fa fa-fw fa-key prefix grey-text d-flex"></i>
+                                    <input type="password" class="form-control validate reg-fields" id="r-confirm" name="confirm" placeholder="Confirm Password" required />
+                                <!-- <label for="r-confirm"></label>-->
                                 </div>
             
-                                <div class="md-form">
+                                <div class="md-form mb-3">
                                     <i class="fas fa-book-open prefix grey-text d-flex"></i>
                                     <textarea class="form-control validate" id="r-bio" name="r-bio" placeholder="Tell us about yourself..."></textarea>
                                 </div>
             
-                                <div class="form-row">
-                                    <div class="col">
-                                        <div class="md-form">
-                                            <i class="fa fa-fw fa-key prefix grey-text d-flex"></i>
-                                            <input type="password" class="form-control validate" id="r-password" name="password" required />
-                                            <label for="r-password">Password</label>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="md-form">
-                                            <i class="fa fa-fw fa-key prefix grey-text d-flex"></i>
-                                            <input type="password" class="form-control validate" id="r-confirm" name="confirm" required />
-                                            <label for="r-confirm">Confirm Password</label>
-                                        </div>
-                                    </div>
-                                </div>
-            
                             </form>
-            
+                           
                         </div>
                         <div class="modal-footer">
                             <div class="col">
-                                <button type="submit" class="btn btn-success">Register</button>
+                                <button type="submit" class="btn btn-success" id="create-user">Register</button>
                             </div>
                         </div>
                     </div>
@@ -224,18 +214,18 @@ export default function Navbar(props) {
             
                             <form>
                                 <div class="form-group">
-                                    <label for="e-title">Username</label>
+                                    <label for="u-username">Username</label>
                                     <input type="text" class="form-control" id="u-username" placeholder="Enter Username">
                                 </div>
             
                                 <div class="form-group">
-                                    <label for="e-title">Password</label>
+                                    <label for="u-password">Password</label>
                                     <input type="text" class="form-control" id="u-password" placeholder="Enter Password">
                                 </div>
                                 
                                 <div class="form-element">
-                                    <input type="checkbox" id="remember-me">
                                     <label for="remember-me">Remember me</label>
+                                    <input type="checkbox" id="remember-me">
                                 </div>
                                 
                                 <div class="form-element">

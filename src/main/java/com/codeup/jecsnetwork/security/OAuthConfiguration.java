@@ -1,4 +1,4 @@
-package com.codeup.jecsnetwork.data.security;
+package com.codeup.jecsnetwork.security;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
