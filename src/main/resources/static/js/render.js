@@ -74,11 +74,11 @@ export default function render(props, route) {
             // Make sure the form is submitted to the destination defined
             // in the "action" attribute of the form when valid
             submitHandler: function(form) {
+                // $("form[name='register']").valid();
                 console.log("Button worked")
                 form.submit();
-                $("form[name='register']").validate().resetForm();
             }
-        });
+        }).resetForm();
 
 
         function checkInputs() {
@@ -90,15 +90,24 @@ export default function render(props, route) {
                     return false;
                 }
             });
+
+            // $('.error').filter('[style]').each(function () {
+            //     if ($(this).val() === '') {
+            //         $('#create-user').prop('disabled', true)
+            //         isValid = false;
+            //         return false;
+            //     }
+            // })
+
             if (isValid) {
                 $('#create-user').prop('disabled', false)
             }
             return isValid;
         }
 
-        $('#confirm').click(function () {
-            alert(checkInputs());
-        });
+        // $('#create-user').click(function () {
+        //     alert(checkInputs());
+        // });
 
         //Enable or disable button based on if inputs are filled or not
         $('input').filter('[required]').on('keyup', function () {
@@ -258,48 +267,68 @@ function navbarEventListeners() {
 
     $("#create-user").click(function () {
 
-        let fullName = $("#r-name").val().trim();
-        let email = $("#r-email").val().trim();
-        let zip = $("#r-zip").val().trim();
-        let username = $("#r-username").val().trim();
-        let password = $("#r-password").val();
-        let confirmPassword = $("#r-confirm").val();
-        let bio = $("#r-bio").val();
+        if ($("form[name='register']").valid()) {
+            let fullName = $("#r-name").val().trim();
+            let email = $("#r-email").val().trim();
+            let zip = $("#r-zip").val().trim();
+            let username = $("#r-username").val().trim();
+            let password = $("#r-password").val();
+            let confirmPassword = $("#r-confirm").val();
+            let bio = $("#r-bio").val();
 
-        console.log(fullName);
-        console.log(email);
-        console.log(zip);
-        console.log(password);
-        console.log(confirmPassword);
-        console.log(bio);
+            console.log(fullName);
+            console.log(email);
+            console.log(zip);
+            console.log(password);
+            console.log(confirmPassword);
+            console.log(bio);
 
-        let postObj = {
-            fullName: fullName,
-            username: username,
-            email: email,
-            password: password,
-            bio: bio,
-            postalCode: zip
-        }
-        postObj = JSON.stringify(postObj);
-
-        $.ajax({
-            type: "POST",
-            url: "http://localhost:8080/api/users/create",
-            contentType: getHeaders(),
-            data: postObj,
-            success: function (result) {
-                console.log(result);
-                $("form[name='register']").validate().resetForm();
-            },
-            error: function (result) {
-                console.log("Caught error for ajax call");
-                console.log(result);
-                alert("There was an issue with registration.  Please try again later.")
+            let postObj = {
+                fullName: fullName,
+                username: username,
+                email: email,
+                password: password,
+                bio: bio,
+                postalCode: zip
             }
-        })
+
+            if (createUserFetch(postObj)) {
+                $("#r-name").val("");
+                $("#r-email").val("");
+                $("#r-zip").val("");
+                $("#r-username").val("");
+                $("#r-password").val("");
+                $("#r-confirm").val("");
+                $("#r-bio").val("");
+            }
+
+        } else {
+            console.log("The form is not valid")
+        }
 
 
 
     })
 }
+
+
+const createUserFetch = async (dataObj) => {
+    const settings = {
+        method: "POST",
+        headers: getHeaders(),
+        body: JSON.stringify(dataObj)
+    };
+    try {
+        const fetchResponse = await fetch("http://localhost:8080/api/users/create", settings);
+        const data = await fetchResponse.json();
+        console.log(data);
+        console.log(`User ${dataObj.fullName} was created successfully`);
+        $("#RegisterCenter").modal("hide");
+    } catch (e) {
+        console.log("ERROR:")
+        console.log(e);
+    }
+
+}
+
+

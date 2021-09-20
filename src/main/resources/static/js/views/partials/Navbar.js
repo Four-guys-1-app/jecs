@@ -137,7 +137,7 @@ export default function Navbar(props) {
                         </div>
                         <div class="modal-footer">
                             <div class="col">
-                                <button type="submit" class="btn btn-success" id="create-user">Register</button>
+                                <button type="button" class="btn btn-success" id="create-user" >Register</button>
                             </div>
                         </div>
                     </div>
