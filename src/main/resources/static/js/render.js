@@ -2,7 +2,6 @@ import Navbar from "./views/partials/Navbar.js";
 import fetchData from "./fetchData.js";
 import createView from "./createView.js";
 import {LoginEvent, getHeaders, setTokens} from "./auth.js";
-import addEvent from "./views/createEvent.js";
 
 
 /**
@@ -23,7 +22,6 @@ export default function render(props, route) {
         console.log(props);
         LoginEvent();
 
-        addEvent();
 
         $.validator.addMethod("PASSWORD",function(value,element){
             return this.optional(element) || /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$/i.test(value);
