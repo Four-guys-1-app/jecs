@@ -74,11 +74,9 @@ export default function render(props, route) {
             // Make sure the form is submitted to the destination defined
             // in the "action" attribute of the form when valid
             submitHandler: function(form) {
-                // $("form[name='register']").valid();
-                console.log("Button worked")
                 form.submit();
             }
-        }).resetForm();
+        });
 
 
         function checkInputs() {
@@ -91,23 +89,11 @@ export default function render(props, route) {
                 }
             });
 
-            // $('.error').filter('[style]').each(function () {
-            //     if ($(this).val() === '') {
-            //         $('#create-user').prop('disabled', true)
-            //         isValid = false;
-            //         return false;
-            //     }
-            // })
-
             if (isValid) {
                 $('#create-user').prop('disabled', false)
             }
             return isValid;
         }
-
-        // $('#create-user').click(function () {
-        //     alert(checkInputs());
-        // });
 
         //Enable or disable button based on if inputs are filled or not
         $('input').filter('[required]').on('keyup', function () {
@@ -273,15 +259,7 @@ function navbarEventListeners() {
             let zip = $("#r-zip").val().trim();
             let username = $("#r-username").val().trim();
             let password = $("#r-password").val();
-            let confirmPassword = $("#r-confirm").val();
             let bio = $("#r-bio").val();
-
-            console.log(fullName);
-            console.log(email);
-            console.log(zip);
-            console.log(password);
-            console.log(confirmPassword);
-            console.log(bio);
 
             let postObj = {
                 fullName: fullName,
@@ -300,6 +278,8 @@ function navbarEventListeners() {
                 $("#r-password").val("");
                 $("#r-confirm").val("");
                 $("#r-bio").val("");
+
+                $("#RegisterCenter").modal("hide");
             }
 
         } else {
@@ -318,16 +298,11 @@ const createUserFetch = async (dataObj) => {
         headers: getHeaders(),
         body: JSON.stringify(dataObj)
     };
-    try {
-        const fetchResponse = await fetch("http://localhost:8080/api/users/create", settings);
-        const data = await fetchResponse.json();
-        console.log(data);
-        console.log(`User ${dataObj.fullName} was created successfully`);
-        $("#RegisterCenter").modal("hide");
-    } catch (e) {
-        console.log("ERROR:")
-        console.log(e);
-    }
+
+    const fetchResponse = await fetch("http://localhost:8080/api/users/create", settings);
+    const data = await fetchResponse.json();
+    console.log(data);
+    console.log(`User ${dataObj.fullName} was created successfully`);
 
 }
 
