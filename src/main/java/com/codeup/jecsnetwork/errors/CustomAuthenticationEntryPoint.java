@@ -1,4 +1,4 @@
-package com.codeup.jecsnetwork.data.errors;
+package com.codeup.jecsnetwork.errors;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpStatus;

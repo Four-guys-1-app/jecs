@@ -1,6 +1,11 @@
 #event-header {
     margin-top: 150px;
 }
+
+.error {
+    color: #ff0000;
+}
+
 .navbar {
     background-color: #F8F9FA;
 }

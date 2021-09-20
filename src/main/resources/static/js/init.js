@@ -7,10 +7,6 @@ function loadViewOnPageRequest() {
     window.addEventListener('DOMContentLoaded', function () {
         //TODO: Switched to location.pathname so the route would be accurate to current view
         createView(location.pathname);
-        // For dynamic usage of the tag selector when creating a new post
-        var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
-            removeItemButton: true
-        });
     });
 
     window.addEventListener('popstate', function () {

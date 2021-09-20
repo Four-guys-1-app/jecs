@@ -1,4 +1,4 @@
-package com.codeup.jecsnetwork.data.errors;
+package com.codeup.jecsnetwork.errors;
 
 import org.springframework.util.StringUtils;
 
