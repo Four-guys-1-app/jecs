@@ -36,15 +36,15 @@ export default function Navbar(props) {
                         </div>
                         <div class="modal-body">
         
-                            <form>
+                            <form id="e-form">
                                 <div class="form-group">
                                     <label for="e-title">Event Title</label>
-                                    <input type="text" class="form-control" id="e-title" placeholder="">
+                                    <input type="text" class="form-control" id="e-title" placeholder="" name="nameTitle">
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="e-description">Event information</label>
-                                    <textarea class="form-control" id="e-description" rows="3" placeholder="Event details..."></textarea>
+                                    <textarea class="form-control" id="e-description" rows="3" placeholder="Event details..." name="nameEventInfo"></textarea>
                                 </div>
         
                                 <div class="form-group">
