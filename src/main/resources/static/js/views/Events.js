@@ -2,6 +2,7 @@ import {getHeaders} from "../auth.js";
 import fetchData from "../fetchData.js";
 import render from "../render.js";
 import router from "../router.js";
+import getMap from "../mapbox.js";
 
 export default function Events(props) {
     return `
@@ -19,7 +20,7 @@ export default function Events(props) {
             </div>
         </div>
         <div id="event-map" class="img-square-wrapper my-4 d-flex justify-content-center">
-            <img class="" src="http://via.placeholder.com/1050x700" alt="Card image cap">
+           <!-- <img class="" src="http://via.placeholder.com/1050x700" alt="Card image cap"> -->
         </div>
     
         
@@ -37,6 +38,8 @@ export default function Events(props) {
 }
 
 export function EventEvents()  {
+    getMap();
+
     $("#e-search").click(function() {
         const searchInput = $("#searchby");
         const eventDiv = $("#event-list");
