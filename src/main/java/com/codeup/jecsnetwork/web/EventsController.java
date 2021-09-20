@@ -67,6 +67,7 @@ public class EventsController {
 
     @PostMapping
     private void createEvent(@RequestBody Event newEvent) {
+        eventRepository.save(newEvent);
 
     }
 
