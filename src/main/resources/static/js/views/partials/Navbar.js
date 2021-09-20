@@ -36,7 +36,7 @@ export default function Navbar(props) {
                         </div>
                         <div class="modal-body">
         
-                            <form id="e-form">
+                            <form id="eform" name="nameForm">
                                 <div class="form-group">
                                     <label for="e-title">Event Title</label>
                                     <input type="text" class="form-control" id="e-title" placeholder="" name="nameTitle">
