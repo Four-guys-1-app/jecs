@@ -1,4 +1,4 @@
-package com.codeup.jecsnetwork.data.security;
+package com.codeup.jecsnetwork.security;
 
 import com.codeup.jecsnetwork.data.user.User;
 import com.codeup.jecsnetwork.data.user.UserRepository;

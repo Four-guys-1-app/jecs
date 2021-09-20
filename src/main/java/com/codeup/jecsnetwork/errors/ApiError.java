@@ -1,4 +1,4 @@
-package com.codeup.jecsnetwork.data.errors;
+package com.codeup.jecsnetwork.errors;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;

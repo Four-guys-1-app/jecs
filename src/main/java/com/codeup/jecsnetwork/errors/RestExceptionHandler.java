@@ -1,4 +1,4 @@
-package com.codeup.jecsnetwork.data.errors;
+package com.codeup.jecsnetwork.errors;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.Ordered;

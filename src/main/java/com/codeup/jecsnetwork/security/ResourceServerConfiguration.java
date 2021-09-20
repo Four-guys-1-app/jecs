@@ -1,8 +1,8 @@
-package com.codeup.jecsnetwork.data.security;
+package com.codeup.jecsnetwork.security;
 
 
-import com.codeup.jecsnetwork.data.errors.CustomAccessDeniedHandler;
-import com.codeup.jecsnetwork.data.errors.CustomAuthenticationEntryPoint;
+import com.codeup.jecsnetwork.errors.CustomAccessDeniedHandler;
+import com.codeup.jecsnetwork.errors.CustomAuthenticationEntryPoint;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
