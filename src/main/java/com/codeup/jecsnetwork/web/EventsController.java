@@ -2,6 +2,8 @@ package com.codeup.jecsnetwork.web;
 
 import com.codeup.jecsnetwork.data.event.Event;
 import com.codeup.jecsnetwork.data.event.EventRepository;
+import com.codeup.jecsnetwork.data.location.Location;
+import com.codeup.jecsnetwork.data.location.LocationsRepository;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -14,11 +16,12 @@ import java.util.List;
 public class EventsController {
 
     private final EventRepository eventRepository;
+    private final LocationsRepository locationsRepository;
 
-    public EventsController(EventRepository eventRepository) {
+    public EventsController(EventRepository eventRepository, LocationsRepository locationsRepository) {
         this.eventRepository = eventRepository;
+        this.locationsRepository = locationsRepository;
     }
-
 
     @GetMapping
     private List<Event> getAll() {return eventRepository.findAll();}
@@ -65,8 +68,12 @@ public class EventsController {
         return null;
     }
 
-    @PostMapping
+    @PostMapping("/create")
     private void createEvent(@RequestBody Event newEvent) {
+        Location location = newEvent.getLocation();
+        Location savedLocation = locationsRepository.save(location);
+        newEvent.setLocation(savedLocation);
+        eventRepository.save(newEvent);
 
     }
 

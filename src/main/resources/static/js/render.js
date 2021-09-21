@@ -2,6 +2,7 @@ import Navbar from "./views/partials/Navbar.js";
 import fetchData from "./fetchData.js";
 import createView from "./createView.js";
 import {LoginEvent, getHeaders, setTokens} from "./auth.js";
+import addEvent from "./createEvent.js";
 
 
 /**
@@ -21,6 +22,8 @@ export default function render(props, route) {
     $(document).ready(function () {
         console.log(props);
         LoginEvent();
+
+        addEvent();
 
 
         $.validator.addMethod("PASSWORD",function(value,element){
@@ -113,36 +116,7 @@ export default function render(props, route) {
     }
 
 
-    // $(`#auth-user`).click(function () {
-    //     let username = $(`#u-username`).val();
-    //     let password = $(`#u-password`).val();
-    //
-    //     console.log(username);
-    //     console.log(password);
-    //
-    //     fetch('https://localhost8080/api/users', {
-    //         method: 'POST',
-    //         body: 'grant_type=client_credentials&client_id=' + username + '&client_secret=' + password,
-    //         headers: {
-    //             'Content-Type': 'application/x-www-form-urlencoded'
-    //         }
-    //     }).then(function (resp) {
-    //
-    //         // Return the response as JSON
-    //         return resp.json();
-    //
-    //     }).then(function (data) {
-    //
-    //         // Log the API data
-    //         console.log('token', data);
-    //
-    //     }).catch(function (err) {
-    //
-    //         // Log any errors
-    //         console.log('something went wrong', err);
-    //
-    //     });
-    //     });
+
 
 
 }
@@ -287,10 +261,54 @@ function navbarEventListeners() {
         } else {
             console.log("The form is not valid")
         }
+    })
+
+    $("#create-event").click(function () {
+
+        if ($("form[name='nameForm']").valid()) {
+            let eventTitle = $("#e-title").val().trim();
+            let eventDescription = $("#e-description").val().trim();
+
+
+            const timeElapsed = Date.now();
+            const today = new Date(timeElapsed);
+
+            let thisDate = today.toISOString()
+            console.log(thisDate);
+
+            let postObj = {
+                title: eventTitle,
+                description: eventDescription,
+                dateCreated: `${thisDate}`,
+                location: {
+                    city: "San Antonio",
+                    state: "Texas",
+                    latitude: 29.4241,
+                    longitude: 29.4241,
+                    postalCode: "78242"
+                },
+                outdoor: "y",
+                type: {
+                    "id": 4,
+                    "type": "Swimming"
+                }
+            }
+
+            if (createEventFetch(postObj)) {
+                $("#e-title").val("");
+                $("#e-description").val("");
+
+                $("#ModalCenter").modal("hide");
+            }
+
+        } else {
+            console.log("The form is not valid")
+        }
 
 
 
     })
+
 }
 
 
@@ -305,6 +323,26 @@ const createUserFetch = async (dataObj) => {
     const data = await fetchResponse.json();
     console.log(data);
     console.log(`User ${dataObj.fullName} was created successfully`);
+
+}
+
+const createEventFetch = async (dataObj) => {
+    const settings = {
+        method: "POST",
+        headers: getHeaders(),
+        body: JSON.stringify(dataObj)
+    };
+
+    const fetchResponse = await fetch("http://localhost:8080/api/events/create", settings);
+    const data = await fetchResponse.json();
+    console.log(data);
+    console.log(`event '${dataObj.title}' was created successfully`);
+
+    if (true) {
+        alert("ayooooo nice event created!");
+    }else {
+        alert("try again bro");
+    }
 
 }
 
