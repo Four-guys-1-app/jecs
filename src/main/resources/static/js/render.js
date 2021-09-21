@@ -270,16 +270,22 @@ function navbarEventListeners() {
             let eventDescription = $("#e-description").val().trim();
 
 
+            const timeElapsed = Date.now();
+            const today = new Date(timeElapsed);
+
+            let thisDate = today.toISOString()
+            console.log(thisDate);
+
             let postObj = {
                 title: eventTitle,
                 description: eventDescription,
-                dateCreated: "2021-09-20T21:49:25.842Z",
+                dateCreated: `${thisDate}`,
                 location: {
-                    "city": "San Antonio",
-                    "state": "Texas",
-                    "latitude": 29.4241,
-                    "longitude": 29.4241,
-                    "postalCode": "78242"
+                    city: "San Antonio",
+                    state: "Texas",
+                    latitude: 29.4241,
+                    longitude: 29.4241,
+                    postalCode: "78242"
                 },
                 outdoor: "y",
                 type: {
@@ -331,6 +337,12 @@ const createEventFetch = async (dataObj) => {
     const data = await fetchResponse.json();
     console.log(data);
     console.log(`event '${dataObj.title}' was created successfully`);
+
+    if (true) {
+        alert("ayooooo nice event created!");
+    }else {
+        alert("try again bro");
+    }
 
 }
 
