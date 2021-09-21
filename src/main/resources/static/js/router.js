@@ -24,10 +24,7 @@ export default function router(URI) {
         },
         '/events': {
             returnView: Events,
-            state: {
-                events: '/api/events',
-                types: `/api/types`
-            },
+            state: {},
             uri: '/events',
             title: "Events",
             viewEvent: EventEvents

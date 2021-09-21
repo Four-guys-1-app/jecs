@@ -20,7 +20,7 @@ export default function Events(props) {
                 <span class="input-group-text" id="e-search"><a href="">Search</a></span>
             </div>
         </div>
-        <div id="map" class="mt-5 rounded d-flex justify-content-center">
+        <div id="event-search-map" class="mt-5 rounded d-flex justify-content-center">
            <!-- <img class="" src="http://via.placeholder.com/1050x700" alt="Card image cap"> -->
         </div>
     
@@ -39,8 +39,9 @@ export default function Events(props) {
 }
 
 export function EventEvents()  {
-
-    getMap();
+    let mapId = $("#event-search-map").attr("id");
+    let map = getMap(mapId);
+    let eventSearchArray = [];
 
     $("#e-search").click(function() {
         const searchInput = $("#searchby");
@@ -58,6 +59,9 @@ export function EventEvents()  {
 
         eventDiv.empty();
         getEvents(eventDiv, apiUrl);
+
+
+
     })
 
      window.viewDetails = (eventId) => {

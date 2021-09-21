@@ -1,5 +1,8 @@
-#event-header {
+#event-header, #eventView {
     margin-top: 150px;
+}
+#event-search-map {
+    height: 500px;
 }
 
 .error {
