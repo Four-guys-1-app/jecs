@@ -5,6 +5,7 @@ import router from "../router.js";
 import getMap from "../mapbox.js";
 
 export default function Events(props) {
+
     return `
     <div class="container">
         
@@ -19,7 +20,7 @@ export default function Events(props) {
                 <span class="input-group-text" id="e-search"><a href="">Search</a></span>
             </div>
         </div>
-        <div id="event-map" class="img-square-wrapper my-4 d-flex justify-content-center">
+        <div id="map" class="mt-5 rounded d-flex justify-content-center">
            <!-- <img class="" src="http://via.placeholder.com/1050x700" alt="Card image cap"> -->
         </div>
     
@@ -38,6 +39,7 @@ export default function Events(props) {
 }
 
 export function EventEvents()  {
+
     getMap();
 
     $("#e-search").click(function() {

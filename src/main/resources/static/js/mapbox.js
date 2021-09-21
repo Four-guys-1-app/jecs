@@ -1,20 +1,15 @@
-import token from "./keys";
+import token from "./keys.js";
 
 export default function getMap() {
-    (function (){
-        const MAPBOX_TOKEN = token();
 
-        mapboxgl.accessToken = MAPBOX_TOKEN;
+    mapboxgl.accessToken = token();
+    console.log(token());
 
-        let map = new mapboxgl.Map({
-            container: "event-map",
-            style: "mapbox://styles/mapbox/streets-v11",
-            center: [-95.7129, 37.0902],
-            zoom: 3
-        });
-
-    })()
-
+    let map = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/mapbox/streets-v11",
+        center: [-95.7129, 37.0902],
+        zoom: 3
+    });
 
 }
-
