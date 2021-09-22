@@ -1,8 +1,10 @@
 
 export default function Home(props) {
     return `
+
+    <div class="container">
         <header>
-            <h1>Home Page</h1>
+            <h1 id="home-header">Home Page</h1>
         </header>
         <main>
             <div>
@@ -10,10 +12,8 @@ export default function Home(props) {
                     This is the home page text.
                 </p>    
             </div>
-            
-            
-            
         </main>
+    </div>
     `;
 }
 

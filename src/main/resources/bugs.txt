@@ -1,0 +1,3 @@
+- buttons in navbar, when in hamburger, don't let modals popup
+- clear register form when X button clicked
+- fix popped collar's jpeg photo
