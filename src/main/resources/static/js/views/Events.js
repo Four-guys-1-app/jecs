@@ -147,7 +147,7 @@ export function EventEvents()  {
     }
 
     const buildUrl = searchItem => {
-        const baseUrl = `http://localhost:8080/api/events/`;
+        const baseUrl = `/api/events/`;
         let fetchUrl;
 
         const zipPatt = /\d{5}/;
