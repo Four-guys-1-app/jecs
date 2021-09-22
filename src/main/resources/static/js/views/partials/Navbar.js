@@ -16,15 +16,16 @@ export default function Navbar(props) {
             <a class="nav-item nav-link" href="/about" data-link>About</a>
             <a class="nav-item nav-link" href="/login" data-toggle="modal" data-target="#ModalLogin">Login</a>
         </div>
-    </div>
-            
-             <div>
+            <div class="btn-group  justify-end">
                 <button type="button" class="mb-5 glow-on-hover" data-toggle="modal" data-target="#RegisterCenter" id="reg-button">Register</button>
             </div> 
         
-            <div>
+            <div class="btn-group justify-around justify-end">
                 <button type="button" class="mb-5 glow-on-hover" data-toggle="modal" data-target="#ModalCenter">Create Event</button>
             </div> 
+    </div>
+  
+
         </nav>
             <div class="modal fade" id="ModalCenter" data-backdrop="static" data-keyboard="false" tabindex="-1"
                  role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
