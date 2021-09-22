@@ -319,7 +319,7 @@ const createUserFetch = async (dataObj) => {
         body: JSON.stringify(dataObj)
     };
 
-    const fetchResponse = await fetch("http://localhost:8080/api/users/create", settings);
+    const fetchResponse = await fetch("/api/users/create", settings);
     const data = await fetchResponse.json();
     console.log(data);
     console.log(`User ${dataObj.fullName} was created successfully`);
@@ -333,7 +333,7 @@ const createEventFetch = async (dataObj) => {
         body: JSON.stringify(dataObj)
     };
 
-    const fetchResponse = await fetch("http://localhost:8080/api/events/create", settings);
+    const fetchResponse = await fetch("/api/events/create", settings);
     const data = await fetchResponse.json();
     console.log(data);
     console.log(`event '${dataObj.title}' was created successfully`);

@@ -9,7 +9,7 @@ export default function Blog(props) {
             <div class="container m-1 ">
             
                     <div class="d-flex flex-direction: column" id="listoftypes">
-                        <div class="w-25 ml-0 border " id="typesList">
+                        <div class="w-25 border" id="typesList">
                         
                             
                                 ${props.types.map(type => `
@@ -44,7 +44,7 @@ export function BlogEvent(){
         listTypes.click(function () {
             const typeId = $(this).attr(`data-id`);
             const blogDiv = $("#blogCards");
-            let apiUrl = `http://localhost:8080/api/blogs/postByType/${typeId}`;
+            let apiUrl = `/api/blogs/postByType/${typeId}`;
 
             getCards(blogDiv, apiUrl);
 
@@ -83,10 +83,9 @@ export function BlogEvent(){
                 `).join(''))
         }
 
-        $(`.listTypes`).css({
-            "overflow": "hidden",
-            "display": "table",
-            "width": "auto"
+        $(`#listoftypes`).css({
+            "width": "300px",
+            "margin-right": "0px"
         });
 
     });
