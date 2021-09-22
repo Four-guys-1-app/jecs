@@ -106,8 +106,3 @@
     100% { background-position: 0 0; }
 }
 
-.btn-group {
-    display: flex;
-    flex-direction: row;
-    justify-content: end;
-}
