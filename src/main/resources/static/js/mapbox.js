@@ -13,3 +13,36 @@ export default function getMap(mapId) {
 
 
 }
+
+// export function createPopup(popupDetails, marker) {
+//     let popup = new mapboxgl.Popup().setHTML(`<p><a href="#">${popupDetails}</a></p>`).addTo(map);
+//     marker.setPopup(popup);
+// }
+export function setMarker(point, map) {
+    return new mapboxgl.Marker({
+        color: '#F84C4C'
+    }).setLngLat(point).addTo(map);
+
+}
+export function setGeoCoder() {
+    return new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        mapboxgl: mapboxgl,
+        // marker: false
+    })
+}
+
+export let myGeoCoder = new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken,
+    mapboxgl: mapboxgl,
+    marker: false
+})
+
+
+export function addGeoEvent(geocode) {
+    map.addControl(geocode);
+    geocode.on("result", function (e){
+        console.log(e);
+        createPopup(e.result.place_name, setMarker(e.result.center));
+    })
+}

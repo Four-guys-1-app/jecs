@@ -2,7 +2,7 @@ import {getHeaders} from "../auth.js";
 import fetchData from "../fetchData.js";
 import render from "../render.js";
 import router from "../router.js";
-import getMap from "../mapbox.js";
+import getMap, {setMarker} from "../mapbox.js";
 
 export default function Events(props) {
 
@@ -14,9 +14,13 @@ export default function Events(props) {
         </header>
         
         <!-- Temporary img wrapper class and placeholder image for the map -->
-        <div class="input-group mb-3">
-            <input id="searchby" type="text" class="form-control" placeholder="Search by event title, date created('YYYY-MM-DD'), or zip code(12345)..." aria-label="Search by event title, date created('YYYY-MM-DD'), or zip code(12345)..." aria-describedby="e-search">
-            <div class="input-group-append">
+        <div class="input-group mb-3 d-flex justify-content-between">
+            <div>
+                <input id="searchby" type="text" class="form-control" placeholder="Enter search term" aria-describedby="e-search">
+                <small class="text-muted">Search by event title, date created('YYYY-MM-DD'), or zip code(12345)...</small>
+            </div>
+
+            <div class="">
                 <span class="input-group-text" id="e-search"><a href="">Search</a></span>
             </div>
         </div>
@@ -41,7 +45,14 @@ export default function Events(props) {
 export function EventEvents()  {
     let mapId = $("#event-search-map").attr("id");
     let map = getMap(mapId);
+    map.resize();
     let eventSearchArray = [];
+
+
+    // let eventGeo = myGeoCoder;
+    //
+    // addGeoEvent(eventGeo);
+
 
     $("#e-search").click(function() {
         const searchInput = $("#searchby");
@@ -58,11 +69,27 @@ export function EventEvents()  {
         let apiUrl = buildUrl(searchInput.val());
 
         eventDiv.empty();
-        getEvents(eventDiv, apiUrl);
+        getEvents(eventDiv, apiUrl).then(data => {
+            let locationGroupArray = [];
+            data.forEach(event => {
+                let location = [event.location.longitude, event.location.latitude];
+                let currMarker = setMarker(location, map);
+                locationGroupArray.push(L.marker(location));
+                currMarker.setLngLat(location).setPopup(new mapboxgl.Popup().setHTML(`<p><a href="#" onclick="viewDetails(${event.id})">${event.title}</a></p>`));
+            })
+            console.log(locationGroupArray);
+            let bounds = L.latLngBounds(locationGroupArray);
+            map.fitBounds(bounds);
+        })
+
+        console.log(eventSearchArray);
+
 
 
 
     })
+
+
 
      window.viewDetails = (eventId) => {
         let route = router("/event");
@@ -106,6 +133,7 @@ export function EventEvents()  {
                     </div>
                 </div>
                 `).join(''))
+        return jsonRes;
 
     }
 
