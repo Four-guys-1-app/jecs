@@ -81,10 +81,15 @@ export function EventEvents()  {
                 let location = [event.location.longitude, event.location.latitude];
                 let currMarker = setMarker(location, map);
                 eventSearchArray.push(currMarker);
-                locationGroupArray.push(L.marker(location));
+                // locationGroupArray.push(L.marker(location));
+                locationGroupArray.push(location);
                 currMarker.setLngLat(location).setPopup(new mapboxgl.Popup().setHTML(`<p><a href="#" onclick="viewDetails(${event.id})">${event.title}</a></p>`));
             })
             console.log(locationGroupArray);
+            if (locationGroupArray.length === 1) {
+                let markerBounds = L.latLngBounds([-116.81396931106491, 47.6648462070234]);
+                map.fitBounds(markerBounds);
+            }
             // let bounds = L.latLngBounds(locationGroupArray);
             // map.fitBounds(bounds);
             let group = L.featureGroup(locationGroupArray);
