@@ -138,7 +138,7 @@ export default function Navbar(props) {
                            
                         </div>
                         <div class="modal-footer">
-                            <div class="col">
+                            <div class="col d-flex justify-content-end">
                                 <button type="button" class="btn btn-success glow-on-hover" id="create-user" >Register</button>
                             </div>
                         </div>
