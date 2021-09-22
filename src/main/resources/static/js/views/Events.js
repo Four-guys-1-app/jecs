@@ -21,7 +21,7 @@ export default function Events(props) {
             </div>
 
             <div class="">
-                <span class="input-group-text" id="e-search"><a href="">Search</a></span>
+                <button type="button" id="e-search" class="glow-on-hover">Search</button>
             </div>
         </div>
         <div id="event-search-map" class="mt-5 rounded d-flex justify-content-center">
@@ -57,6 +57,12 @@ export function EventEvents()  {
     $("#e-search").click(function() {
         const searchInput = $("#searchby");
         const eventDiv = $("#event-list");
+        if (eventSearchArray.length > 0) {
+            for (let i = 0; i < eventSearchArray.length; i++) {
+                eventSearchArray[i].remove();
+            }
+        }
+        eventSearchArray = [];
 
         if (searchInput.val() === "") {
             alert("Please enter a search value to proceed...");
@@ -74,19 +80,17 @@ export function EventEvents()  {
             data.forEach(event => {
                 let location = [event.location.longitude, event.location.latitude];
                 let currMarker = setMarker(location, map);
+                eventSearchArray.push(currMarker);
                 locationGroupArray.push(L.marker(location));
                 currMarker.setLngLat(location).setPopup(new mapboxgl.Popup().setHTML(`<p><a href="#" onclick="viewDetails(${event.id})">${event.title}</a></p>`));
             })
             console.log(locationGroupArray);
-            let bounds = L.latLngBounds(locationGroupArray);
-            map.fitBounds(bounds);
+            // let bounds = L.latLngBounds(locationGroupArray);
+            // map.fitBounds(bounds);
+            let group = L.featureGroup(locationGroupArray);
+            map.fitBounds(group.getBounds());
+
         })
-
-        console.log(eventSearchArray);
-
-
-
-
     })
 
 
