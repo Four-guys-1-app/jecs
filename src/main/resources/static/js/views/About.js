@@ -18,10 +18,10 @@ export function AboutEvent() {
            <div class="w-50 p-3 d-flex justify-content-center flex-wrap">
            <h1>Founders</h1>
            <div id="pictures" class="container">
-            <img src="/assets/erik.jpeg" alt="Erik">
-            <img src="/assets/erik.jpeg">
-            <img src="/assets/erik.jpeg">
-            <img src="/assets/erik.jpeg">
+            <div><img src="/assets/erik.jpg" alt="Erik"></div>
+            <img src="/assets/erik.jpg">
+            <img src="/assets/erik.jpg">
+            <img src="/assets/erik.jpg">
            <div id="aboutUs" class="container">
                 <p>Bacon ipsum dolor amet sausage beef ribs beef rump boudin jowl ham. Capicola pancetta ground round tenderloin rump. Sausage flank alcatra picanha strip steak turkey jerky boudin drumstick shoulder brisket pastrami beef. Pastrami meatball beef ribs, doner filet mignon sirloin pancetta bresaola porchetta leberkas. Sirloin pastrami sausage beef ribs pig. Landjaeger sirloin pig, porchetta swine boudin pork loin.
                 

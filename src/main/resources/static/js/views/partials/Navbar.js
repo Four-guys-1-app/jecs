@@ -9,12 +9,12 @@ export default function Navbar(props) {
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link" href="/home" data-link>Home</a>
+            <a class="nav-item nav-link" href="/" data-link>Home</a>
             <a class="nav-item nav-link" href="/events" data-link>Events</a>
             <a class="nav-item nav-link" href="/blog" data-link>Blog</a>
             <a class="nav-item nav-link" href="/account" data-link>Account</a>
             <a class="nav-item nav-link" href="/about" data-link>About</a>
-            <a class="nav-item nav-link" href="/login" data-toggle="modal" data-target="#ModalLogin">Login</a>
+            <a class="nav-item nav-link" href="#" data-toggle="modal" data-target="#ModalLogin">Login</a>
         </div>
     </div>
             

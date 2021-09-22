@@ -338,11 +338,6 @@ const createEventFetch = async (dataObj) => {
     console.log(data);
     console.log(`event '${dataObj.title}' was created successfully`);
 
-    if (true) {
-        alert("ayooooo nice event created!");
-    }else {
-        alert("try again bro");
-    }
 
 }
 

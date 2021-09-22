@@ -2,8 +2,10 @@ import {getHeaders} from "../auth.js";
 import fetchData from "../fetchData.js";
 import render from "../render.js";
 import router from "../router.js";
+import getMap, {setMarker} from "../mapbox.js";
 
 export default function Events(props) {
+
     return `
     <div class="container">
         
@@ -12,14 +14,18 @@ export default function Events(props) {
         </header>
         
         <!-- Temporary img wrapper class and placeholder image for the map -->
-        <div class="input-group mb-3">
-            <input id="searchby" type="text" class="form-control" placeholder="Search by event title, date created('YYYY-MM-DD'), or zip code(12345)..." aria-label="Search by event title, date created('YYYY-MM-DD'), or zip code(12345)..." aria-describedby="e-search">
-            <div class="input-group-append">
-                <span class="input-group-text" id="e-search"><a href="">Search</a></span>
+        <div class="input-group mb-3 d-flex justify-content-between">
+            <div>
+                <input id="searchby" type="text" class="form-control" placeholder="Enter search term" aria-describedby="e-search">
+                <small class="text-muted">Search by event title, date created('YYYY-MM-DD'), or zip code(12345)...</small>
+            </div>
+
+            <div class="">
+                <button type="button" id="e-search" class="glow-on-hover">Search</button>
             </div>
         </div>
-        <div id="event-map" class="img-square-wrapper my-4 d-flex justify-content-center">
-            <img class="" src="http://via.placeholder.com/1050x700" alt="Card image cap">
+        <div id="event-search-map" class="mt-5 rounded d-flex justify-content-center">
+           <!-- <img class="" src="http://via.placeholder.com/1050x700" alt="Card image cap"> -->
         </div>
     
         
@@ -37,9 +43,26 @@ export default function Events(props) {
 }
 
 export function EventEvents()  {
+    let mapId = $("#event-search-map").attr("id");
+    let map = getMap(mapId);
+    map.resize();
+    let eventSearchArray = [];
+
+
+    // let eventGeo = myGeoCoder;
+    //
+    // addGeoEvent(eventGeo);
+
+
     $("#e-search").click(function() {
         const searchInput = $("#searchby");
         const eventDiv = $("#event-list");
+        if (eventSearchArray.length > 0) {
+            for (let i = 0; i < eventSearchArray.length; i++) {
+                eventSearchArray[i].remove();
+            }
+        }
+        eventSearchArray = [];
 
         if (searchInput.val() === "") {
             alert("Please enter a search value to proceed...");
@@ -52,8 +75,30 @@ export function EventEvents()  {
         let apiUrl = buildUrl(searchInput.val());
 
         eventDiv.empty();
-        getEvents(eventDiv, apiUrl);
+        getEvents(eventDiv, apiUrl).then(data => {
+            let locationGroupArray = [];
+            data.forEach(event => {
+                let location = [event.location.longitude, event.location.latitude];
+                let currMarker = setMarker(location, map);
+                eventSearchArray.push(currMarker);
+                // locationGroupArray.push(L.marker(location));
+                locationGroupArray.push(location);
+                currMarker.setLngLat(location).setPopup(new mapboxgl.Popup().setHTML(`<p><a href="#" onclick="viewDetails(${event.id})">${event.title}</a></p>`));
+            })
+            console.log(locationGroupArray);
+            if (locationGroupArray.length === 1) {
+                let markerBounds = L.latLngBounds([-116.81396931106491, 47.6648462070234]);
+                map.fitBounds(markerBounds);
+            }
+            // let bounds = L.latLngBounds(locationGroupArray);
+            // map.fitBounds(bounds);
+            let group = L.featureGroup(locationGroupArray);
+            map.fitBounds(group.getBounds());
+
+        })
     })
+
+
 
      window.viewDetails = (eventId) => {
         let route = router("/event");
@@ -97,6 +142,7 @@ export function EventEvents()  {
                     </div>
                 </div>
                 `).join(''))
+        return jsonRes;
 
     }
 
