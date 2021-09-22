@@ -172,9 +172,8 @@
 <button type="button" class="form-control" id="e-search">Search</button
 
 
-
-
-<div class="modal fade" id="RegisterCenter" data-user_id="0" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="user_modal_title" aria-hidden="true">
+<div class="modal fade" id="RegisterCenter" data-user_id="0" data-backdrop="static" data-keyboard="false" tabindex="-1"
+     role="dialog" aria-labelledby="user_modal_title" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-notify modal-info" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -189,45 +188,48 @@
 
                     <div class="md-form">
                         <i class="fas fa-address-card prefix grey-text d-flex"></i>
-                        <input type="text" class="form-control validate" id="r-name" name="fullname" required />
+                        <input type="text" class="form-control validate" id="r-name" name="fullname" required/>
                         <label for="r-name">Full name</label>
                     </div>
 
                     <div class="md-form">
                         <i class="fas fa-user-tag prefix grey-text d-flex"></i>
-                        <input type="text" class="form-control validate" id="r-username" name="username" required />
+                        <input type="text" class="form-control validate" id="r-username" name="username" required/>
                         <label for="r-username">Username</label>
                     </div>
 
                     <div class="md-form">
                         <i class="fa fa-fw fa-at prefix grey-text d-flex"></i>
-                        <input type="email" class="form-control validate" id="r-email" name="email" required />
+                        <input type="email" class="form-control validate" id="r-email" name="email" required/>
                         <label for="r-email">E-Mail Address</label>
                     </div>
 
                     <div class="md-form">
                         <i class="fas fa-sort-numeric-up prefix grey-text d-flex"></i>
-                        <input type="text" class="form-control validate" id="r-zip" name="zip" required />
+                        <input type="text" class="form-control validate" id="r-zip" name="zip" required/>
                         <label for="r-zip">Zip code</label>
                     </div>
 
                     <div class="md-form">
                         <i class="fas fa-book-open prefix grey-text d-flex"></i>
-                        <textarea class="form-control validate" id="r-bio" name="r-bio" placeholder="Tell us about yourself..."></textarea>
+                        <textarea class="form-control validate" id="r-bio" name="r-bio"
+                                  placeholder="Tell us about yourself..."></textarea>
                     </div>
 
                     <div class="form-row">
                         <div class="col">
                             <div class="md-form">
                                 <i class="fa fa-fw fa-key prefix grey-text d-flex"></i>
-                                <input type="password" class="form-control validate" id="r-password" name="password" required />
+                                <input type="password" class="form-control validate" id="r-password" name="password"
+                                       required/>
                                 <label for="r-password">Password</label>
                             </div>
                         </div>
                         <div class="col">
                             <div class="md-form">
                                 <i class="fa fa-fw fa-key prefix grey-text d-flex"></i>
-                                <input type="password" class="form-control validate" id="r-confirm" name="confirm" required />
+                                <input type="password" class="form-control validate" id="r-confirm" name="confirm"
+                                       required/>
                                 <label for="r-confirm">Confirm Password</label>
                             </div>
                         </div>
@@ -245,176 +247,81 @@
     </div>
 </div>
 
-<nav class="container-fluid navbar navbar-expand-lg fixed-top navbar-dark" style="background-color: darkblue">
+<nav class="container-fluid navbar navbar-expand-lg fixed-top navbar-dark">
     <a class="navbar-brand" href="#">
-        <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-        Jecs Network
+        <i class="bi bi-compass"></i> JECS Network
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link" href="/home" data-link>Home</a>
+            <a class="nav-item nav-link" href="/" data-link>Home</a>
             <a class="nav-item nav-link" href="/events" data-link>Events</a>
             <a class="nav-item nav-link" href="/blog" data-link>Blog</a>
             <a class="nav-item nav-link" href="/account" data-link>Account</a>
             <a class="nav-item nav-link" href="/about" data-link>About</a>
-            <a class="nav-item nav-link" href="/login" data-toggle="modal" data-target="#ModalLogin">Login</a>
+            <a class="nav-item nav-link" href="#" data-toggle="modal" data-target="#ModalLogin">Login</a>
+            <span>
+                <div class="btn-group">
+                <button type="button" class="mb-5 glow-on-hover" data-toggle="modal" data-target="#RegisterCenter"
+                        id="reg-button">Register
+                </button>
+                <button type="button" class="mb-5 glow-on-hover" data-toggle="modal" data-target="#ModalCenter">Create
+                    Event
+                </button>
+            </div>
+            </span>
         </div>
     </div>
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
--------------------------------------------section for dynamic event type selection------------------------------------------------------
-
-// // For dynamic usage of the tag selector when creating a new post
-// var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
-//     removeItemButton: true
-// });
-
-// const $parent = $("#choices-multiple-remove-button");
-// let catIds = $parent.children('option').map(function() {
-//     return { id: parseInt($(this).val())};
-// })
-// console.log(catIds);
-
-// This line goes inside the object that we create
-// types: $.makeArray(catIds)
-
-
-<div class="row d-flex justify-content-start my-3">
-    <div class="col-md-6">
-        <select id="choices-multiple-remove-button" placeholder="Choose your interests" multiple>
-            ${props.types.map(type => `<option value="${type.id}">${type.type}</option>`)}
-        </select>
+    -------------------------------------------section for dynamic event type
+    selection------------------------------------------------------
+
+    // // For dynamic usage of the tag selector when creating a new post
+    // var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+    // removeItemButton: true
+    // });
+
+    // const $parent = $("#choices-multiple-remove-button");
+    // let catIds = $parent.children('option').map(function() {
+    // return { id: parseInt($(this).val())};
+    // })
+    // console.log(catIds);
+
+    // This line goes inside the object that we create
+    // types: $.makeArray(catIds)
+
+
+    <div class="row d-flex justify-content-start my-3">
+        <div class="col-md-6">
+            <select id="choices-multiple-remove-button" placeholder="Choose your interests" multiple>
+                ${props.types.map(type => `
+                <option value="${type.id}">${type.type}</option>
+                `)}
+            </select>
+        </div>
     </div>
-</div>
 
-            <!-- ${props.types.forEach(type => `<option data-attribute="${type.id}" value="${type.type}">${type.type}</option>`)}-->
--------------------------------------------------------------------------------------------------
-
+    <!-- ${props.types.forEach(type => `<option data-attribute="${type.id}" value="${type.type}">${type.type}</option>`)}-->
+    -------------------------------------------------------------------------------------------------
 
 
-
-// function validatePassword(password) {
-//     const passReg = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,25})/;
-//     return passReg.test(password);
-// }
-//
-//
-// function validateEmail(email) {
-//     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-//     return re.test(String(email).toLowerCase());
-// }
+    // function validatePassword(password) {
+    // const passReg = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,25})/;
+    // return passReg.test(password);
+    // }
+    //
+    //
+    // function validateEmail(email) {
+    // const re =
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    // return re.test(String(email).toLowerCase());
+    // }
 
 
 

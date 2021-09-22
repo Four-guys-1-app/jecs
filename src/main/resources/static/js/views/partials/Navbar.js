@@ -2,9 +2,10 @@ export default function Navbar(props) {
     return `
 <nav class="container-fluid navbar navbar-expand-lg fixed-top navbar-dark">
     <a class="navbar-brand" href="#">
-       <i class="bi bi-compass"></i>        JECS Network
+        <i class="bi bi-compass"></i> JECS Network
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -16,15 +17,19 @@ export default function Navbar(props) {
             <a class="nav-item nav-link" href="/about" data-link>About</a>
             <a class="nav-item nav-link" href="#" data-toggle="modal" data-target="#ModalLogin">Login</a>
         </div>
-    </div>
             
-             <div>
-                <button type="button" class="mb-5 glow-on-hover" data-toggle="modal" data-target="#RegisterCenter" id="reg-button">Register</button>
-            </div> 
-        
-            <div>
-                <button type="button" class="mb-5 glow-on-hover" data-toggle="modal" data-target="#ModalCenter">Create Event</button>
-            </div> 
+                <div class="navbar-nav ml-auto">
+                <button type="button" class="mb-5 glow-on-hover" data-toggle="modal" data-target="#RegisterCenter"
+                        id="reg-button">Register
+                </button>
+                <button type="button" class="mb-5 glow-on-hover" data-toggle="modal" data-target="#ModalCenter">Create
+                    Event
+                </button>
+                </div>
+            
+    </div>
+  
+
         </nav>
             <div class="modal fade" id="ModalCenter" data-backdrop="static" data-keyboard="false" tabindex="-1"
                  role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
