@@ -1,27 +1,29 @@
 export default function Navbar(props) {
     return `
-        <nav class="container-fluid navbar navbar-expand-lg fixed-top">
-            <a class="navbar-brand">JECS</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-item nav-link" href="/home" data-link>Home</a>
-                    <a class="nav-item nav-link" href="/events" data-link>Events</a>
-                    <a class="nav-item nav-link" href="/blog" data-link>Blog</a>
-                    <a class="nav-item nav-link" href="/account" data-link>Account</a>
-                    <a class="nav-item nav-link" href="/about" data-link>About</a>
-                    <a class="nav-item nav-link" href="/login" data-toggle="modal" data-target="#ModalLogin">Login</a>
-                </div>
-            </div>
+<nav class="container-fluid navbar navbar-expand-lg fixed-top navbar-dark">
+    <a class="navbar-brand" href="#">
+       <i class="bi bi-compass"></i>        JECS Network
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link" href="/home" data-link>Home</a>
+            <a class="nav-item nav-link" href="/events" data-link>Events</a>
+            <a class="nav-item nav-link" href="/blog" data-link>Blog</a>
+            <a class="nav-item nav-link" href="/account" data-link>Account</a>
+            <a class="nav-item nav-link" href="/about" data-link>About</a>
+            <a class="nav-item nav-link" href="/login" data-toggle="modal" data-target="#ModalLogin">Login</a>
+        </div>
+    </div>
             
              <div>
-                <button type="button" class="mb-5" data-toggle="modal" data-target="#RegisterCenter" id="reg-button">Register</button>
+                <button type="button" class="mb-5 glow-on-hover" data-toggle="modal" data-target="#RegisterCenter" id="reg-button">Register</button>
             </div> 
         
             <div>
-                <button type="button" class="mb-5" data-toggle="modal" data-target="#ModalCenter">Create Event</button>
+                <button type="button" class="mb-5 glow-on-hover" data-toggle="modal" data-target="#ModalCenter">Create Event</button>
             </div> 
         </nav>
             <div class="modal fade" id="ModalCenter" data-backdrop="static" data-keyboard="false" tabindex="-1"
@@ -65,8 +67,8 @@ export default function Navbar(props) {
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="myButton" data-dismiss="modal">Cancel</button>
-                            <button type="button" class="myButton" id="create-event" data-dismiss="modal">Create Event
+                            <button type="button" class="myButton glow-on-hover" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="myButton glow-on-hover" id="create-event" data-dismiss="modal">Create Event
                             </button>
                         </div>
                     </div>
@@ -137,7 +139,7 @@ export default function Navbar(props) {
                         </div>
                         <div class="modal-footer">
                             <div class="col">
-                                <button type="button" class="btn btn-success" id="create-user" >Register</button>
+                                <button type="button" class="btn btn-success glow-on-hover" id="create-user" >Register</button>
                             </div>
                         </div>
                     </div>
@@ -235,8 +237,8 @@ export default function Navbar(props) {
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="myButton" data-dismiss="modal">Cancel</button>
-                            <button type="submit" class="myButton" id="auth-user" data-dismiss="modal">Sign In</button>
+                            <button type="button" class="myButton glow-on-hover" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="myButton glow-on-hover" id="auth-user" data-dismiss="modal">Sign In</button>
                         </div>
                     </div>
                 </div>
