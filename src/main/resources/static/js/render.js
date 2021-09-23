@@ -325,6 +325,8 @@ function navbarEventListeners() {
                 marker.remove();
                 currentCoordinates = [];
 
+                // TODO: need to clear and recenter map after an event is created
+
                 $("#ModalCenter").modal("hide");
             }
 
