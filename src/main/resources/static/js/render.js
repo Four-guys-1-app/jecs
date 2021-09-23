@@ -5,6 +5,10 @@ import {LoginEvent, getHeaders, setTokens} from "./auth.js";
 import addEvent from "./createEvent.js";
 
 
+
+import Footer from "./views/partials/Footer.js";
+
+
 /**
  * Pushes the current URI to the URL bar and sets the HTML of the app div.
  * @param props - the data required for view rendering
@@ -17,13 +21,15 @@ export default function render(props, route) {
     document.title = title;
 
     // add view and navbar to DOM
-    app.innerHTML = `${Navbar(props)} ${route.returnView(props)}`;
+    app.innerHTML = `${Navbar(props)} ${route.returnView(props)} ${Footer(null)}`;
 
     $(document).ready(function () {
         console.log(props);
         LoginEvent();
 
         addEvent();
+
+
 
 
         $.validator.addMethod("PASSWORD",function(value,element){
