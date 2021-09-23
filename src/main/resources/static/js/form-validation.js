@@ -120,3 +120,68 @@ $(function() {
 
 
 */
+
+
+
+$.validator.addMethod("TITLE",function(value,element){
+    return this.optional(element) || /[^A-Za-z0-9]+/i.test(value);
+},"Titles are only letters and numbers.");
+
+$.validator.addMethod("DESCRIPTION",function(value,element){
+    return this.optional(element) || /^[\.a-zA-Z0-9,!?]*$/i.test(value);
+},"Description of event please.");
+
+$("form[name='nameForm']").validate({
+    // Specify validation rules
+    rules: {
+        // The key name on the left side is the name attribute
+        // of an input field. Validation rules are defined
+        // on the right side
+        title: {
+            required: true,
+            TITLE: true
+        },
+        description: {
+            required: true,
+            DESCRIPTION: true
+        }
+    },
+    messages: {
+        title: "Please enter name of Event.",
+        description: {
+            required: "Please enter event description",
+        },
+    },
+    // Make sure the form is submitted to the destination defined
+    // in the "action" attribute of the form when valid
+    submitHandler: function(form) {
+        form.submit();
+    }
+});
+
+function checkInputsEvent() {
+    let isValidEvent = true;
+    $('.reg-fieldsE').filter('[required]').each(function () {
+        if ($(this).val() === '') {
+            $('#create-event').prop('disabled', true)
+            isValidEvent = false;
+            return false;
+        }
+    });
+
+    if (isValidEvent) {
+        $('#create-event').prop('disabled', false)
+    }
+    return isValidEvent;
+}
+
+//Enable or disable button based on if inputs are filled or not
+$(".reg-fieldsE").filter('[required]').on('keyup', function () {
+    checkInputsEvent()
+})
+
+checkInputsEvent();
+
+
+
+
