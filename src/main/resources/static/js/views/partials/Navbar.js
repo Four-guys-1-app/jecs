@@ -33,8 +33,8 @@ export default function Navbar(props) {
         </nav>
             <div class="modal fade" id="ModalCenter" data-backdrop="static" data-keyboard="false" tabindex="-1"
                  role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
+                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                    <div class="modal-content" id="event-creation-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="ModalLongTitle">Create Event</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -55,9 +55,8 @@ export default function Navbar(props) {
                                 </div>
         
                                 <div class="form-group">
-                                    <label for="e-location">Event location</label>
-                                    <div id="user-event-creation-map">
-                                        <!-- map here-->
+                                    <label for="e-location">Drop a pin where your event will be...</label>
+                                    <div id="user-event-creation-map" class="container" style="overflow: visible">
                                     </div>
                                 </div>
                                 

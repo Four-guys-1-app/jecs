@@ -1,3 +1,5 @@
-- buttons in navbar, when in hamburger, don't let modals popup
+- buttons in navbar, when in hamburger, should be different
 - clear register form when X button clicked
 - fix popped collar's jpeg photo
+- make .validate() object for the event creation modal, with rules/messages configured
+- **SERVER SIDE VALIDATION FOR FORM INPUTS**

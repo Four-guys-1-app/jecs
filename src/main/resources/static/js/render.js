@@ -3,6 +3,7 @@ import fetchData from "./fetchData.js";
 import createView from "./createView.js";
 import {LoginEvent, getHeaders, setTokens} from "./auth.js";
 import addEvent from "./createEvent.js";
+import getMap from "./mapbox.js";
 
 
 /**
@@ -15,6 +16,7 @@ export default function render(props, route) {
     const title = `JECS - ${route.title}`;
     history.pushState(props, title, route.uri);
     document.title = title;
+    let map;
 
     // add view and navbar to DOM
     app.innerHTML = `${Navbar(props)} ${route.returnView(props)}`;
@@ -22,8 +24,11 @@ export default function render(props, route) {
     $(document).ready(function () {
         console.log(props);
         LoginEvent();
-
         addEvent();
+        let mapId = $("#user-event-creation-map").attr("id");
+        let marker;
+        map = getMap(mapId);
+
 
 
         $.validator.addMethod("PASSWORD",function(value,element){
@@ -106,9 +111,11 @@ export default function render(props, route) {
         })
 
         checkInputs();
-
         navbarEventListeners();
+        map.resize();
     })
+
+
 
     // add events AFTER view is added to DOM
     if (route.viewEvent) {
@@ -265,7 +272,7 @@ function navbarEventListeners() {
 
     $("#create-event").click(function () {
 
-        if ($("form[name='nameForm']").valid()) {
+        // if ($("form[name='nameForm']").valid()) {
             let eventTitle = $("#e-title").val().trim();
             let eventDescription = $("#e-description").val().trim();
 
@@ -301,10 +308,22 @@ function navbarEventListeners() {
                 $("#ModalCenter").modal("hide");
             }
 
-        } else {
-            console.log("The form is not valid")
-        }
+        // } else {
+        //     console.log("The form is not valid")
+        // }
 
+
+        map.on("click", function (e){
+            // console.log(e);
+            reverseGeocode(e.lngLat, mapboxgl.accessToken).then(function(results) {
+                // console.log(results);
+                createPopup(results, trySetMarker(e.lngLat));
+                $("#current-place").text(results);
+            });
+            currentCoordinates = [e.lngLat.lng, e.lngLat.lat];
+            console.log(`The current coordinates for the weather search is ${currentCoordinates}`);
+            getForecast();
+        })
 
 
     })
