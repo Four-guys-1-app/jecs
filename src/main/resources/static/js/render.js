@@ -299,6 +299,11 @@ function navbarEventListeners() {
                 $("#e-description").val("");
 
                 $("#ModalCenter").modal("hide");
+
+                $("#success").after("Your event has been created.");
+                $("#success-alert").fadeTo(2000, 500).slideUp(500, function() {
+                    $("#success-alert").slideUp(500);
+                });
             }
 
         } else {

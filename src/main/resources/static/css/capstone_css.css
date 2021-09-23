@@ -106,3 +106,11 @@
     100% { background-position: 0 0; }
 }
 
+.success-alert {
+    position:fixed;
+    margin-top: 100px;
+    left: 0px;
+    width: 100%;
+    z-index:2;
+    border-radius:0px
+}
