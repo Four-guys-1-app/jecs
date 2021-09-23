@@ -14,10 +14,10 @@ export default function getMap(mapId) {
 
 }
 
-// export function createPopup(popupDetails, marker) {
-//     let popup = new mapboxgl.Popup().setHTML(`<p><a href="#">${popupDetails}</a></p>`).addTo(map);
-//     marker.setPopup(popup);
-// }
+export function createPopup(popupDetails, marker, map) {
+    let popup = new mapboxgl.Popup().setHTML(`<p><a href="#">${popupDetails}</a></p>`).addTo(map);
+    marker.setPopup(popup);
+}
 export function setMarker(point, map) {
     return new mapboxgl.Marker({
         color: '#F84C4C'
@@ -45,4 +45,23 @@ export function addGeoEvent(geocode) {
         console.log(e);
         createPopup(e.result.place_name, setMarker(e.result.center));
     })
+}
+
+export function reverseGeocode(coordinates, token) {
+    let baseUrl = 'https://api.mapbox.com';
+    let endPoint = '/geocoding/v5/mapbox.places/';
+    return fetch(baseUrl + endPoint + coordinates.lng + "," + coordinates.lat + '.json' + "?" + 'access_token=' + token)
+        .then(function(res) {
+            return res.json();
+        })
+        .then(function(data) {
+            return data.features[0].place_name;
+        });
+}
+
+export function trySetMarker(point) {
+    if (!marker) {
+       let marker = setMarker(point);
+    }
+    return marker.setLngLat(point).addTo(map);
 }

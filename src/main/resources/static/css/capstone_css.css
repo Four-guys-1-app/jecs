@@ -4,6 +4,12 @@
 #event-search-map {
     height: 500px;
 }
+#event-creation-content {
+    width: 600px;
+}
+#user-event-creation-map {
+    height: 300px;
+}
 
 .error {
     color: #ff0000;
@@ -23,6 +29,7 @@
 
 
 }
+
 
 
 
@@ -105,6 +112,7 @@
     50% { background-position: 400% 0; }
     100% { background-position: 0 0; }
 }
+
 
 
 
@@ -238,3 +246,4 @@ section .section-title {
     flex-direction: row;
     justify-content: center;
 }
+
