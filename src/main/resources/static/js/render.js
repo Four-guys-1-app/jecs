@@ -9,6 +9,10 @@ let currentCoordinates = [];
 let address;  //TODO: retrieve address as well as coordinates for location data
 let marker;
 
+
+import Footer from "./views/partials/Footer.js";
+
+
 /**
  * Pushes the current URI to the URL bar and sets the HTML of the app div.
  * @param props - the data required for view rendering
@@ -24,7 +28,7 @@ export default function render(props, route) {
     let map;
 
     // add view and navbar to DOM
-    app.innerHTML = `${Navbar(props)} ${route.returnView(props)}`;
+    app.innerHTML = `${Navbar(props)} ${route.returnView(props)} ${Footer(null)}`;
 
     $(document).ready(function () {
         console.log(props);
@@ -46,6 +50,8 @@ export default function render(props, route) {
                 createPopup(results, marker, map);
             });
         })
+
+
 
 
         $.validator.addMethod("PASSWORD",function(value,element){
