@@ -3,8 +3,11 @@ import fetchData from "./fetchData.js";
 import createView from "./createView.js";
 import {LoginEvent, getHeaders, setTokens} from "./auth.js";
 import addEvent from "./createEvent.js";
-import getMap from "./mapbox.js";
+import getMap, {reverseGeocode, createPopup, trySetMarker, setMarker} from "./mapbox.js";
 
+let currentCoordinates = [];
+let address;  //TODO: retrieve address as well as coordinates for location data
+let marker;
 
 /**
  * Pushes the current URI to the URL bar and sets the HTML of the app div.
@@ -16,6 +19,8 @@ export default function render(props, route) {
     const title = `JECS - ${route.title}`;
     history.pushState(props, title, route.uri);
     document.title = title;
+
+    // Initialize vars for create event map
     let map;
 
     // add view and navbar to DOM
@@ -25,10 +30,22 @@ export default function render(props, route) {
         console.log(props);
         LoginEvent();
         addEvent();
-        let mapId = $("#user-event-creation-map").attr("id");
-        let marker;
-        map = getMap(mapId);
+        map = getMap($("#user-event-creation-map").attr("id"));
 
+
+        map.on("click", function (e){
+            console.log(e);
+            if (marker) {
+                marker.remove();
+            }
+            currentCoordinates = [e.lngLat.lng, e.lngLat.lat];
+            console.log(currentCoordinates);
+            marker = setMarker(e.lngLat, map)
+            reverseGeocode(e.lngLat, mapboxgl.accessToken).then(function(results) {
+                console.log(results);
+                createPopup(results, marker, map);
+            });
+        })
 
 
         $.validator.addMethod("PASSWORD",function(value,element){
@@ -232,6 +249,7 @@ export default function render(props, route) {
 
 
 /* Event Listeners for navbar buttons */
+//TODO: adding coordinates
 function navbarEventListeners() {
 
     $("#create-user").click(function () {
@@ -288,10 +306,10 @@ function navbarEventListeners() {
                 description: eventDescription,
                 dateCreated: `${thisDate}`,
                 location: {
-                    city: "San Antonio",
+                    city: "San Antonio",  //TODO: will populate with address data, if any
                     state: "Texas",
-                    latitude: 29.4241,
-                    longitude: 29.4241,
+                    latitude: `${currentCoordinates[1]}`,
+                    longitude: `${currentCoordinates[0]}`,
                     postalCode: "78242"
                 },
                 outdoor: "y",
@@ -304,6 +322,8 @@ function navbarEventListeners() {
             if (createEventFetch(postObj)) {
                 $("#e-title").val("");
                 $("#e-description").val("");
+                marker.remove();
+                currentCoordinates = [];
 
                 $("#ModalCenter").modal("hide");
             }
@@ -311,19 +331,6 @@ function navbarEventListeners() {
         // } else {
         //     console.log("The form is not valid")
         // }
-
-
-        map.on("click", function (e){
-            // console.log(e);
-            reverseGeocode(e.lngLat, mapboxgl.accessToken).then(function(results) {
-                // console.log(results);
-                createPopup(results, trySetMarker(e.lngLat));
-                $("#current-place").text(results);
-            });
-            currentCoordinates = [e.lngLat.lng, e.lngLat.lat];
-            console.log(`The current coordinates for the weather search is ${currentCoordinates}`);
-            getForecast();
-        })
 
 
     })

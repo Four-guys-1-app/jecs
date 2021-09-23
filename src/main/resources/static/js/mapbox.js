@@ -14,10 +14,10 @@ export default function getMap(mapId) {
 
 }
 
-// export function createPopup(popupDetails, marker) {
-//     let popup = new mapboxgl.Popup().setHTML(`<p><a href="#">${popupDetails}</a></p>`).addTo(map);
-//     marker.setPopup(popup);
-// }
+export function createPopup(popupDetails, marker, map) {
+    let popup = new mapboxgl.Popup().setHTML(`<p><a href="#">${popupDetails}</a></p>`).addTo(map);
+    marker.setPopup(popup);
+}
 export function setMarker(point, map) {
     return new mapboxgl.Marker({
         color: '#F84C4C'
@@ -57,4 +57,11 @@ export function reverseGeocode(coordinates, token) {
         .then(function(data) {
             return data.features[0].place_name;
         });
+}
+
+export function trySetMarker(point) {
+    if (!marker) {
+       let marker = setMarker(point);
+    }
+    return marker.setLngLat(point).addTo(map);
 }
