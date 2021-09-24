@@ -56,7 +56,7 @@ export default function Navbar(props) {
         
                                 <div class="form-group">
                                     <label for="e-location">Drop a pin where your event will be...</label>
-                                    <div id="user-event-creation-map" class="container" style="overflow: visible">
+                                    <div id="user-event-creation-map">
                                     </div>
                                 </div>
                                 
