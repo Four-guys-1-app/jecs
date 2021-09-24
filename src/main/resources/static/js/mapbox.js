@@ -2,6 +2,8 @@ import token from "./keys.js";
 
 export default function getMap(mapId) {
 
+    console.log('Creating Map...')
+
     mapboxgl.accessToken = token();
 
     return new mapboxgl.Map({
@@ -57,11 +59,4 @@ export function reverseGeocode(coordinates, token) {
         .then(function(data) {
             return data.features[0].place_name;
         });
-}
-
-export function trySetMarker(point) {
-    if (!marker) {
-       let marker = setMarker(point);
-    }
-    return marker.setLngLat(point).addTo(map);
 }

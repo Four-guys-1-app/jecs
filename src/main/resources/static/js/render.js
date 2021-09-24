@@ -3,14 +3,15 @@ import fetchData from "./fetchData.js";
 import createView from "./createView.js";
 import {LoginEvent, getHeaders, setTokens} from "./auth.js";
 import addEvent from "./createEvent.js";
-import getMap, {reverseGeocode, createPopup, trySetMarker, setMarker} from "./mapbox.js";
+import getMap, {reverseGeocode, createPopup, setMarker} from "./mapbox.js";
+import Footer from "./views/partials/Footer.js";
 
+// Initialize vars for create event map
 let currentCoordinates = [];
 let address;  //TODO: retrieve address as well as coordinates for location data
 let marker;
+let map;
 
-
-import Footer from "./views/partials/Footer.js";
 
 
 /**
@@ -23,22 +24,31 @@ export default function render(props, route) {
     const title = `JECS - ${route.title}`;
     history.pushState(props, title, route.uri);
     document.title = title;
+    //TODO: Get help with URL not persisting through views
 
-    // Initialize vars for create event map
-    let map;
-
-    // add view and navbar to DOM
+    // add view, navbar, and footer to DOM
     app.innerHTML = `${Navbar(props)} ${route.returnView(props)} ${Footer(null)}`;
 
     $(document).ready(function () {
-        console.log(props);
+        // console.log(props);
         LoginEvent();
         addEvent();
+
+        let mapContainer = $("#user-event-creation-map")
+        mapContainer.html('')
         map = getMap($("#user-event-creation-map").attr("id"));
 
+        new ResizeObserver(() => {
+            console.log("resizing")
+            map.resize()
+        }).observe(mapContainer[0]);
+
+        map.on('load', () => {
+            map.resize();
+        })
 
         map.on("click", function (e){
-            console.log(e);
+            // console.log(e);
             if (marker) {
                 marker.remove();
             }
@@ -46,7 +56,7 @@ export default function render(props, route) {
             console.log(currentCoordinates);
             marker = setMarker(e.lngLat, map)
             reverseGeocode(e.lngLat, mapboxgl.accessToken).then(function(results) {
-                console.log(results);
+                console.log(results);  //TODO: start work here with parsing address results
                 createPopup(results, marker, map);
             });
         })
@@ -63,8 +73,8 @@ export default function render(props, route) {
         },"Please provide a zip code in a 5 digit format");
 
 
-        // Initialize form validation on the registration form.
-        // It has the name attribute "registration"
+        /* Initialize form validation on the registration form.
+        It has the name attribute "register"*/
         $("form[name='register']").validate({
             // Specify validation rules
             rules: {
@@ -138,16 +148,10 @@ export default function render(props, route) {
         map.resize();
     })
 
-
-
     // add events AFTER view is added to DOM
     if (route.viewEvent) {
         route.viewEvent();
     }
-
-
-
-
 
 }
 
@@ -255,7 +259,6 @@ export default function render(props, route) {
 
 
 /* Event Listeners for navbar buttons */
-//TODO: adding coordinates
 function navbarEventListeners() {
 
     $("#create-user").click(function () {
@@ -331,7 +334,7 @@ function navbarEventListeners() {
                 marker.remove();
                 currentCoordinates = [];
 
-                // TODO: need to clear and recenter map after an event is created
+                //TODO: need to clear and recenter map after an event is created
 
                 $("#ModalCenter").modal("hide");
             }
