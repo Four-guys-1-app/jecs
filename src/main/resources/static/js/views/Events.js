@@ -43,7 +43,6 @@ export default function Events(props) {
 }
 
 export function EventEvents()  {
-    console.log('test')
     let mapId = $("#event-search-map").attr("id");
     let map = getMap(mapId);
 
@@ -60,7 +59,6 @@ export function EventEvents()  {
 
     $("#e-search").click(function() {
 
-        console.log("YO man")
         const searchInput = $("#searchby");
         const eventDiv = $("#event-list");
         if (eventSearchArray.length > 0) {

@@ -2,7 +2,7 @@ import token from "./keys.js";
 
 export default function getMap(mapId) {
 
-    console.log('Creating Map...')
+    // console.log('Creating Map...')
 
     mapboxgl.accessToken = token();
 

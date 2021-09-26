@@ -25,12 +25,12 @@ export default function render(props, route) {
     history.pushState(props, title, route.uri);
     document.title = title;
     //TODO: Get help with URL not persisting through views
-
+    console.log(props);
     // add view, navbar, and footer to DOM
     app.innerHTML = `${Navbar(props)} ${route.returnView(props)} ${Footer(null)}`;
 
     $(document).ready(function () {
-        // console.log(props);
+
         LoginEvent();
         addEvent();
 
@@ -38,11 +38,11 @@ export default function render(props, route) {
         mapContainer.html('')
         map = getMap($("#user-event-creation-map").attr("id"));
 
+        // Resizer for create event modal map
         new ResizeObserver(() => {
-            console.log("resizing")
+            // console.log("resizing")
             map.resize()
         }).observe(mapContainer[0]);
-
         map.on('load', () => {
             map.resize();
         })
@@ -325,6 +325,9 @@ function navbarEventListeners() {
                 type: {
                     "id": 4,
                     "type": "Swimming"
+                },
+                user: {
+                    "id": 5
                 }
             }
 
