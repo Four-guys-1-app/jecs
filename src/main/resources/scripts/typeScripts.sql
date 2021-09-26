@@ -7,10 +7,10 @@ VALUES ('General Discussion'), ('Hiking'), ('Yoga'), ('Swimming'), ('Frisbee'), 
     ('Backpacking'), ('Fishing'), ('Water skiing'), ('Jet skiing'), ('Horseback Riding'),
     ('Skydiving'), ('Caving'), ('Scuba Diving'), ('Rock Climbing'), ('Parasailing'),
     ('Bungee Jumping'), ('Heli skiing'), ('Back country trekking'), ('Basketball'),
-    ('Football'), ('Weight lifting'), ('Volleyball'), ('Base jumping'), ('Hiking'),
+    ('Football'), ('Weight lifting'), ('Volleyball'), ('Base jumping'),
     ('Archery'), ('Firing range'), ('Zip lining'), ('Paintball'), ('Kickball'),
     ('Kayaking'), ('Rafting'), ('Crossfit'), ('Soccer'), ('Baseball'), ('Running'),
-    ('Cycling'), ('Gardening'), ('Walking'), ('Gym group');
+    ('Cycling'), ('Walking'), ('Gym group');
 
 
 

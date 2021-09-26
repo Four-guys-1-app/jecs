@@ -60,14 +60,73 @@ export default function Navbar(props) {
                                     </div>
                                 </div>
                                 
-                                <div>
-                                    <!-- dropdown for event type goes here-->
+                                <div class="form-group">
+                                    <div class="d-flex flex-column">
+                                        <label for="activity-selection">Select an activity type</label>
+                                        <select class="form-select" size="6" aria-label="activity selection" id="activity-selection">
+                                            <option value="2">Hiking</option>
+                                            <option value="3">Yoga</option>
+                                            <option value="4">Swimming</option>
+                                            <option value="5">Frisbee</option>
+                                            <option value="6">Gardening</option>
+                                            <option value="7">Skiing</option>
+                                            <option value="8">Snowboarding</option>
+                                            <option value="9">Surfing</option>
+                                            <option value="10">Golf</option>
+                                            <option value="11">Camping</option>
+                                            <option value="12">Boating</option>
+                                            <option value="13">Bowling</option>
+                                            <option value="14">Paddle boarding</option>
+                                            <option value="15">Tennis</option>
+                                            <option value="16">Mountain biking</option>
+                                            <option value="17">Nordic skiing</option>
+                                            <option value="18">Snorkeling</option>
+                                            <option value="19">Backpacking</option>
+                                            <option value="20">Fishing</option>
+                                            <option value="21">Water skiing</option>
+                                            <option value="22">Jet skiing</option>
+                                            <option value="23">Horseback Riding</option>
+                                            <option value="24">Skydiving</option>
+                                            <option value="25">Caving</option>
+                                            <option value="26">Scuba Diving</option>
+                                            <option value="27">Rock Climbing</option>
+                                            <option value="28">Parasailing</option>
+                                            <option value="29">Bungee Jumping</option>
+                                            <option value="30">Heli skiing</option>
+                                            <option value="31">Back country trekking</option>
+                                            <option value="32">Basketball</option>
+                                            <option value="33">Football</option>
+                                            <option value="34">Weight lifting</option>
+                                            <option value="35">Volleyball</option>
+                                            <option value="36">Base jumping</option>
+                                            <option value="37">Archery</option>
+                                            <option value="38">Firing range</option>
+                                            <option value="39">Zip lining</option>
+                                            <option value="40">Paintball</option>
+                                            <option value="41">Kickball</option>
+                                            <option value="42">Kayaking</option>
+                                            <option value="43">Rafting</option>
+                                            <option value="44">Crossfit</option>
+                                            <option value="45">Soccer</option>
+                                            <option value="46">Baseball</option>
+                                            <option value="47">Running</option>
+                                            <option value="48">Cycling</option>
+                                            <option value="49">Walking</option>
+                                            <option value="50">Gym group</option>
+                                        </select>
+                                    </div>
                                 </div>
                                 
-                                <div>
-                                    <!-- yes or no dropdown for outdoor-->
+                                <div class="form-group">
+                                    <div class="d-flex flex-column">
+                                        <label for="outdoor selection">Is this event outdoors?</label>
+                                        <select class="form-select" aria-label="outdoor selection" id="outdoor-selection">
+                                            <option value="1">Yes</option>
+                                            <option value="2">No</option>
+                                        </select>
+                                    </div>
                                 </div>
-                                
+                                                                
                             </form>
                         </div>
                         <div class="modal-footer">
@@ -75,7 +134,7 @@ export default function Navbar(props) {
                             <button type="button" class="myButton btn-success glow-on-hover" id="create-event" data-dismiss="modal">Create Event
                             </button>
                         </div>
-                    </div>
+                    </div>performance_schema
                 </div>
             </div>
             
