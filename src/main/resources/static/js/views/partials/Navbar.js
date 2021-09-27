@@ -26,7 +26,7 @@ export default function Navbar(props) {
                 </button>
                 </div>
  </nav>
-            <div class="container">
+            <div class="container d-flex justify-content-center">
             <div class="row" id="success-alert"
             <div className="alert alert-success" role="alert">
                 <button type="button" className="close" data-dismiss="alert">x</button>
