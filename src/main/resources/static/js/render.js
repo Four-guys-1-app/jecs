@@ -11,7 +11,7 @@ let currentCoordinates = [];
 let address;  //TODO: retrieve address as well as coordinates for location data
 let marker;
 let map;
-let country;
+let countryUS = false;
 
 
 /**
@@ -67,8 +67,16 @@ export default function render(props, route) {
                 }
                 createPopup(results, marker, map);
 
-                country = /,?.*,?.*,\s(.*)$/i.exec(results);
-                console.log(country[1]);
+                if (/United States/.test(results)) {
+                    let match = /((.*),\s)?(.*),\s(.*)\s(\d{5}),\s(.*)/i.exec(results);
+                    countryUS = true;
+                    address = {
+                        addressLine1: match[2]||"No address",
+                        postalCode: match[5],
+                        state: match[4],
+                        city: match[3]
+                    }
+                }
             });
         })
 
@@ -155,7 +163,7 @@ export default function render(props, route) {
         })
 
         checkInputs();
-        navbarEventListeners();
+        navbarEventListeners(map);
         map.resize();
     })
 
@@ -270,7 +278,7 @@ export default function render(props, route) {
 
 
 /* Event Listeners for navbar buttons */
-function navbarEventListeners() {
+function navbarEventListeners(map) {
 
     $("#create-user").click(function () {
 
@@ -310,24 +318,49 @@ function navbarEventListeners() {
 
     $("#create-event").click(function () {
 
-        if (country !== "United States") {
-            alert("Please select a location within the United States.  Other regions may be supported later")
-        }
-
         let eventTitle = $("#e-title").val().trim();
         let eventDescription = $("#e-description").val().trim();
+        if (eventDescription === "" || eventTitle === "") {
+            alert("Please enter the title and the description of the event");
+            return;
+        }
+        if (!marker) {
+            alert("Please select a location for your event");
+            return;
+        }
+        if (!countryUS) {
+            alert("Please select a location within the United States.  Other regions may be supported later");
+            return;
+        }
+        let activityType = $("button[data-id='activity-selection']").attr("title");
+        if (activityType === "-- Select the activity --") {
+            alert("Please select the type of event");
+            return;
+        }
+        let yesNo = $("button[data-id='outdoor-selection']").attr("title");
+        if (yesNo === "-- Select yes or no --") {
+            alert("Please indicate if this event is indoors or not");
+            return;
+        }
+
         let outdoors;
         let activityId;
-        let activityType = $("button[data-id='activity-selection']").attr("title");
+        let thisDate = new Date(Date.now()).toISOString()
+
         $("#activity-selection").children().each((index, element) => {
             if (element.innerHTML === activityType) {
                 activityId = element.getAttribute("data-tokens");
             }
         })
-        // console.log(activityId);
+        $("#outdoor-selection").children().each((index, element) => {
+            if (element.innerHTML === yesNo) {
+                outdoors = element.getAttribute("data-tokens");
+            }
+        })
+
+        console.log(outdoors);
 
 
-        let thisDate = new Date(Date.now()).toISOString()
         // console.log("Timestamp of event created: " + thisDate);
 
         let postObj = {
@@ -335,33 +368,39 @@ function navbarEventListeners() {
             description: eventDescription,
             dateCreated: `${thisDate}`,
             location: {
-                city: "San Antonio",  //TODO: will populate with address data, if any
-                state: "Texas",
+                addressLine1: address.addressLine1,
+                city: address.city,
+                state: address.state,
                 latitude: `${currentCoordinates[1]}`,
                 longitude: `${currentCoordinates[0]}`,
-                postalCode: "78242"
+                postalCode: address.postalCode
             },
-            outdoor: "y",
+            outdoor: outdoors,
             type: {
                 id: activityId
             },
             user: {
-                "id": 5
+                "id": 5   //TODO: Need to implement logged in user creds
             }
         }
 
         console.log(postObj);
 
-        // if (createEventFetch(postObj)) {
-        //     $("#e-title").val("");
-        //     $("#e-description").val("");
-        //     marker.remove();
-        //     currentCoordinates = [];
-        //
-        //     //TODO: need to clear and recenter map after an event is created
-        //
-        //     $("#ModalCenter").modal("hide");
-        // }
+        if (createEventFetch(postObj)) {
+            $("#e-title").val("");
+            $("#e-description").val("");
+            marker.remove();
+            currentCoordinates = [];
+            address = {};
+            countryUS = false;
+            map.center = [-95.7129, 37.0902];
+            activityType = "-- Select the activity --";  //TODO: fix these 2 to clear selectpickers
+            yesNo = "-- Select yes or no --";
+
+            //TODO: recenter map after an event is created
+
+            $("#ModalCenter").modal("hide");
+        }
     })
 }
 

@@ -61,8 +61,9 @@ export default function Navbar(props) {
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label for="activity-selection">Select the activity</label>
+                                    <label for="activity-selection">What kind of event is this?</label>
                                     <select class="selectpicker border rounded" data-live-search="true" data-width="100%" id="activity-selection">
+                                        <option data-tokens="none">-- Select the activity --</option>
                                         <option data-tokens="37">Archery</option>
                                         <option data-tokens="31">Back country trekking</option>
                                         <option data-tokens="19">Backpacking</option>
@@ -119,8 +120,9 @@ export default function Navbar(props) {
                                 <div class="form-group">
                                     <label for="outdoor-selection">Is this an outdoor event?</label>
                                     <select class="selectpicker border rounded" data-live-search="true" data-width="100%" id="outdoor-selection">
-                                        <option data-tokens="1">Yes</option>
-                                        <option data-tokens="2">No</option>
+                                        <option data-tokens="none">-- Select yes or no --</option>
+                                        <option data-tokens="y">Yes</option>
+                                        <option data-tokens="n">No</option>
                                     </select>
                                 </div>
                                                                 
