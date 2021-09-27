@@ -26,8 +26,8 @@ export default function Blog(props) {
                 
                     </div>
                 
-                    <div class="w-25 p-0 d-flex justify-content: center">
-                        <button type="button" class="mb-5 glow-on-hover" data-toggle="modal" data-target="#ModalPost">
+                    <div class="w-25 p-0 d-flex justify-content-center border">
+                        <button type="button" class="mb-5 glow-on-hover" id="create-blog" data-toggle="modal" data-target="#ModalPost">
                         Create Blog
                         </button>
                     
