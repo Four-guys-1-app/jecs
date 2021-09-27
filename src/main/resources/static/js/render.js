@@ -11,7 +11,7 @@ let currentCoordinates = [];
 let address;  //TODO: retrieve address as well as coordinates for location data
 let marker;
 let map;
-
+let countryUS = false;
 
 
 /**
@@ -26,6 +26,7 @@ export default function render(props, route) {
     document.title = title;
     //TODO: Get help with URL not persisting through views
     console.log(props);
+
     // add view, navbar, and footer to DOM
     app.innerHTML = `${Navbar(props)} ${route.returnView(props)} ${Footer(null)}`;
 
@@ -33,6 +34,8 @@ export default function render(props, route) {
 
         LoginEvent();
         addEvent();
+
+
 
         let mapContainer = $("#user-event-creation-map")
         mapContainer.html('')
@@ -52,12 +55,28 @@ export default function render(props, route) {
             if (marker) {
                 marker.remove();
             }
+
             currentCoordinates = [e.lngLat.lng, e.lngLat.lat];
-            console.log(currentCoordinates);
+            // console.log(currentCoordinates);
             marker = setMarker(e.lngLat, map)
             reverseGeocode(e.lngLat, mapboxgl.accessToken).then(function(results) {
-                console.log(results);  //TODO: start work here with parsing address results
+                    console.log(results);  //TODO: start work here with parsing address results
+                if (results === undefined) {
+                    createPopup("Not a valid event location", marker, map);
+                    return;
+                }
                 createPopup(results, marker, map);
+
+                if (/United States/.test(results)) {
+                    let match = /((.*),\s)?(.*),\s(.*)\s(\d{5}),\s(.*)/i.exec(results);
+                    countryUS = true;
+                    address = {
+                        addressLine1: match[2]||"No address",
+                        postalCode: match[5],
+                        state: match[4],
+                        city: match[3]
+                    }
+                }
             });
         })
 
@@ -144,7 +163,7 @@ export default function render(props, route) {
         })
 
         checkInputs();
-        navbarEventListeners();
+        navbarEventListeners(map);
         map.resize();
     })
 
@@ -259,7 +278,7 @@ export default function render(props, route) {
 
 
 /* Event Listeners for navbar buttons */
-function navbarEventListeners() {
+function navbarEventListeners(map) {
 
     $("#create-user").click(function () {
 
@@ -299,56 +318,90 @@ function navbarEventListeners() {
 
     $("#create-event").click(function () {
 
-        // if ($("form[name='nameForm']").valid()) {
-            let eventTitle = $("#e-title").val().trim();
-            let eventDescription = $("#e-description").val().trim();
+        let eventTitle = $("#e-title").val().trim();
+        let eventDescription = $("#e-description").val().trim();
+        if (eventDescription === "" || eventTitle === "") {
+            alert("Please enter the title and the description of the event");
+            return;
+        }
+        if (!marker) {
+            alert("Please select a location for your event");
+            return;
+        }
+        if (!countryUS) {
+            alert("Please select a location within the United States.  Other regions may be supported later");
+            return;
+        }
+        let activityType = $("button[data-id='activity-selection']").attr("title");
+        if (activityType === "-- Select the activity --") {
+            alert("Please select the type of event");
+            return;
+        }
+        let yesNo = $("button[data-id='outdoor-selection']").attr("title");
+        if (yesNo === "-- Select yes or no --") {
+            alert("Please indicate if this event is indoors or not");
+            return;
+        }
 
+        let outdoors;
+        let activityId;
+        let thisDate = new Date(Date.now()).toISOString()
 
-            const timeElapsed = Date.now();
-            const today = new Date(timeElapsed);
-
-            let thisDate = today.toISOString()
-            console.log(thisDate);
-
-            let postObj = {
-                title: eventTitle,
-                description: eventDescription,
-                dateCreated: `${thisDate}`,
-                location: {
-                    city: "San Antonio",  //TODO: will populate with address data, if any
-                    state: "Texas",
-                    latitude: `${currentCoordinates[1]}`,
-                    longitude: `${currentCoordinates[0]}`,
-                    postalCode: "78242"
-                },
-                outdoor: "y",
-                type: {
-                    "id": 4,
-                    "type": "Swimming"
-                },
-                user: {
-                    "id": 5
-                }
+        $("#activity-selection").children().each((index, element) => {
+            if (element.innerHTML === activityType) {
+                activityId = element.getAttribute("data-tokens");
             }
-
-            if (createEventFetch(postObj)) {
-                $("#e-title").val("");
-                $("#e-description").val("");
-                marker.remove();
-                currentCoordinates = [];
-
-                //TODO: need to clear and recenter map after an event is created
-
-                $("#ModalCenter").modal("hide");
+        })
+        $("#outdoor-selection").children().each((index, element) => {
+            if (element.innerHTML === yesNo) {
+                outdoors = element.getAttribute("data-tokens");
             }
+        })
 
-        // } else {
-        //     console.log("The form is not valid")
-        // }
+        console.log(outdoors);
 
 
+        // console.log("Timestamp of event created: " + thisDate);
+
+        let postObj = {
+            title: eventTitle,
+            description: eventDescription,
+            dateCreated: `${thisDate}`,
+            location: {
+                addressLine1: address.addressLine1,
+                city: address.city,
+                state: address.state,
+                latitude: `${currentCoordinates[1]}`,
+                longitude: `${currentCoordinates[0]}`,
+                postalCode: address.postalCode
+            },
+            outdoor: outdoors,
+            type: {
+                id: activityId
+            },
+            user: {
+                "id": 5   //TODO: Need to implement logged in user creds
+            }
+        }
+
+        console.log(postObj);
+
+        if (createEventFetch(postObj)) {
+            $("#e-title").val("");
+            $("#e-description").val("");
+            marker.remove();
+            currentCoordinates = [];
+            address = {};
+            countryUS = false;
+            map.center = [-95.7129, 37.0902];
+            activityType = "-- Select the activity --";  //TODO: fix these 2 to clear selectpickers
+            yesNo = "-- Select yes or no --";
+
+            //TODO: recenter map after an event is created
+
+            $("#ModalCenter").modal("hide");
+        }
     })
-
 }
 
 
@@ -375,10 +428,6 @@ const createEventFetch = async (dataObj) => {
 
     const fetchResponse = await fetch("/api/events/create", settings);
     const data = await fetchResponse.json();
-    console.log(data);
-    console.log(`event '${dataObj.title}' was created successfully`);
-
-
 }
 
 
