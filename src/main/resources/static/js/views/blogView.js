@@ -1,25 +1,25 @@
 export default function Blog(props) {
     return `
-            <div class="container" id="blog">
-                <div class="d-flex flex-column flex-wrap align-content-center">
-                    <header class="mt-1"><h1>Blog</h1></header>
-                </div>
-            </div>
+<!--            <div class="container" id="blog">-->
+<!--                <div class="d-flex flex-column flex-wrap align-content-center">-->
+<!--                    <header class="mt-1"><h1>Blog</h1></header>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            -->
+            <div>
             
-            <div class="container m-1 ">
-            
-                    <div class="d-flex flex-direction: column" id="listoftypes">
+                    <div class="d-flex flex-direction: column mt-6" id="listoftypes">
                         <div class="w-25 border" id="typesList">
-                        
-                            
-                                ${props.types.map(type => `
+                                           
+                        <div class="my-custom-scrollbar my-custom-scrollbar-primary scrollbar-morpheus-den">
+                             ${props.types.map(type => `
                                 <h5 data-id="${type.id}" class="listTypes"><a href="#">${type.type}</a></h5>
                                 `).join('')}
-                            </div>
-                
+                         </div>
+                           
                     </div>
                 
-                    <div class="w-50 p-3 d-flex justify-content-center flex-wrap">
+                    <div class="w-50 p-3 d-flex flex-direction: column">
                         <div id="blogCards" class="container">
                 
                         </div>
@@ -83,10 +83,31 @@ export function BlogEvent(){
                 `).join(''))
         }
 
+
         $(`#listoftypes`).css({
-            "width": "300px",
-            "margin-right": "0px"
+            "overflow": "auto",
+            "margin-top": "12em"
         });
+
+
+        $(`.my-custom-scrollbar`).css({
+            "position": "relative",
+            "width": "400px",
+            "height": "600px",
+            "overflow": "auto",
+        });
+
+
+        var myCustomScrollbar = document.querySelector('.my-custom-scrollbar');
+        var ps = new PerfectScrollbar(myCustomScrollbar);
+
+        var scrollbarY = myCustomScrollbar.querySelector('.ps__rail-y');
+
+        myCustomScrollbar.onscroll = function () {
+            scrollbarY.style.cssText = `top: ${this.scrollTop}px!important; height: 400px; right: ${-this.scrollLeft}px`;
+        }
+
+
 
     });
 
