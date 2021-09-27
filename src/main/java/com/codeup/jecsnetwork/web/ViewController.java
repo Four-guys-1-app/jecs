@@ -11,7 +11,7 @@ public class ViewController {
     @Value("${MAPBOX_TOKEN}")
     private String mapboxToken;
 
-   @RequestMapping({"/", "/about", "/events", "/event", "/blog", "/account" })
+    @RequestMapping({"/", "/about", "/events", "/event", "/blog", "/account" })
     public String showView() {
        return "forward:/index.html";
    }

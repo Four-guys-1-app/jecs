@@ -38,8 +38,8 @@ export default function Navbar(props) {
             
             <div class="modal fade" id="ModalCenter" data-backdrop="static" data-keyboard="false" tabindex="-1"
                  role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
+                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                    <div class="modal-content" id="event-creation-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="ModalLongTitle">Create Event</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -51,18 +51,17 @@ export default function Navbar(props) {
                             <form id="eform" name="nameForm">
                                 <div class="form-group">
                                     <label for="e-title">Event Title</label>
-                                    <input type="text" class="form-control" id="e-title" placeholder="" name="nameTitle">
+                                    <input type="text" class="form-control validate reg-fieldsE" id="e-title" placeholder="" name="nameTitle">
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="e-description">Event information</label>
-                                    <textarea class="form-control" id="e-description" rows="3" placeholder="Event details..." name="nameEventInfo"></textarea>
+                                    <textarea class="form-control validate reg-fieldsE" id="e-description" rows="3" placeholder="Event details..." name="nameEventInfo"></textarea>
                                 </div>
         
                                 <div class="form-group">
-                                    <label for="e-location">Event location</label>
+                                    <label for="e-location">Drop a pin where your event will be...</label>
                                     <div id="user-event-creation-map">
-                                        <!-- map here-->
                                     </div>
                                 </div>
                                 
@@ -78,7 +77,7 @@ export default function Navbar(props) {
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="myButton glow-on-hover" data-dismiss="modal">Cancel</button>
-                            <button type="button" class="myButton glow-on-hover" id="create-event" data-dismiss="modal">Create Event
+                            <button type="button" class="myButton btn-success glow-on-hover" id="create-event" data-dismiss="modal">Create Event
                             </button>
                         </div>
                     </div>
@@ -232,7 +231,7 @@ export default function Navbar(props) {
             
                                 <div class="form-group">
                                     <label for="u-password">Password</label>
-                                    <input type="text" class="form-control" id="u-password" placeholder="Enter Password">
+                                    <input type="password" class="form-control" id="u-password" placeholder="Enter Password">
                                 </div>
                                 
                                 <div class="form-element">
