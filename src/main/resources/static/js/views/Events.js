@@ -105,7 +105,7 @@ export function EventEvents()  {
 
 
 
-     window.viewDetails = (eventId) => {
+    window.viewDetails = (eventId) => {
         let route = router("/event");
         let request = {
             headers: getHeaders()

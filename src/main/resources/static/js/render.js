@@ -11,7 +11,7 @@ let currentCoordinates = [];
 let address;  //TODO: retrieve address as well as coordinates for location data
 let marker;
 let map;
-
+let country;
 
 
 /**
@@ -26,6 +26,7 @@ export default function render(props, route) {
     document.title = title;
     //TODO: Get help with URL not persisting through views
     console.log(props);
+
     // add view, navbar, and footer to DOM
     app.innerHTML = `${Navbar(props)} ${route.returnView(props)} ${Footer(null)}`;
 
@@ -33,6 +34,8 @@ export default function render(props, route) {
 
         LoginEvent();
         addEvent();
+
+
 
         let mapContainer = $("#user-event-creation-map")
         mapContainer.html('')
@@ -52,12 +55,20 @@ export default function render(props, route) {
             if (marker) {
                 marker.remove();
             }
+
             currentCoordinates = [e.lngLat.lng, e.lngLat.lat];
-            console.log(currentCoordinates);
+            // console.log(currentCoordinates);
             marker = setMarker(e.lngLat, map)
             reverseGeocode(e.lngLat, mapboxgl.accessToken).then(function(results) {
-                console.log(results);  //TODO: start work here with parsing address results
+                    console.log(results);  //TODO: start work here with parsing address results
+                if (results === undefined) {
+                    createPopup("Not a valid event location", marker, map);
+                    return;
+                }
                 createPopup(results, marker, map);
+
+                country = /,?.*,?.*,\s(.*)$/i.exec(results);
+                console.log(country[1]);
             });
         })
 
@@ -299,56 +310,59 @@ function navbarEventListeners() {
 
     $("#create-event").click(function () {
 
-        // if ($("form[name='nameForm']").valid()) {
-            let eventTitle = $("#e-title").val().trim();
-            let eventDescription = $("#e-description").val().trim();
+        if (country !== "United States") {
+            alert("Please select a location within the United States.  Other regions may be supported later")
+        }
 
-
-            const timeElapsed = Date.now();
-            const today = new Date(timeElapsed);
-
-            let thisDate = today.toISOString()
-            console.log(thisDate);
-
-            let postObj = {
-                title: eventTitle,
-                description: eventDescription,
-                dateCreated: `${thisDate}`,
-                location: {
-                    city: "San Antonio",  //TODO: will populate with address data, if any
-                    state: "Texas",
-                    latitude: `${currentCoordinates[1]}`,
-                    longitude: `${currentCoordinates[0]}`,
-                    postalCode: "78242"
-                },
-                outdoor: "y",
-                type: {
-                    "id": 4,
-                    "type": "Swimming"
-                },
-                user: {
-                    "id": 5
-                }
+        let eventTitle = $("#e-title").val().trim();
+        let eventDescription = $("#e-description").val().trim();
+        let outdoors;
+        let activityId;
+        let activityType = $("button[data-id='activity-selection']").attr("title");
+        $("#activity-selection").children().each((index, element) => {
+            if (element.innerHTML === activityType) {
+                activityId = element.getAttribute("data-tokens");
             }
+        })
+        // console.log(activityId);
 
-            if (createEventFetch(postObj)) {
-                $("#e-title").val("");
-                $("#e-description").val("");
-                marker.remove();
-                currentCoordinates = [];
 
-                //TODO: need to clear and recenter map after an event is created
+        let thisDate = new Date(Date.now()).toISOString()
+        // console.log("Timestamp of event created: " + thisDate);
 
-                $("#ModalCenter").modal("hide");
+        let postObj = {
+            title: eventTitle,
+            description: eventDescription,
+            dateCreated: `${thisDate}`,
+            location: {
+                city: "San Antonio",  //TODO: will populate with address data, if any
+                state: "Texas",
+                latitude: `${currentCoordinates[1]}`,
+                longitude: `${currentCoordinates[0]}`,
+                postalCode: "78242"
+            },
+            outdoor: "y",
+            type: {
+                id: activityId
+            },
+            user: {
+                "id": 5
             }
+        }
 
-        // } else {
-        //     console.log("The form is not valid")
+        console.log(postObj);
+
+        // if (createEventFetch(postObj)) {
+        //     $("#e-title").val("");
+        //     $("#e-description").val("");
+        //     marker.remove();
+        //     currentCoordinates = [];
+        //
+        //     //TODO: need to clear and recenter map after an event is created
+        //
+        //     $("#ModalCenter").modal("hide");
         // }
-
-
     })
-
 }
 
 
@@ -375,10 +389,6 @@ const createEventFetch = async (dataObj) => {
 
     const fetchResponse = await fetch("/api/events/create", settings);
     const data = await fetchResponse.json();
-    console.log(data);
-    console.log(`event '${dataObj.title}' was created successfully`);
-
-
 }
 
 

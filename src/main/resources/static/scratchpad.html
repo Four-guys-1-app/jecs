@@ -277,8 +277,6 @@
     </div>
 
 
-
-
     -------------------------------------------section for dynamic event type
     selection------------------------------------------------------
 
@@ -324,94 +322,101 @@
     // }
 
 
-
-
-
-<div class="form-group dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Activity type
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#" data-attribute="2">Hiking</a>
-        <a class="dropdown-item" href="#" data-attribute="3">Yoga</a>
-        <a class="dropdown-item" href="#" data-attribute="4">Swimming</a>
+    <div class="form-group dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+            Activity type
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#" data-attribute="2">Hiking</a>
+            <a class="dropdown-item" href="#" data-attribute="3">Yoga</a>
+            <a class="dropdown-item" href="#" data-attribute="4">Swimming</a>
+        </div>
     </div>
-</div>
 
-<div class="form-group">
-    <select class="form-select" size="6" aria-label="activity selection">
-        <option value="2">Hiking</option>
-        <option value="3">Yoga</option>
-        <option value="4">Swimming</option>
-        <option value="5">Frisbee</option>
-        <option value="6">Gardening</option>
-        <option value="7">Skiing</option>
-        <option value="8">Snowboarding</option>
-        <option value="9">Surfing</option>
-        <option value="10">Golf</option>
-        <option value="11">Camping</option>
-        <option value="12">Boating</option>
-        <option value="13">Bowling</option>
-        <option value="14">Paddle boarding</option>
-        <option value="15">Tennis</option>
-        <option value="16">Mountain biking</option>
-        <option value="17">Nordic skiing</option>
-        <option value="18">Snorkeling</option>
-        <option value="19">Backpacking</option>
-        <option value="20">Fishing</option>
-        <option value="21">Water skiing</option>
-        <option value="22">Jet skiing</option>
-        <option value="23">Horseback Riding</option>
-        <option value="24">Skydiving</option>
-        <option value="25">Caving</option>
-        <option value="26">Scuba Diving</option>
-        <option value="27">Rock Climbing</option>
-        <option value="28">Parasailing</option>
-        <option value="29">Bungee Jumping</option>
-        <option value="30">Heli skiing</option>
-        <option value="31">Back country trekking</option>
-        <option value="32">Basketball</option>
-        <option value="33">Football</option>
-        <option value="34">Weight lifting</option>
-        <option value="35">Volleyball</option>
-        <option value="36">Base jumping</option>
-        <option value="37">Archery</option>
-        <option value="38">Firing range</option>
-        <option value="39">Zip lining</option>
-        <option value="40">Paintball</option>
-        <option value="41">Kickball</option>
-        <option value="42">Kayaking</option>
-        <option value="43">Rafting</option>
-        <option value="44">Crossfit</option>
-        <option value="45">Soccer</option>
-        <option value="46">Baseball</option>
-        <option value="47">Running</option>
-        <option value="48">Cycling</option>
-        <option value="49">Walking</option>
-        <option value="50">Gym group</option>
-    </select>
-</div>
-
-
-
-<div class="form-group dropdown">
-    <button class="btn glow-on-hover dropdown-toggle" type="button" id="outdoor-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Outdoors?
-    </button>
-    <div class="dropdown-menu" aria-labelledby="outdoor-dropdown">
-        <a class="dropdown-item" href="#">Yes</a>
-        <a class="dropdown-item" href="#">No</a>
+    <div class="form-group">
+        <label for="activity-selection">Select the activity</label>
+        <select class="selectpicker border rounded" data-live-search="true" data-width="100%" id="activity-selection">
+            <option data-tokens="37">Archery</option>
+            <option data-tokens="31">Back country trekking</option>
+            <option data-tokens="19">Backpacking</option>
+            <option data-tokens="46">Baseball</option>
+            <option data-tokens="36">Base jumping</option>
+            <option data-tokens="32">Basketball</option>
+            <option data-tokens="12">Boating</option>
+            <option data-tokens="13">Bowling</option>
+            <option data-tokens="29">Bungee Jumping</option>
+            <option data-tokens="11">Camping</option>
+            <option data-tokens="25">Caving</option>
+            <option data-tokens="44">Crossfit</option>
+            <option data-tokens="48">Cycling</option>
+            <option data-tokens="38">Firing range</option>
+            <option data-tokens="20">Fishing</option>
+            <option data-tokens="33">Football</option>
+            <option data-tokens="5">Frisbee</option>
+            <option data-tokens="6">Gardening</option>
+            <option data-tokens="10">Golf</option>
+            <option data-tokens="50">Gym group</option>
+            <option data-tokens="30">Heli skiing</option>
+            <option data-tokens="2">Hiking</option>
+            <option data-tokens="23">Horseback Riding</option>
+            <option data-tokens="22">Jet skiing</option>
+            <option data-tokens="42">Kayaking</option>
+            <option data-tokens="41">Kickball</option>
+            <option data-tokens="16">Mountain biking</option>
+            <option data-tokens="17">Nordic skiing</option>
+            <option data-tokens="14">Paddle boarding</option>
+            <option data-tokens="40">Paintball</option>
+            <option data-tokens="28">Parasailing</option>
+            <option data-tokens="43">Rafting</option>
+            <option data-tokens="27">Rock Climbing</option>
+            <option data-tokens="47">Running</option>
+            <option data-tokens="26">Scuba Diving</option>
+            <option data-tokens="7">Skiing</option>
+            <option data-tokens="24">Skydiving</option>
+            <option data-tokens="18">Snorkeling</option>
+            <option data-tokens="8">Snowboarding</option>
+            <option data-tokens="45">Soccer</option>
+            <option data-tokens="9">Surfing</option>
+            <option data-tokens="4">Swimming</option>
+            <option data-tokens="15">Tennis</option>
+            <option data-tokens="35">Volleyball</option>
+            <option data-tokens="49">Walking</option>
+            <option data-tokens="21">Water skiing</option>
+            <option data-tokens="34">Weight lifting</option>
+            <option data-tokens="3">Yoga</option>
+            <option data-tokens="39">Zip lining</option>
+        </select>
     </div>
-</div>
 
-<div class="form-group">
-    <select class="form-select" aria-label="outdoor selection">
-        <option selected>Outdoors?</option>
-        <option value="1">Yes</option>
-        <option value="2">No</option>
-    </select>
-</div>
 
+    <div class="col">
+        <select class="selectpicker border rounded" data-live-search="true" data-width="100%">
+            <option data-tokens="">Default (auto size/scroll to viewport height)</option>
+            <option data-tokens="ketchup mustard">Hot Dog, Fries and a Soda</option>
+            <option data-tokens="mustard">Burger, Shake and a Smile</option>
+            <option data-tokens="frosting">Sugar, Spice and all things nice</option>
+            <option data-tokens="more">More food here</option>
+            <option data-tokens="more1">More food here</option>
+            <option data-tokens="more2">More food here</option>
+            <option data-tokens="more3">More food here</option>
+            <option data-tokens="more4">More food here</option>
+            <option data-tokens="more5">More food here</option>
+            <option data-tokens="more6">More food here</option>
+            <option data-tokens="more7">More food here</option>
+        </select>
+    </div>
+
+
+
+
+    <div class="form-group">
+        <label for="outdoor-selection">Is this an outdoor event?</label>
+        <select class="selectpicker border rounded" data-live-search="true" data-width="100%" id="outdoor-selection">
+            <option data-tokens="1">Yes</option>
+            <option data-tokens="2">No</option>
+        </select>
+    </div>
 
 
     1,General Discussion

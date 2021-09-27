@@ -57,6 +57,11 @@ export function reverseGeocode(coordinates, token) {
             return res.json();
         })
         .then(function(data) {
-            return data.features[0].place_name;
+            try {
+                return data.features[0].place_name;
+            } catch (e) {
+                console.log(e);
+            }
+
         });
 }
