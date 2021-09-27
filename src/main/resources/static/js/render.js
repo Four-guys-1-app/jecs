@@ -11,7 +11,8 @@ let currentCoordinates = [];
 let address;  //TODO: retrieve address as well as coordinates for location data
 let marker;
 let map;
-
+let countryUS = false;
+let validator;
 
 
 /**
@@ -25,24 +26,31 @@ export default function render(props, route) {
     history.pushState(props, title, route.uri);
     document.title = title;
     //TODO: Get help with URL not persisting through views
+    console.log(props);
 
     // add view, navbar, and footer to DOM
     app.innerHTML = `${Navbar(props)} ${route.returnView(props)} ${Footer(null)}`;
 
+    if (route.title === 'Loading...') {
+        return
+    }
+
     $(document).ready(function () {
-        // console.log(props);
+
         LoginEvent();
         addEvent();
+
+
 
         let mapContainer = $("#user-event-creation-map")
         mapContainer.html('')
         map = getMap($("#user-event-creation-map").attr("id"));
 
+        // Resizer for create event modal map
         new ResizeObserver(() => {
-            console.log("resizing")
+            // console.log("resizing")
             map.resize()
         }).observe(mapContainer[0]);
-
         map.on('load', () => {
             map.resize();
         })
@@ -52,12 +60,28 @@ export default function render(props, route) {
             if (marker) {
                 marker.remove();
             }
+
             currentCoordinates = [e.lngLat.lng, e.lngLat.lat];
-            console.log(currentCoordinates);
+            // console.log(currentCoordinates);
             marker = setMarker(e.lngLat, map)
             reverseGeocode(e.lngLat, mapboxgl.accessToken).then(function(results) {
-                console.log(results);  //TODO: start work here with parsing address results
+                    console.log(results);  //TODO: start work here with parsing address results
+                if (results === undefined) {
+                    createPopup("Not a valid event location", marker, map);
+                    return;
+                }
                 createPopup(results, marker, map);
+
+                if (/United States/.test(results)) {
+                    let match = /((.*),\s)?(.*),\s(.*)\s(\d{5}),\s(.*)/i.exec(results);
+                    countryUS = true;
+                    address = {
+                        addressLine1: match[2]||"No address",
+                        postalCode: match[5],
+                        state: match[4],
+                        city: match[3]
+                    }
+                }
             });
         })
 
@@ -65,8 +89,8 @@ export default function render(props, route) {
 
 
         $.validator.addMethod("PASSWORD",function(value,element){
-            return this.optional(element) || /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$/i.test(value);
-        },"Passwords are 8-25 characters with uppercase letters, lowercase letters, at least one number, and at least one special character");
+            return this.optional(element) || /^(?=.*[!@#$%^&*])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,25}$/i.test(value);
+        },"Passwords are 8-25 characters with uppercase letters, lowercase letters, at least one number, and at least one special character(!@#$%^&*)");
 
         $.validator.addMethod("ZIPCODE",function(value,element){
             return this.optional(element) || /^\d{5}$/.test(value);
@@ -75,7 +99,7 @@ export default function render(props, route) {
 
         /* Initialize form validation on the registration form.
         It has the name attribute "register"*/
-        $("form[name='register']").validate({
+        validator = $("form[name='register']").validate({
             // Specify validation rules
             rules: {
                 // The key name on the left side is the name attribute
@@ -120,7 +144,7 @@ export default function render(props, route) {
                 form.submit();
             }
         });
-
+        console.log(validator);
 
         function checkInputs() {
             let isValid = true;
@@ -144,7 +168,7 @@ export default function render(props, route) {
         })
 
         checkInputs();
-        navbarEventListeners();
+        navbarEventListeners(map);
         map.resize();
     })
 
@@ -257,12 +281,10 @@ export default function render(props, route) {
 
 
 
-
 /* Event Listeners for navbar buttons */
-function navbarEventListeners() {
+function navbarEventListeners(map) {
 
-    $("#create-user").click(function () {
-
+    $("#create-user").click(() => {
         if ($("form[name='register']").valid()) {
             let fullName = $("#r-name").val().trim();
             let email = $("#r-email").val().trim();
@@ -290,6 +312,9 @@ function navbarEventListeners() {
                 $("#r-bio").val("");
 
                 $("#RegisterCenter").modal("hide");
+                // validator.destroy();
+                console.log('Resetting!')
+                $("form[name='register']").data("validator").resetForm();
             }
 
         } else {
@@ -299,42 +324,50 @@ function navbarEventListeners() {
 
     $("#create-event").click(function () {
 
-        // if ($("form[name='nameForm']").valid()) {
-            let eventTitle = $("#e-title").val().trim();
-            let eventDescription = $("#e-description").val().trim();
+        let eventTitle = $("#e-title").val().trim();
+        let eventDescription = $("#e-description").val().trim();
+        if (eventDescription === "" || eventTitle === "") {
+            alert("Please enter the title and the description of the event");
+            $('#ModalCenter').modal('show');
+            return;
+        }
+        if (!marker) {
+            alert("Please select a location for your event");
+            return;
+        }
+        if (!countryUS) {
+            alert("Please select a location within the United States.  Other regions may be supported later");
+            return;
+        }
+        let activityType = $("button[data-id='activity-selection']").attr("title");
+        if (activityType === "-- Select the activity --"|| activityType === "Nothing selected") {
+            alert("Please select the type of event");
+            return;
+        }
+        let yesNo = $("button[data-id='outdoor-selection']").attr("title");
+        if (yesNo === "-- Select yes or no --"|| yesNo === "Nothing selected") {
+            alert("Please indicate if this event is indoors or not");
+            return;
+        }
 
+        let outdoors;
+        let activityId;
+        let thisDate = new Date(Date.now()).toISOString()
 
-            const timeElapsed = Date.now();
-            const today = new Date(timeElapsed);
-
-            let thisDate = today.toISOString()
-            console.log(thisDate);
-
-            let postObj = {
-                title: eventTitle,
-                description: eventDescription,
-                dateCreated: `${thisDate}`,
-                location: {
-                    city: "San Antonio",  //TODO: will populate with address data, if any
-                    state: "Texas",
-                    latitude: `${currentCoordinates[1]}`,
-                    longitude: `${currentCoordinates[0]}`,
-                    postalCode: "78242"
-                },
-                outdoor: "y",
-                type: {
-                    "id": 4,
-                    "type": "Swimming"
-                }
+        $("#activity-selection").children().each((index, element) => {
+            if (element.innerHTML === activityType) {
+                activityId = element.getAttribute("data-tokens");
             }
+        })
+        $("#outdoor-selection").children().each((index, element) => {
+            if (element.innerHTML === yesNo) {
+                outdoors = element.getAttribute("data-tokens");
+            }
+        })
 
-            if (createEventFetch(postObj)) {
-                $("#e-title").val("");
-                $("#e-description").val("");
-                marker.remove();
-                currentCoordinates = [];
+        console.log(outdoors);
 
-                //TODO: need to clear and recenter map after an event is created
+
 
                 $("#ModalCenter").modal("hide");
 
@@ -342,45 +375,80 @@ function navbarEventListeners() {
                 $("#success-alert").fadeTo(2000, 500).slideUp(500, function() {
                     $("#success-alert").slideUp(500);
                 });
+
+
+
+        let postObj = {
+            title: eventTitle,
+            description: eventDescription,
+            dateCreated: `${thisDate}`,
+            location: {
+                addressLine1: address.addressLine1,
+                city: address.city,
+                state: address.state,
+                latitude: `${currentCoordinates[1]}`,
+                longitude: `${currentCoordinates[0]}`,
+                postalCode: address.postalCode
+            },
+            outdoor: outdoors,
+            type: {
+                id: activityId
+            },
+            user: {
+                "id": 5   //TODO: Need to implement logged in user creds
             }
+        }
 
-        // } else {
-        //     console.log("The form is not valid")
-        // }
+        console.log(postObj);
 
+        if (createEventFetch(postObj)) {
+            $("#e-title").val("");
+            $("#e-description").val("");
+            marker.remove();
+            currentCoordinates = [];
+            address = {};
+            countryUS = false;
+            map.setCenter([-95.7129, 37.0902]);
+            map.setZoom(3);
 
+            //TODO: fix these 2 to clear selectpickers
+            $("#outdoor-selection").val('default');
+            $("#activity-selection").val('default');
+            $("#outdoor-selection").selectpicker("refresh");
+            $("#activity-selection").selectpicker("refresh");
+
+            //TODO: recenter map after an event is created
+
+            $("#ModalCenter").modal("hide");
+        }
     })
 
-}
 
+    const createUserFetch = async (dataObj) => {
+        const settings = {
+            method: "POST",
+            headers: getHeaders(),
+            body: JSON.stringify(dataObj)
+        };
 
-const createUserFetch = async (dataObj) => {
-    const settings = {
-        method: "POST",
-        headers: getHeaders(),
-        body: JSON.stringify(dataObj)
-    };
+        const fetchResponse = await fetch("/api/users/create", settings);
+        const data = await fetchResponse.json();
+        console.log(data);
+        console.log(`User ${dataObj.fullName} was created successfully`);
 
-    const fetchResponse = await fetch("/api/users/create", settings);
-    const data = await fetchResponse.json();
-    console.log(data);
-    console.log(`User ${dataObj.fullName} was created successfully`);
+    }
 
-}
+    const createEventFetch = async (dataObj) => {
+        const settings = {
+            method: "POST",
+            headers: getHeaders(),
+            body: JSON.stringify(dataObj)
+        };
 
-const createEventFetch = async (dataObj) => {
-    const settings = {
-        method: "POST",
-        headers: getHeaders(),
-        body: JSON.stringify(dataObj)
-    };
+        const fetchResponse = await fetch("/api/events/create", settings);
+        const data = await fetchResponse.json();
+        console.log(`Event ${dataObj.title} was created successfully`);
 
-    const fetchResponse = await fetch("/api/events/create", settings);
-    const data = await fetchResponse.json();
-    console.log(data);
-    console.log(`event '${dataObj.title}' was created successfully`);
-
+    }
 
 }
-
-

@@ -1,64 +1,64 @@
 // validation from sitepoint.com
 
-$(function() {
-
-    $.validator.addMethod("PASSWORD",function(value,element){
-        return this.optional(element) || /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,25})$/i.test(value);
-    },"Passwords are 8-25 characters with uppercase letters, lowercase letters, at least one number, and at least one special character.");
-
-
-    // Initialize form validation on the registration form.
-    // It has the name attribute "registration"
-    $("form[name='register']").validate({
-        // Specify validation rules
-        rules: {
-            // The key name on the left side is the name attribute
-            // of an input field. Validation rules are defined
-            // on the right side
-            fullname: "required",
-            username: {
-                required: true,
-                minlength: 6
-            },
-            email: {
-                required: true,
-                // Specify that email should be validated
-                // by the built-in "email" rule
-                email: true
-            },
-            zip: {
-                required: true,
-                digits: true,
-                min: 5,
-                max: 5
-            },
-            password: "required PASSWORD",
-            confirm: {
-                equalTo: "#password"
-            }
-        },
-        // Specify validation error messages
-        messages: {
-            fullname: "Please enter your full name",
-            username: {
-                required: "Please enter your user name, at least 6 characters",
-                minlength: "Your user name must be at least 6 characters long"
-            },
-            email: "Please enter a valid email address",
-            zip: "Please enter only a 5 digit zip code",
-            password: {
-                required: "Please provide a password",
-                minlength: "Your password must be at least 8 characters long",
-                maxlength: "Your password must be no more than 25 characters long",
-            },
-        },
-        // Make sure the form is submitted to the destination defined
-        // in the "action" attribute of the form when valid
-        submitHandler: function(form) {
-            form.submit();
-        }
-    });
-});
+// $(function() {
+//
+//     $.validator.addMethod("PASSWORD",function(value,element){
+//         return this.optional(element) || /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,25})$/i.test(value);
+//     },"Passwords are 8-25 characters with uppercase letters, lowercase letters, at least one number, and at least one special character.");
+//
+//
+//     // Initialize form validation on the registration form.
+//     // It has the name attribute "registration"
+//     $("form[name='register']").validate({
+//         // Specify validation rules
+//         rules: {
+//             // The key name on the left side is the name attribute
+//             // of an input field. Validation rules are defined
+//             // on the right side
+//             fullname: "required",
+//             username: {
+//                 required: true,
+//                 minlength: 6
+//             },
+//             email: {
+//                 required: true,
+//                 // Specify that email should be validated
+//                 // by the built-in "email" rule
+//                 email: true
+//             },
+//             zip: {
+//                 required: true,
+//                 digits: true,
+//                 min: 5,
+//                 max: 5
+//             },
+//             password: "required PASSWORD",
+//             confirm: {
+//                 equalTo: "#password"
+//             }
+//         },
+//         // Specify validation error messages
+//         messages: {
+//             fullname: "Please enter your full name",
+//             username: {
+//                 required: "Please enter your user name, at least 6 characters",
+//                 minlength: "Your user name must be at least 6 characters long"
+//             },
+//             email: "Please enter a valid email address",
+//             zip: "Please enter only a 5 digit zip code",
+//             password: {
+//                 required: "Please provide a password",
+//                 minlength: "Your password must be at least 8 characters long",
+//                 maxlength: "Your password must be no more than 25 characters long",
+//             },
+//         },
+//         // Make sure the form is submitted to the destination defined
+//         // in the "action" attribute of the form when valid
+//         submitHandler: function(form) {
+//             form.submit();
+//         }
+//     });
+// });
 
 
 
@@ -123,65 +123,65 @@ $(function() {
 
 
 
-$.validator.addMethod("TITLE",function(value,element){
-    return this.optional(element) || /[^A-Za-z0-9]+/i.test(value);
-},"Titles are only letters and numbers.");
-
-$.validator.addMethod("DESCRIPTION",function(value,element){
-    return this.optional(element) || /^[\.a-zA-Z0-9,!?]*$/i.test(value);
-},"Description of event please.");
-
-$("form[name='nameForm']").validate({
-    // Specify validation rules
-    rules: {
-        // The key name on the left side is the name attribute
-        // of an input field. Validation rules are defined
-        // on the right side
-        title: {
-            required: true,
-            TITLE: true
-        },
-        description: {
-            required: true,
-            DESCRIPTION: true
-        }
-    },
-    messages: {
-        title: "Please enter name of Event.",
-        description: {
-            required: "Please enter event description",
-        },
-    },
-    // Make sure the form is submitted to the destination defined
-    // in the "action" attribute of the form when valid
-    submitHandler: function(form) {
-        form.submit();
-    }
-});
-
-function checkInputsEvent() {
-    let isValidEvent = true;
-    $('.reg-fieldsE').filter('[required]').each(function () {
-        if ($(this).val() === '') {
-            $('#create-event').prop('disabled', true)
-            isValidEvent = false;
-            return false;
-        }
-    });
-
-    if (isValidEvent) {
-        $('#create-event').prop('disabled', false)
-    }
-    return isValidEvent;
-}
-
-//Enable or disable button based on if inputs are filled or not
-$(".reg-fieldsE").filter('[required]').on('keyup', function () {
-    checkInputsEvent()
-})
-
-checkInputsEvent();
-
+// $.validator.addMethod("TITLE",function(value,element){
+//     return this.optional(element) || /[^A-Za-z0-9]+/i.test(value);
+// },"Titles are only letters and numbers.");
+//
+// $.validator.addMethod("DESCRIPTION",function(value,element){
+//     return this.optional(element) || /^[\.a-zA-Z0-9,!?]*$/i.test(value);
+// },"Description of event please.");
+//
+// $("form[name='nameForm']").validate({
+//     // Specify validation rules
+//     rules: {
+//         // The key name on the left side is the name attribute
+//         // of an input field. Validation rules are defined
+//         // on the right side
+//         title: {
+//             required: true,
+//             TITLE: true
+//         },
+//         description: {
+//             required: true,
+//             DESCRIPTION: true
+//         }
+//     },
+//     messages: {
+//         title: "Please enter name of Event.",
+//         description: {
+//             required: "Please enter event description",
+//         },
+//     },
+//     // Make sure the form is submitted to the destination defined
+//     // in the "action" attribute of the form when valid
+//     submitHandler: function(form) {
+//         form.submit();
+//     }
+// });
+//
+// function checkInputsEvent() {
+//     let isValidEvent = true;
+//     $('.reg-fieldsE').filter('[required]').each(function () {
+//         if ($(this).val() === '') {
+//             $('#create-event').prop('disabled', true)
+//             isValidEvent = false;
+//             return false;
+//         }
+//     });
+//
+//     if (isValidEvent) {
+//         $('#create-event').prop('disabled', false)
+//     }
+//     return isValidEvent;
+// }
+//
+// //Enable or disable button based on if inputs are filled or not
+// $(".reg-fieldsE").filter('[required]').on('keyup', function () {
+//     checkInputsEvent()
+// })
+//
+// checkInputsEvent();
+//
 
 
 
