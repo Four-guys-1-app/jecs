@@ -69,12 +69,11 @@ public class EventsController {
     }
 
     @PostMapping("/create")
-    private void createEvent(@RequestBody Event newEvent) {
+    private Event createEvent(@RequestBody Event newEvent) {
         Location location = newEvent.getLocation();
         Location savedLocation = locationsRepository.save(location);
         newEvent.setLocation(savedLocation);
-        eventRepository.save(newEvent);
-
+        return eventRepository.save(newEvent);
     }
 
 
