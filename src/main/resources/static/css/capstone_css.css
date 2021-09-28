@@ -121,12 +121,13 @@
 
 
 #success-alert {
-    position: fixed;
-    /*margin-top: 100px;*/
-    /*left: 0px;*/
-    /*width: 100%;*/
+    position: absolute;
+    margin-top: 100px;
+    top: 0;
+    left: 50%;
     z-index: 9999;
-    /*border-radius:0px*/
+    border-radius:0px;
+    transform: translateX(-50%);
 }
 
 .img-responsive {

@@ -1,7 +1,7 @@
 export default function Navbar(props) {
     return `
 <nav class="container-fluid navbar navbar-expand-lg fixed-top navbar-dark p-4">
-    <a class="nav-item nav-link img-responsive" href="/">
+    <a class="navbar-brand" href="/">
         <i class="bi bi-compass"></i> JECS Network
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
@@ -18,7 +18,7 @@ export default function Navbar(props) {
         </div>
        
 
-                <div class="navbar-nav ml-auto d-flex align-items-center">
+                <div class="ml-auto d-flex align-items-center justify-content-end">
                 <button type="button" class="glow-on-hover mx-2 align-content-between" data-toggle="modal" data-target="#RegisterCenter"
                         id="reg-button">Register
                 </button>
@@ -28,9 +28,9 @@ export default function Navbar(props) {
                 </div>
                 </div>
  </nav>
-            <div class="alert alert-success" id="success-alert" role="alert">
-                <button type="button" class="close" data-dismiss="alert">x</button>
-                <strong id="success">Success</strong>
+            <div class="alert alert-success" id="success-alert" role="alert" style="display: none">
+<!--                <button type="button" class="close" data-dismiss="alert">x</button>-->
+                <strong id="success">Success! </strong>
                 <p id="alert-content"></p>
            </div>
             
