@@ -1,32 +1,31 @@
 export default function Blog(props) {
     return `
-<!--            <div class="container" id="blog">-->
-<!--                <div class="d-flex flex-column flex-wrap align-content-center">-->
-<!--                    <header class="mt-1"><h1>Blog</h1></header>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            -->
             <div>
             
                     <div class="d-flex flex-direction: column mt-6" id="listoftypes">
                         <div class="w-25 border" id="typesList">
                                            
-                        <div class="my-custom-scrollbar my-custom-scrollbar-primary scrollbar-morpheus-den">
-                             ${props.types.map(type => `
-                                <h5 data-id="${type.id}" class="listTypes"><a href="#">${type.type}</a></h5>
-                                `).join('')}
-                         </div>
+                            <div class="my-custom-scrollbar my-custom-scrollbar-primary scrollbar-morpheus-den">
+                                 ${props.types.map(type => `
+                                    <h5 data-id="${type.id}" class="listTypes"><a href="#">${type.type}</a></h5>
+                                    `).join('')}
+                             </div>
                            
                     </div>
                 
-                    <div class="w-50 p-3 d-flex flex-direction: column">
+                    <div class="w-50 p-0 d-flex flex-direction: column">
                         <div id="blogCards" class="container">
                 
                         </div>
                 
                     </div>
                 
-                    <div class="w-25 p-3"><p>Hello</p></div>
+                    <div class="w-25 p-0 d-flex justify-content-center border">
+                        <button type="button" class="mb-5 glow-on-hover" id="create-blog" data-toggle="modal" data-target="#ModalPost">
+                        Create Blog
+                        </button>
+                    
+                    </div>
                 
                 
                 </div>    
@@ -61,7 +60,7 @@ export function BlogEvent(){
             element.append( jsonRes.map(post => `
                     <div class="container-fluid">
                     <div class="row">
-                        <div class="col-12 mt-3">
+                        <div class="col-12 mt-0">
                             <div class="card" data-id="${post.user.id}">
                                 <div class="d-flex card-horizontal">
                                     <div class="img-square-wrapper">
