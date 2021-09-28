@@ -16,6 +16,7 @@ export default function Navbar(props) {
             <a class="nav-item nav-link" href="/about" data-link>About</a>
             <a class="nav-item nav-link" href="#" data-toggle="modal" data-target="#ModalLogin">Login</a>
         </div>
+       
 
                 <div class="navbar-nav ml-auto d-flex align-items-center">
                 <button type="button" class="glow-on-hover mx-2 align-content-between" data-toggle="modal" data-target="#RegisterCenter"
@@ -25,14 +26,13 @@ export default function Navbar(props) {
                     Event
                 </button>
                 </div>
+                </div>
  </nav>
-            <div class="container d-flex justify-content-center">
-            <div class="row" id="success-alert"
-            <div className="alert alert-success" role="alert">
-                <button type="button" className="close" data-dismiss="alert">x</button>
+            <div class="alert alert-success" id="success-alert" role="alert">
+                <button type="button" class="close" data-dismiss="alert">x</button>
                 <strong id="success">Success</strong>
-            </div>
-            </div>
+                <p id="alert-content"></p>
+           </div>
             
             <div class="modal fade" id="ModalCenter" data-backdrop="static" data-keyboard="false" tabindex="-1"
                  role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">

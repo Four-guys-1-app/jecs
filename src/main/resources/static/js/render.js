@@ -41,7 +41,6 @@ export default function render(props, route) {
         addEvent();
 
 
-
         let mapContainer = $("#user-event-creation-map")
         mapContainer.html('')
         map = getMap($("#user-event-creation-map").attr("id"));
@@ -55,7 +54,7 @@ export default function render(props, route) {
             map.resize();
         })
 
-        map.on("click", function (e){
+        map.on("click", function (e) {
             // console.log(e);
             if (marker) {
                 marker.remove();
@@ -64,8 +63,8 @@ export default function render(props, route) {
             currentCoordinates = [e.lngLat.lng, e.lngLat.lat];
             // console.log(currentCoordinates);
             marker = setMarker(e.lngLat, map)
-            reverseGeocode(e.lngLat, mapboxgl.accessToken).then(function(results) {
-                    console.log(results);  //TODO: start work here with parsing address results
+            reverseGeocode(e.lngLat, mapboxgl.accessToken).then(function (results) {
+                console.log(results);  //TODO: start work here with parsing address results
                 if (results === undefined) {
                     createPopup("Not a valid event location", marker, map);
                     return;
@@ -76,7 +75,7 @@ export default function render(props, route) {
                     let match = /((.*),\s)?(.*),\s(.*)\s(\d{5}),\s(.*)/i.exec(results);
                     countryUS = true;
                     address = {
-                        addressLine1: match[2]||"No address",
+                        addressLine1: match[2] || "No address",
                         postalCode: match[5],
                         state: match[4],
                         city: match[3]
@@ -86,15 +85,13 @@ export default function render(props, route) {
         })
 
 
-
-
-        $.validator.addMethod("PASSWORD",function(value,element){
+        $.validator.addMethod("PASSWORD", function (value, element) {
             return this.optional(element) || /^(?=.*[!@#$%^&*])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,25}$/i.test(value);
-        },"Passwords are 8-25 characters with uppercase letters, lowercase letters, at least one number, and at least one special character(!@#$%^&*)");
+        }, "Passwords are 8-25 characters with uppercase letters, lowercase letters, at least one number, and at least one special character(!@#$%^&*)");
 
-        $.validator.addMethod("ZIPCODE",function(value,element){
+        $.validator.addMethod("ZIPCODE", function (value, element) {
             return this.optional(element) || /^\d{5}$/.test(value);
-        },"Please provide a zip code in a 5 digit format");
+        }, "Please provide a zip code in a 5 digit format");
 
 
         /* Initialize form validation on the registration form.
@@ -140,7 +137,7 @@ export default function render(props, route) {
             },
             // Make sure the form is submitted to the destination defined
             // in the "action" attribute of the form when valid
-            submitHandler: function(form) {
+            submitHandler: function (form) {
                 form.submit();
             }
         });
@@ -180,111 +177,13 @@ export default function render(props, route) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* Event Listeners for navbar buttons */
 function navbarEventListeners(map) {
 
+    $("#success-alert").hide(0)
+
     $("#create-user").click(() => {
+
         if ($("form[name='register']").valid()) {
             let fullName = $("#r-name").val().trim();
             let email = $("#r-email").val().trim();
@@ -315,6 +214,9 @@ function navbarEventListeners(map) {
                 // validator.destroy();
                 console.log('Resetting!')
                 $("form[name='register']").data("validator").resetForm();
+
+                $("#alert-content").text("User has been created.");
+                $("#success-alert").slideDown(1000).delay(1000).slideUp(500);
             }
 
         } else {
@@ -340,12 +242,12 @@ function navbarEventListeners(map) {
             return;
         }
         let activityType = $("button[data-id='activity-selection']").attr("title");
-        if (activityType === "-- Select the activity --"|| activityType === "Nothing selected") {
+        if (activityType === "-- Select the activity --" || activityType === "Nothing selected") {
             alert("Please select the type of event");
             return;
         }
         let yesNo = $("button[data-id='outdoor-selection']").attr("title");
-        if (yesNo === "-- Select yes or no --"|| yesNo === "Nothing selected") {
+        if (yesNo === "-- Select yes or no --" || yesNo === "Nothing selected") {
             alert("Please indicate if this event is indoors or not");
             return;
         }
@@ -366,17 +268,6 @@ function navbarEventListeners(map) {
         })
 
         console.log(outdoors);
-
-
-
-                $("#ModalCenter").modal("hide");
-
-                $("#success").after("Your event has been created.");
-                $("#success-alert").fadeTo(2000, 500).slideUp(500, function() {
-                    $("#success-alert").slideUp(500);
-                });
-
-
 
         let postObj = {
             title: eventTitle,
@@ -418,6 +309,9 @@ function navbarEventListeners(map) {
             $("#activity-selection").selectpicker("refresh");
 
             //TODO: recenter map after an event is created
+
+            $("#alert-content").text("Event has been created.");
+            $("#success-alert").slideDown(1000).delay(1000).slideUp(500);
 
             $("#ModalCenter").modal("hide");
         }
