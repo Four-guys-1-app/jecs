@@ -111,7 +111,7 @@ export function EventEvents()  {
                 currMarker.setLngLat(location).setPopup(new mapboxgl.Popup().setHTML(`<p><a href="#" onclick="viewDetails(${event.id})">${event.title}</a></p>`));
             })
             console.log(bounds);
-            map.fitBounds(bounds, {padding: 45});
+            map.fitBounds(bounds, {padding: 50, maxZoom: 13});
         })
     })
 
