@@ -1,4 +1,4 @@
-import createView from './createView.js';
+import createView, {attachHistoryListener} from './createView.js';
 
 /**
  * When the DOM loads, build the view given the current endpoint.
@@ -9,10 +9,10 @@ function loadViewOnPageRequest() {
         createView(location.pathname);
     });
 
-    window.addEventListener('popstate', function () {
-        console.log(history.getState);
-        history.back();
-    });
+    // window.addEventListener('popstate', function () {
+    //     console.log(history.getState);
+    //     history.back();
+    // });
 }
 
 /**
@@ -31,6 +31,7 @@ function addListenerToNavLinks() {
 
 
 export default function init() {
+    attachHistoryListener();
     loadViewOnPageRequest();
     addListenerToNavLinks();
 }

@@ -54,7 +54,7 @@ export default function router(URI) {
         '/about': {
             returnView: About,
             state: {},
-            uri: '/',
+            uri: '/about',
             title: "About",
             viewEvent: AboutEvent
         },
@@ -63,7 +63,7 @@ export default function router(URI) {
             state: {
                 types: `/api/types`
             },
-            uri: '/',
+            uri: '/blog',
             title: "Blog",
             viewEvent: BlogEvent
         },
