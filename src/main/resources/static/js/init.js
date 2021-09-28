@@ -21,8 +21,10 @@ function loadViewOnPageRequest() {
 function addListenerToNavLinks() {
     document.addEventListener('click', e => {
         e.preventDefault();
-        if (e.target.dataset['link'] !== undefined) {
+        if (e.target.hasAttribute("href")&&e.target.getAttribute("href")[0]== "/") {
+
             const URI = e.target.href.substring(location.origin.length);
+
             createView(URI);
         }
     });

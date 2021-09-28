@@ -1,7 +1,7 @@
 export default function Navbar(props) {
     return `
-<nav class="container-fluid navbar navbar-expand-lg fixed-top navbar-dark">
-    <a class="navbar-brand" href="#">
+<nav class="container-fluid navbar navbar-expand-lg fixed-top navbar-dark p-4">
+    <a class="navbar-brand" href="/">
         <i class="bi bi-compass"></i> JECS Network
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
@@ -10,27 +10,30 @@ export default function Navbar(props) {
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link" href="/" data-link>Home</a>
             <a class="nav-item nav-link" href="/events" data-link>Events</a>
             <a class="nav-item nav-link" href="/blog" data-link>Blog</a>
             <a class="nav-item nav-link" href="/account" data-link>Account</a>
             <a class="nav-item nav-link" href="/about" data-link>About</a>
             <a class="nav-item nav-link" href="#" data-toggle="modal" data-target="#ModalLogin">Login</a>
         </div>
-            
-                <div class="navbar-nav ml-auto">
-                <button type="button" class="mb-5 glow-on-hover" data-toggle="modal" data-target="#RegisterCenter"
+       
+
+                <div class="ml-auto d-flex align-items-center justify-content-end">
+                <button type="button" class="glow-on-hover mx-2 align-content-between" data-toggle="modal" data-target="#RegisterCenter"
                         id="reg-button">Register
                 </button>
-                <button type="button" class="mb-5 glow-on-hover" data-toggle="modal" data-target="#ModalCenter">Create
+                <button type="button" class="glow-on-hover mx-2 align-content-between" data-toggle="modal" data-target="#ModalCenter">Create
                     Event
                 </button>
                 </div>
+                </div>
+ </nav>
+            <div class="alert alert-success" id="success-alert" role="alert" style="display: none">
+<!--                <button type="button" class="close" data-dismiss="alert">x</button>-->
+                <strong id="success">Success! </strong>
+                <p id="alert-content"></p>
+           </div>
             
-    </div>
-  
-
-        </nav>
             <div class="modal fade" id="ModalCenter" data-backdrop="static" data-keyboard="false" tabindex="-1"
                  role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-lg modal-dialog-centered" role="document">

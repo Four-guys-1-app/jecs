@@ -120,6 +120,19 @@
 }
 
 
+#success-alert {
+    position: absolute;
+    margin-top: 100px;
+    top: 0;
+    left: 50%;
+    z-index: 9999;
+    border-radius:0px;
+    transform: translateX(-50%);
+}
+
+.img-responsive {
+    color: white;
+}
 
 
 
@@ -275,4 +288,5 @@ section .section-title {
 .scrollbar-morpheus-den {
     scrollbar-color: #330867 #F5F5F5;
 }
+
 
