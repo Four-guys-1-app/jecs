@@ -21,7 +21,7 @@ export default function Blog(props) {
                     </div>
                 
                     <div class="w-25 p-0 d-flex justify-content-center border">
-                        <button type="button" class="mb-5 glow-on-hover" id="create-blog" data-toggle="modal" data-target="#ModalPost">
+                        <button type="button" class="mb-5 glow-on-hover" id="create-blog" data-toggle="modal" data-target="#ModaBlog">
                         Create Blog
                         </button>
                     
@@ -91,7 +91,7 @@ export function BlogEvent(){
 
         $(`.my-custom-scrollbar`).css({
             "position": "relative",
-            "width": "400px",
+            "width": "auto",
             "height": "600px",
             "overflow": "auto",
         });
