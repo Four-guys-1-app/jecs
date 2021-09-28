@@ -23,7 +23,6 @@ let validator;
 export default function render(props, route) {
     const app = document.querySelector('#app');
     const title = `JECS - ${route.title}`;
-    history.pushState(props, title, route.uri);
     document.title = title;
     //TODO: Get help with URL not persisting through views
     console.log(props);
@@ -141,7 +140,7 @@ export default function render(props, route) {
                 form.submit();
             }
         });
-        console.log(validator);
+
 
         function checkInputs() {
             let isValid = true;

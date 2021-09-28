@@ -1,7 +1,7 @@
-#event-header, #eventView, #home-header, #aboutUs {
+#events-header, #eventView, #home-header, #aboutUs, #event-header {
     margin-top: 150px;
 }
-#event-search-map {
+#event-search-map, #event-view-map {
     height: 500px;
 
 }

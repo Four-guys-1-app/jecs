@@ -10,7 +10,7 @@ export default function Events(props) {
     <div class="container">
         
         <header class="d-flex justify-content-center">
-            <h1 id="event-header" class="mb-4">Events</h1>
+            <h1 id="events-header" class="mb-4">Events</h1>
         </header>
         
         <!-- Temporary img wrapper class and placeholder image for the map -->
@@ -25,7 +25,6 @@ export default function Events(props) {
             </div>
         </div>
         <div id="event-search-map" class="mt-5 rounded d-flex justify-content-center">
-           <!-- <img class="" src="http://via.placeholder.com/1050x700" alt="Card image cap"> -->
         </div>
     
         
@@ -43,13 +42,35 @@ export default function Events(props) {
 }
 
 export function EventEvents()  {
+
     let mapId = $("#event-search-map").attr("id");
     let map = getMap(mapId);
 
     map.on('load', () => {
         map.resize();
+        let theLastSearch = sessionStorage.getItem("lastSearch");
+        if (theLastSearch) {
+            let apiUrl = buildUrl(theLastSearch);
+            const eventDiv = $("#event-list");
+            $("#searchby").val(theLastSearch);
+            eventDiv.empty();
+            getEvents(eventDiv, apiUrl).then(data => {
+                let bounds = new mapboxgl.LngLatBounds();
+                data.forEach(event => {
+                    let location = [event.location.longitude, event.location.latitude];
+                    bounds.extend(location);
+                    let currMarker = setMarker(location, map);
+                    eventSearchArray.push(currMarker);
+                    currMarker.setLngLat(location).setPopup(new mapboxgl.Popup().setHTML(`<p><a href="#" onclick="viewDetails(${event.id})">${event.title}</a></p>`));
+                })
+                console.log(bounds);
+                map.fitBounds(bounds, {padding: 45});
+            })
+            // sessionStorage.removeItem("lastSearch");
+        }
     })
     let eventSearchArray = [];
+
 
 
     // let eventGeo = myGeoCoder;
@@ -60,6 +81,7 @@ export function EventEvents()  {
     $("#e-search").click(function() {
 
         const searchInput = $("#searchby");
+        sessionStorage.setItem("lastSearch", searchInput.val());
         const eventDiv = $("#event-list");
         if (eventSearchArray.length > 0) {
             for (let i = 0; i < eventSearchArray.length; i++) {
@@ -80,26 +102,16 @@ export function EventEvents()  {
 
         eventDiv.empty();
         getEvents(eventDiv, apiUrl).then(data => {
-            let locationGroupArray = [];
+            let bounds = new mapboxgl.LngLatBounds();
             data.forEach(event => {
                 let location = [event.location.longitude, event.location.latitude];
+                bounds.extend(location);
                 let currMarker = setMarker(location, map);
                 eventSearchArray.push(currMarker);
-                // locationGroupArray.push(L.marker(location));
-                locationGroupArray.push(location);
                 currMarker.setLngLat(location).setPopup(new mapboxgl.Popup().setHTML(`<p><a href="#" onclick="viewDetails(${event.id})">${event.title}</a></p>`));
             })
-            console.log(locationGroupArray);
-            if (locationGroupArray.length === 1) {
-                let markerBounds = L.latLngBounds([-116.81396931106491, 47.6648462070234]);
-                map.fitBounds(markerBounds);
-            }
-            // let bounds = L.latLngBounds(locationGroupArray);
-            // map.fitBounds(bounds);
-            //TODO: work with triforce/casey on getting bounds to work
-            let group = L.featureGroup(locationGroupArray);
-            map.fitBounds(group.getBounds());
-
+            console.log(bounds);
+            map.fitBounds(bounds, {padding: 45});
         })
     })
 
@@ -111,6 +123,7 @@ export function EventEvents()  {
             headers: getHeaders()
         }
         fetchData({event: `/api/events/${eventId}`}, request).then((props) => {
+            history.pushState({...props, lastUri: route.uri }, null, route.uri)
             render(props, route);
         });
     }
@@ -120,7 +133,7 @@ export function EventEvents()  {
         const jsonRes = await response.json();
         console.log(jsonRes);
         if (jsonRes.length === 0) {
-            element.append(`<div class="container-fluid justify-content-center"><h4>-- No events found --</h4></div>`)
+            element.append(`<div class="container-fluid justify-content-center mt-4"><h4>-- No events found --</h4></div>`)
         }
 
         element.append( jsonRes.map(event => `
