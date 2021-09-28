@@ -25,10 +25,9 @@ public class UsersController {
     }
 
     @PostMapping("/create")
-    private void create(@RequestBody User myUser) {
+    private User create(@RequestBody User myUser) {
         myUser.setPassword(passwordEncoder.encode(myUser.getPassword()));
-        userRepository.save(myUser);
-
+        return userRepository.save(myUser);
     }
 
     @PutMapping("{id}")

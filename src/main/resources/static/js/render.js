@@ -12,6 +12,7 @@ let address;  //TODO: retrieve address as well as coordinates for location data
 let marker;
 let map;
 let countryUS = false;
+let validator;
 
 
 /**
@@ -22,13 +23,16 @@ let countryUS = false;
 export default function render(props, route) {
     const app = document.querySelector('#app');
     const title = `JECS - ${route.title}`;
-    history.pushState(props, title, route.uri);
     document.title = title;
     //TODO: Get help with URL not persisting through views
     console.log(props);
 
     // add view, navbar, and footer to DOM
     app.innerHTML = `${Navbar(props)} ${route.returnView(props)} ${Footer(null)}`;
+
+    if (route.title === 'Loading...') {
+        return
+    }
 
     $(document).ready(function () {
 
@@ -84,8 +88,8 @@ export default function render(props, route) {
 
 
         $.validator.addMethod("PASSWORD",function(value,element){
-            return this.optional(element) || /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$/i.test(value);
-        },"Passwords are 8-25 characters with uppercase letters, lowercase letters, at least one number, and at least one special character");
+            return this.optional(element) || /^(?=.*[!@#$%^&*])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,25}$/i.test(value);
+        },"Passwords are 8-25 characters with uppercase letters, lowercase letters, at least one number, and at least one special character(!@#$%^&*)");
 
         $.validator.addMethod("ZIPCODE",function(value,element){
             return this.optional(element) || /^\d{5}$/.test(value);
@@ -94,7 +98,7 @@ export default function render(props, route) {
 
         /* Initialize form validation on the registration form.
         It has the name attribute "register"*/
-        $("form[name='register']").validate({
+        validator = $("form[name='register']").validate({
             // Specify validation rules
             rules: {
                 // The key name on the left side is the name attribute
@@ -276,12 +280,10 @@ export default function render(props, route) {
 
 
 
-
 /* Event Listeners for navbar buttons */
 function navbarEventListeners(map) {
 
-    $("#create-user").click(function () {
-
+    $("#create-user").click(() => {
         if ($("form[name='register']").valid()) {
             let fullName = $("#r-name").val().trim();
             let email = $("#r-email").val().trim();
@@ -309,6 +311,9 @@ function navbarEventListeners(map) {
                 $("#r-bio").val("");
 
                 $("#RegisterCenter").modal("hide");
+                // validator.destroy();
+                console.log('Resetting!')
+                $("form[name='register']").data("validator").resetForm();
             }
 
         } else {
@@ -322,6 +327,7 @@ function navbarEventListeners(map) {
         let eventDescription = $("#e-description").val().trim();
         if (eventDescription === "" || eventTitle === "") {
             alert("Please enter the title and the description of the event");
+            $('#ModalCenter').modal('show');
             return;
         }
         if (!marker) {
@@ -333,12 +339,12 @@ function navbarEventListeners(map) {
             return;
         }
         let activityType = $("button[data-id='activity-selection']").attr("title");
-        if (activityType === "-- Select the activity --") {
+        if (activityType === "-- Select the activity --"|| activityType === "Nothing selected") {
             alert("Please select the type of event");
             return;
         }
         let yesNo = $("button[data-id='outdoor-selection']").attr("title");
-        if (yesNo === "-- Select yes or no --") {
+        if (yesNo === "-- Select yes or no --"|| yesNo === "Nothing selected") {
             alert("Please indicate if this event is indoors or not");
             return;
         }
@@ -393,41 +399,47 @@ function navbarEventListeners(map) {
             currentCoordinates = [];
             address = {};
             countryUS = false;
-            map.center = [-95.7129, 37.0902];
-            activityType = "-- Select the activity --";  //TODO: fix these 2 to clear selectpickers
-            yesNo = "-- Select yes or no --";
+            map.setCenter([-95.7129, 37.0902]);
+            map.setZoom(3);
+
+            //TODO: fix these 2 to clear selectpickers
+            $("#outdoor-selection").val('default');
+            $("#activity-selection").val('default');
+            $("#outdoor-selection").selectpicker("refresh");
+            $("#activity-selection").selectpicker("refresh");
 
             //TODO: recenter map after an event is created
 
             $("#ModalCenter").modal("hide");
         }
     })
+
+
+    const createUserFetch = async (dataObj) => {
+        const settings = {
+            method: "POST",
+            headers: getHeaders(),
+            body: JSON.stringify(dataObj)
+        };
+
+        const fetchResponse = await fetch("/api/users/create", settings);
+        const data = await fetchResponse.json();
+        console.log(data);
+        console.log(`User ${dataObj.fullName} was created successfully`);
+
+    }
+
+    const createEventFetch = async (dataObj) => {
+        const settings = {
+            method: "POST",
+            headers: getHeaders(),
+            body: JSON.stringify(dataObj)
+        };
+
+        const fetchResponse = await fetch("/api/events/create", settings);
+        const data = await fetchResponse.json();
+        console.log(`Event ${dataObj.title} was created successfully`);
+
+    }
+
 }
-
-
-const createUserFetch = async (dataObj) => {
-    const settings = {
-        method: "POST",
-        headers: getHeaders(),
-        body: JSON.stringify(dataObj)
-    };
-
-    const fetchResponse = await fetch("/api/users/create", settings);
-    const data = await fetchResponse.json();
-    console.log(data);
-    console.log(`User ${dataObj.fullName} was created successfully`);
-
-}
-
-const createEventFetch = async (dataObj) => {
-    const settings = {
-        method: "POST",
-        headers: getHeaders(),
-        body: JSON.stringify(dataObj)
-    };
-
-    const fetchResponse = await fetch("/api/events/create", settings);
-    const data = await fetchResponse.json();
-}
-
-
