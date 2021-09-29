@@ -400,11 +400,7 @@ function navbarEventListeners(map) {
 
 
 
-    $(`#create-blog`).click(function (){
 
-
-
-    });
 
 
 
