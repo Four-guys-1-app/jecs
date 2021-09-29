@@ -16,7 +16,6 @@ export default function router(URI) {
         '/': {
             returnView: Home,
             state: {
-                types: `/api/types`
             },
             uri: '/',
             title: "Home",

@@ -1,6 +1,6 @@
 export default function Footer(props) {
     return`
-    <footer>
+    <footer class="content-wrapper">
         <section id="footer">
             <div class="container">
                 <div class="row text-center text-xs-center text-sm-left text-md-left">
