@@ -14,11 +14,20 @@ export default function EventView(props) {
         </div>
         <hr>
         
-        <div class="d-flex justify-content-center">
+        <div class="d-flex justify-content-center mb-4">
             <p>${props.event.description}</p>
         </div>
-        
-        
+        <div class="d-flex justify-content-center mb-4">
+            <h2>-Event Comments-</h2>
+        </div>
+        <div class="container justify-content-center mt-5 border-left border-right">
+            <div class="d-flex justify-content-center pt-3 pb-2"> 
+                <input type="text" name="text" placeholder="+ Add a comment" class="form-control addtxt"> 
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <button class="glow-on-hover">Add comment</button>
+        </div>
        
        
        
@@ -26,12 +35,18 @@ export default function EventView(props) {
     `;
 }
 
+function getCommentsHtml(comments) {
+    return comments.map(comment => `
+                
+                `).join('')
+}
+
+
 
 export function EventViewEvent()  {
 
-    // console.log(props)
 
-    let map = getMap($("#event-view-map").attr("id"));
+    let map = getMap($("#event-view-map").attr("id"), 13);
 
     map.on('load', () => {
         map.resize();

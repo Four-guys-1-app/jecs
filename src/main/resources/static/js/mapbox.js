@@ -1,6 +1,6 @@
 import token from "./keys.js";
 
-export default function getMap(mapId) {
+export default function getMap(mapId, zoomLevel=3) {
 
     // console.log('Creating Map...')
 
@@ -10,7 +10,7 @@ export default function getMap(mapId) {
         container: mapId,
         style: "mapbox://styles/mapbox/streets-v11",
         center: [-95.7129, 37.0902],
-        zoom: 3
+        zoom: zoomLevel
     });
 
 
