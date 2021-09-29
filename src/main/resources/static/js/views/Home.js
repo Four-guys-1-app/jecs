@@ -1,5 +1,6 @@
 
 export default function Home(props) {
+    console.log("hello")
     return `
 
     <div class="container">
@@ -7,7 +8,13 @@ export default function Home(props) {
             <h1 id="home-header">Home Page</h1>
         </header>
         <main>
+        
+        <div>
+        <h1>asfdfgsdf</h1>
+</div>
             <div>
+            
+            <h1>HOMEPAGE</h1>
                 <p>
                     This is the home page text.
                 </p>    
