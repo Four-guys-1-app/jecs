@@ -2,6 +2,7 @@ package com.codeup.jecsnetwork.web;
 
 import com.codeup.jecsnetwork.data.user.User;
 import com.codeup.jecsnetwork.data.user.UserRepository;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,5 +40,10 @@ public class UsersController {
     @DeleteMapping("{id}")
     private void delete(@PathVariable Long id){
         userRepository.deleteById(id);
+    }
+
+    @GetMapping("/loggedIn")
+    @PreAuthorize("hasAuthority('USER')")
+    private void loggedIn() {
     }
 }

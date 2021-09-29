@@ -36,4 +36,8 @@ export default function init() {
     attachHistoryListener();
     loadViewOnPageRequest();
     addListenerToNavLinks();
+
+    fetch("/api/users/loggedIn").then((response)=>{
+        if (response.status == 401 && localStorage.getItem())
+    })
 }

@@ -2,7 +2,7 @@ export default function Navbar(props) {
     return `
 <nav class="container-fluid navbar navbar-expand-lg fixed-top navbar-dark p-4">
     <a class="navbar-brand" href="/">
-        <i class="bi bi-compass"></i> JECS Network
+        <img src="/Logo.png">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
