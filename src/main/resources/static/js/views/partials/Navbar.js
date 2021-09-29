@@ -2,7 +2,7 @@ export default function Navbar(props) {
     return `
 <nav class="container-fluid navbar navbar-expand-lg fixed-top navbar-dark p-4">
     <a class="navbar-brand" href="/">
-        <i class="bi bi-compass"></i> JECS Network
+        <img src="/Logo.png">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,7 +14,9 @@ export default function Navbar(props) {
             <a class="nav-item nav-link" href="/blog" data-link>Blog</a>
             <a class="nav-item nav-link" href="/account" data-link>Account</a>
             <a class="nav-item nav-link" href="/about" data-link>About</a>
-            <a class="nav-item nav-link" href="#" data-toggle="modal" data-target="#ModalLogin">Login</a>
+            ${localStorage.getItem("access_token") == null
+        ? '<a class="nav-item nav-link" href="#" data-toggle="modal" data-target="#ModalLogin">Login</a>'
+        :'<a class="nav-item nav-link" href="#" id="loggedOut">Log Out</a>'}
         </div>
        
 
