@@ -21,7 +21,19 @@ export default function Blog(props) {
                     </div>
                 
                     <div class="w-25 p-0 d-flex justify-content-center border">
-                        <button type="button" class="mb-5 glow-on-hover" id="create-blog" data-toggle="modal" data-target="#ModaBlog">
+                    
+                        <form>
+                            <div class="form-group">
+                                <label for="formGroupExampleInput">Event Name</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+                            </div>
+                            <div class="form-group">
+                                <label for="formGroupExampleInput2">Event Description</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+                           </div>
+                        </form>
+                        <button type="button" class="myButton glow-on-hover">Cancel</button>
+                        <button type="button" class="mb-5 glow-on-hover" id="create-blog">
                         Create Blog
                         </button>
                     
