@@ -178,6 +178,11 @@ export default function render(props, route) {
 
 /* Event Listeners for navbar buttons */
 function navbarEventListeners(map) {
+    $("#loggedOut").click(()=>{
+        localStorage.removeItem("access_token")
+        localStorage.removeItem("refresh_token")
+        window.location = "/"
+    })
 
     $("#success-alert").hide(0)
 
