@@ -14,7 +14,9 @@ export default function Navbar(props) {
             <a class="nav-item nav-link" href="/blog" data-link>Blog</a>
             <a class="nav-item nav-link" href="/account" data-link>Account</a>
             <a class="nav-item nav-link" href="/about" data-link>About</a>
-            <a class="nav-item nav-link" href="#" data-toggle="modal" data-target="#ModalLogin">Login</a>
+            ${localStorage.getItem("access_token") == null
+        ? '<a class="nav-item nav-link" href="#" data-toggle="modal" data-target="#ModalLogin">Login</a>'
+        :'<a class="nav-item nav-link" href="#" id="loggedOut">Log Out</a>'}
         </div>
        
 

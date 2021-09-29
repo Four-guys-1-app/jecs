@@ -38,6 +38,9 @@ export default function init() {
     addListenerToNavLinks();
 
     fetch("/api/users/loggedIn").then((response)=>{
-        if (response.status == 401 && localStorage.getItem())
+        if (response.status == 401 && localStorage.getItem("access_token")!= null){
+            localStorage.removeItem("access_token")
+            localStorage.removeItem("refresh_token")
+        }
     })
 }
