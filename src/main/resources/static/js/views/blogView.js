@@ -4,10 +4,11 @@ export default function Blog(props) {
     return `
             <div>
             
-                    <div class="d-flex flex-direction: column mt-6" id="listoftypes">
-                        <div class="w-25 border" id="typesList">
-                                           
-                            <div class="my-custom-scrollbar my-custom-scrollbar-primary scrollbar-morpheus-den">
+                    <div class="d-flex flex-direction: column mt-6 ml-3" id="listoftypes">
+                        <div class="w-25 " id="typesList">
+                            
+                            <div class="d-flex justify-content-center"><h5>Click on type to view blogs!</h5></div>               
+                            <div class="my-custom-scrollbar my-custom-scrollbar-primary scrollbar-morpheus-den border">
                                  ${props.types.map(type => `
                                     <h5 data-id="${type.id}" class="listTypes"><a href="#">${type.type}</a></h5>
                                     `).join('')}
@@ -22,7 +23,7 @@ export default function Blog(props) {
                 
                     </div>
                 
-                    <div class="w-25 p-0 d-flex flex-wrap justify-content-center border">
+                    <div class="w-25 p-0 d-flex flex-wrap justify-content-center border mr-3">
                     
                         <form>
                         <div class="d-flex row">
