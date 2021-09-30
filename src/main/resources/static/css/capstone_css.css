@@ -301,3 +301,38 @@ section .section-title {
     height: 15vw;
     object-fit: cover;
 }
+
+.jumbotron {
+    background-image: url("../avenue-g6c08bbff5_1920.jpg");
+}
+
+.display-2 {
+    animation-name: slidein;
+    animation-delay: 1s;
+    text-shadow: 0 0 3px #287293, 0 0 5px #0000FF;
+}
+
+.lead {
+    animation-name: slidein;
+    animation-delay: 2s;
+    text-shadow: 0 0 3px #287293, 0 0 5px #0000FF;
+}
+
+@keyframes slidein {
+    from {
+        margin-left: 100%;
+        width: 300%;
+    }
+
+    to {
+        margin-left: 0%;
+        width: 100%;
+    }
+}
+
+.logo-link {
+    background: url("../Logo.png") no-repeat;
+    background-size: contain;
+    width: 145px;
+    height: 35px;
+}

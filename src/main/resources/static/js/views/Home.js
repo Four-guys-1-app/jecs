@@ -3,8 +3,8 @@ export default function Home(props) {
     return `
     <div class="jumbotron jumbotron-fluid bg-info text-white text-center">
         <div class="container">
-            <h1 class="display-2" id="home-header">Welcome to JECS Network</h1>
-            <p class="lead">Building communities through active lifestyles</p>
+            <h1 class="display-2 animated" id="home-header">Welcome to JECS Network</h1>
+            <p class="lead animated">Building communities through active lifestyles</p>
         </div>
     </div>
 
