@@ -10,7 +10,7 @@ export default function Navbar(props) {
         <div class="navbar-nav">
             <a class="nav-item nav-link" href="/events" data-link>Events</a>
             <a class="nav-item nav-link" href="/blog" data-link>Blog</a>
-            <a class="nav-item nav-link" href="/account" data-link>Account</a>
+<!--            <a class="nav-item nav-link" href="/account" data-link>Account</a>-->
             <a class="nav-item nav-link" href="/about" data-link>About</a>
             ${localStorage.getItem("access_token") == null
         ? '<a class="nav-item nav-link" href="#" data-toggle="modal" data-target="#ModalLogin">Login</a>'
