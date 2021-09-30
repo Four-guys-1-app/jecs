@@ -305,6 +305,7 @@ section .section-title {
 .jumbotron {
     background-image: url("../avenue-g6c08bbff5_1920.jpg");
     background-position: center;
+    text-shadow: 0 0 3px #230c0c, 0 0 5px #230c0c;
 }
 
 /*.display-2 {*/
@@ -333,36 +334,67 @@ section .section-title {
 
 .lead {
     position: relative;
-    left: 500px;
+    left: 15px;
+    -webkit-animation: slideIn 5s forwards;
+    -moz-animation: slideIn 5s forwards;
+    animation: slideIn 5s forwards;
+}
+@-webkit-keyframes slideIn {
+    0% {
+        transform: translateX(-2000px);
+    }
+    100% {
+        transform: translateX(2000);
+    }
+}
+@-moz-keyframes slideIn {
+    0% {
+        transform: translateX(-2000px);
+    }
+    100% {
+        transform: translateX(2000);
+    }
+}
+@keyframes slideIn {
+    0% {
+        transform: translateX(-2000px);
+    }
+    100% {
+        transform: translateX(2000);
+    }
+}
+
+.display-2 {
+    position: relative;
+    left: 15px;
     -webkit-animation: slideIn 2s forwards;
     -moz-animation: slideIn 2s forwards;
     animation: slideIn 2s forwards;
 }
 @-webkit-keyframes slideIn {
     0% {
-        transform: translateX(-900px);
+        transform: translateX(-2000px);
     }
     100% {
-        transform: translateX(200);
+        transform: translateX(2000);
     }
 }
 @-moz-keyframes slideIn {
     0% {
-        transform: translateX(-900px);
+        transform: translateX(-2000px);
     }
     100% {
-        transform: translateX(200);
+        transform: translateX(2000);
     }
 }
 @keyframes slideIn {
     0% {
-        transform: translateX(-900px);
+        transform: translateX(-2000px);
     }
     100% {
-        transform: translateX(200);
+        transform: translateX(2000);
     }
 }
-
 
 .logo-link {
     background-image: url("../Logo.png"); background-repeat: no-repeat;
