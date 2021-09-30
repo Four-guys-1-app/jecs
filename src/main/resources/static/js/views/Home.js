@@ -41,7 +41,7 @@ export default function Home(props) {
                 <img src="/istockphoto-509247080-170667a.jpeg" class="card-img-top img-fluid"/>
                 <div class="card-body">
                     <h3 class="card-title">Not into traditional workouts? We got you!</h3>
-                    <p>Being active is more than just lifting weights or running marathons, find a new an exciting activity that you were always curious about but never knew how to get started.</p>
+                    <p>Being active is more than just lifting weights or running marathons, find a new and exciting activity that you were always curious about but never knew how to get started.</p>
                 </div>
             </div>
         </div>
