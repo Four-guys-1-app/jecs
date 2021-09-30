@@ -9,13 +9,13 @@ export default function Home(props) {
     </div>
 
 
-    <div class="container text-muted">
+    <div class="container-fluid text-muted">
     <!-- cards -->
     <div class="row">
-        <div class="col-md-6 col-lg-3">
-            <div class="card">
+        <div class="col-md-6 col-lg-3 d-flex align-items-stretch">
+            <div class="card border-info">
                 <img src="/weights-fitness-indicates-heart-shapes-and-exercise.jpeg" class="card-img-top img-fluid"/>
-                <div class="card-block">
+                <div class="card-body">
                     <h3 class="card-title">Build lasting friendships</h3>
                     <p>Find a friend or a group of like minded-individuals who enjoy the same activities that you enjoy, anywhere in the country.</p>
                 </div>
@@ -24,10 +24,10 @@ export default function Home(props) {
     
 
 
-        <div class="col-md-6 col-lg-3">
-            <div class="card">
+        <div class="col-md-6 col-lg-3 d-flex align-items-stretch">
+            <div class="card border-info">
                 <img src="/woman-jogging--illustration-with-copyspace.jpeg" class="card-img-top img-fluid"/>
-                <div class="card-block">
+                <div class="card-body">
                     <h3 class="card-title">Indoor or Outdoor activities</h3>
                     <p>Not a fan of the great outdoors? Maybe you prefer a more climate controlled setting? Check which option you want when you create or search for an event!</p>
                 </div>
@@ -36,10 +36,10 @@ export default function Home(props) {
 
 
 
-        <div class="col-md-6 col-lg-3">
-            <div class="card">
+        <div class="col-md-6 col-lg-3 d-flex align-items-stretch">
+            <div class="card border-info">
                 <img src="/istockphoto-509247080-170667a.jpeg" class="card-img-top img-fluid"/>
-                <div class="card-block">
+                <div class="card-body">
                     <h3 class="card-title">Not into traditional workouts? We got you!</h3>
                     <p>Being active is more than just lifting weights or running marathons, find a new an exciting activity that you were always curious about but never knew how to get started.</p>
                 </div>
@@ -48,10 +48,10 @@ export default function Home(props) {
 
 
 
-        <div class="col-md-6 col-lg-3">
-            <div class="card">
+        <div class="col-md-6 col-lg-3 d-flex align-items-stretch">
+            <div class="card border-info">
                 <img src="/dumbbells-in-a-row--fitness-concept.jpeg" class="card-img-top img-fluid"/>
-                <div class="card-block">
+                <div class="card-body">
                     <h3 class="card-title">Talk with the community</h3>
                     <p>Blog about your experience, let others know how it went. Be active, socialize and have fun!</p>
                 </div>
