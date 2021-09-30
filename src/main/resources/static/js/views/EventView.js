@@ -6,30 +6,36 @@ export default function EventView(props) {
         
         <header class="d-flex justify-content-between">
             <h1 id="event-header" class="mb-4">${props.event.title}</h1>
-            <p>Created on: ${props.event.dateCreated}</p>
-            <p>By: ${props.event.user.username}</p>
+            <p style="color: black">Created on: ${props.event.dateCreated}</p>
+            <p style="color: black">By: ${props.event.user.username}</p>
         </header>
         <hr>
         <div id="event-view-map" class="my-5 rounded d-flex justify-content-center">
         </div>
         <hr>
         
-        <div class="d-flex justify-content-center mb-4">
+        <div class="d-flex justify-content-center my-4">
             <p>${props.event.description}</p>
         </div>
-        <div class="d-flex justify-content-center mb-4">
-            <h2>-Event Comments-</h2>
-        </div>
-        <div class="container justify-content-center mt-5 border-left border-right">
-            <div class="d-flex justify-content-center pt-3 pb-2"> 
-                <input type="text" name="text" placeholder="+ Add a comment" class="form-control addtxt"> 
+        
+        <section class="mt-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-5 col-md-6 col-12 pb-4" id="comment-bin">
+                        <h1 class="commentH">Comments</h1>
+                        ${getCommentsHtml(props.event.comments)}
+                    </div>
+                    <div class="col-lg-4 col-md-5 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4">
+                        <form id="align-form">
+                            <div class="form-group-comments">
+                                <h4 class="commentH">Leave a comment</h4> <label for="msg">Message</label> <textarea name="msg" id="msg"  cols="30" rows="5" class="form-control"></textarea>
+                            </div>
+                            <div class="form-group-comments"> <button type="button" id="comment-button" class="glow-on-hover">Post Comment</button> </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="d-flex justify-content-center">
-            <button class="glow-on-hover">Add comment</button>
-        </div>
-       
-       
+        </section>
        
     </div>
     `;
@@ -37,7 +43,13 @@ export default function EventView(props) {
 
 function getCommentsHtml(comments) {
     return comments.map(comment => `
-                
+                <div class="comment mt-4 text-justify float-left"> 
+                    <img src="https://i.imgur.com/yTFUilP.jpg" alt="" class="rounded-circle" width="40" height="40">
+                    <h4 class="commentH" data-id="${comment.user.id}">${comment.user.fullName}</h4> 
+                    <span>- ${comment.postedDate}</span> 
+                    <br>
+                    <p data-id="${comment.id}">${comment.content}</p>
+                </div>
                 `).join('')
 }
 
