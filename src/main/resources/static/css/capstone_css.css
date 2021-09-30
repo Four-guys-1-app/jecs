@@ -304,34 +304,68 @@ section .section-title {
 
 .jumbotron {
     background-image: url("../avenue-g6c08bbff5_1920.jpg");
+    background-position: center;
 }
 
-.display-2 {
-    animation-name: slidein;
-    animation-delay: 1s;
-    text-shadow: 0 0 3px #287293, 0 0 5px #0000FF;
-}
+/*.display-2 {*/
+/*    animation-name: slidein;*/
+/*    animation-delay: 1s;*/
+/*    text-shadow: 0 0 3px #287293, 0 0 5px #0000FF;*/
+/*}*/
+
+/*.lead {*/
+/*    animation-name: slidein;*/
+/*    animation-delay: 2s;*/
+/*    text-shadow: 0 0 3px #287293, 0 0 5px #0000FF;*/
+/*}*/
+
+/*@keyframes slidein {*/
+/*    from {*/
+/*        margin-left: 100%;*/
+/*        width: 300%;*/
+/*    }*/
+
+/*    to {*/
+/*        margin-left: 0%;*/
+/*        width: 100%;*/
+/*    }*/
+/*}*/
 
 .lead {
-    animation-name: slidein;
-    animation-delay: 2s;
-    text-shadow: 0 0 3px #287293, 0 0 5px #0000FF;
+    position: relative;
+    left: 500px;
+    -webkit-animation: slideIn 2s forwards;
+    -moz-animation: slideIn 2s forwards;
+    animation: slideIn 2s forwards;
 }
-
-@keyframes slidein {
-    from {
-        margin-left: 100%;
-        width: 300%;
+@-webkit-keyframes slideIn {
+    0% {
+        transform: translateX(-900px);
     }
-
-    to {
-        margin-left: 0%;
-        width: 100%;
+    100% {
+        transform: translateX(200);
     }
 }
+@-moz-keyframes slideIn {
+    0% {
+        transform: translateX(-900px);
+    }
+    100% {
+        transform: translateX(200);
+    }
+}
+@keyframes slideIn {
+    0% {
+        transform: translateX(-900px);
+    }
+    100% {
+        transform: translateX(200);
+    }
+}
+
 
 .logo-link {
-    background: url("../Logo.png") no-repeat;
+    background-image: url("../Logo.png"); background-repeat: no-repeat;
     background-size: contain;
     width: 145px;
     height: 35px;
