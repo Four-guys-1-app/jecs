@@ -204,6 +204,7 @@ function navbarEventListeners(map) {
                 bio: bio,
                 postalCode: zip
             }
+            console.log(postObj);
 
             if (createUserFetch(postObj)) {
                 $("#r-name").val("");

@@ -1,8 +1,8 @@
 #events-header, #eventView, #home-header, #aboutUs, #event-header {
     margin-top: 150px;
 }
-#event-header p {
-    color: black;
+.event-header {
+    margin-top: 170px;
 }
 #event-search-map, #event-view-map {
     height: 500px;
@@ -62,15 +62,10 @@
     border-radius: 13px;
     width: 50%
 }
-.comments {
-    margin-top: 5%;
-    margin-left: 20px
-}
-
 
 .comment {
-    border: 1px solid #00d9ff;
-    background-color: #00d9ff;
+    border: 1px solid #195a7e;
+    background-color: #195a7e;
     float: left;
     border-radius: 5px;
     padding-left: 40px;
@@ -79,20 +74,26 @@
 }
 
 .comment h4, .comment span{
-    display: inline
+    display: inline;
+    color: white;
 }
 
 .comment p, .comment span{
-    color: rgb(8, 97, 133)
+    color: white;
 }
 
 .commentH {
-    color: black;
+    color: white;
     font-weight: bold
 }
 
+#comment-button {
+    border-color: #030211;
+    background-color: #00d9ff;
+}
+
 label {
-    color: rgb(8, 97, 133)
+    color: white;
 }
 
 #align-form {
@@ -100,12 +101,7 @@ label {
 }
 
 .form-group-comments p a {
-    color: rgb(8, 97, 133)
-}
-
-#darker img {
-    margin-right: 15px;
-    position: static
+    color: white;
 }
 
 .form-group-comments textarea {
