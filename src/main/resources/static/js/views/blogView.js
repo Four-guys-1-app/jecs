@@ -125,9 +125,10 @@ export function BlogEvent(){
 
         const createBlog = $(`#create-blog`)
 
-        createBlog.click(() => {
+        createBlog.click(function () {
 
          let blogName = $(`#blog-name`).val();
+            console.log(blogName)
          let blogDesc = $(`#blog-desc`).val();
 
             let thisDate = new Date(Date.now()).toISOString()
@@ -170,7 +171,7 @@ export function BlogEvent(){
             console.log(`Event ${blogObj.title} was created successfully`);
         }
 
-    });
+});
 
 
 
