@@ -1,3 +1,5 @@
+import {getHeaders} from "../auth.js";
+
 export default function Blog(props) {
     return `
             <div>
@@ -20,10 +22,24 @@ export default function Blog(props) {
                 
                     </div>
                 
-                    <div class="w-25 p-0 d-flex justify-content-center border">
-                        <button type="button" class="mb-5 glow-on-hover" id="create-blog" data-toggle="modal" data-target="#ModalPost">
-                        Create Blog
-                        </button>
+                    <div class="w-25 p-0 d-flex flex-wrap justify-content-center border">
+                    
+                        <form>
+                        <div class="d-flex row">
+                            <div class="form-group">
+                                <label for="blog-name">Event Name</label>
+                                <input type="text" class="form-control" id="blog-name" placeholder="Event Title">
+                            </div>
+                            <div class="form-group">
+                                <label for="blog-desc">Event Description</label>
+                                <textarea type="text" rows="10" style="height:100%;"class="form-control" id="blog-desc" placeholder="Event Description"></textarea>
+                           </div>
+                        </div>   
+                            </form>
+                                 <button type="button" class="myButton glow-on-hover">Cancel</button>
+                                    <button type="button" class="glow-on-hover" id="create-blog">
+                                    Create Blog
+                                    </button>
                     
                     </div>
                 
@@ -91,7 +107,7 @@ export function BlogEvent(){
 
         $(`.my-custom-scrollbar`).css({
             "position": "relative",
-            "width": "400px",
+            "width": "auto",
             "height": "600px",
             "overflow": "auto",
         });
@@ -107,8 +123,55 @@ export function BlogEvent(){
         }
 
 
+        const createBlog = $(`#create-blog`)
 
-    });
+        createBlog.click(function () {
+
+         let blogName = $(`#blog-name`).val();
+            console.log(blogName)
+         let blogDesc = $(`#blog-desc`).val();
+
+            let thisDate = new Date(Date.now()).toISOString()
+
+         let blogObj = {
+             title: blogName,
+             body: blogDesc,
+             dateCreated: {thisDate},
+             type: {
+                 id: 5
+             },
+             user: {
+                 id: 9
+             }
+
+         }
+            console.log(blogObj)
+
+        if (createBlogFetch(blogObj)) {
+            $("#blog-name").val("");
+            $("#blog-desc").val("");
+
+            $("#alert-content").text("Event has been created.");
+            $("#success-alert").slideDown(1000).delay(1000).slideUp(500);
+
+        }
+
+        })
+
+        const createBlogFetch = async (blogObj) => {
+            const settings = {
+                method: "POST",
+                headers: getHeaders(),
+                body: JSON.stringify(blogObj)
+            };
+
+            const fetchResponse = await fetch("/api/blogs/create", settings);
+            const data = await fetchResponse.json();
+            console.log(data);
+            console.log(`Event ${blogObj.title} was created successfully`);
+        }
+
+});
 
 
 
