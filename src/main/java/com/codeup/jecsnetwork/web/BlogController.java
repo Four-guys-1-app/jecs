@@ -2,10 +2,7 @@ package com.codeup.jecsnetwork.web;
 
 import com.codeup.jecsnetwork.data.post.BlogsRepository;
 import com.codeup.jecsnetwork.data.post.Post;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -43,6 +40,11 @@ public class BlogController {
             System.out.println(e.getMessage());
         }
         return null;
+    }
+
+    @PostMapping("/create")
+    private Post createPost(@RequestBody Post newPost) {
+        return blogsRepository.save(newPost);
     }
 
 }
