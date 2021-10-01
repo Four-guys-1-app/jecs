@@ -3,16 +3,16 @@ export default function Footer(props) {
     <footer class="content-wrapper">
         <section id="footer">
             <div class="container">
-                <div class="row text-center text-xs-center text-sm-left text-md-left">
-                    <div class="col-xs-12 col-sm-4 col-md-4" id="use2space">
-                        <ul class="list-unstyled quick-links">
-                            <li><a href="#"><i class="fa fa-angle-double-right"></i>Home</a></li>
-                            <li><a href="#"><i class="fa fa-angle-double-right"></i>About</a></li>
-                            <li><a href="#"><i class="fa fa-angle-double-right"></i>FAQ</a></li>
-                            <li><a href="#"><i class="fa fa-angle-double-right"></i>Videos</a></li>
-                        </ul>
-                    </div>
-                </div>
+<!--                <div class="row text-center text-xs-center text-sm-left text-md-left">-->
+<!--                    <div class="col-xs-12 col-sm-4 col-md-4" id="use2space">-->
+<!--                        <ul class="list-unstyled quick-links">-->
+<!--&lt;!&ndash;                            <li><a href="#"><i class="fa fa-angle-double-right"></i>Home</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <li><a href="#"><i class="fa fa-angle-double-right"></i>About</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <li><a href="#"><i class="fa fa-angle-double-right"></i>FAQ</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <li><a href="#"><i class="fa fa-angle-double-right"></i>Videos</a></li>&ndash;&gt;-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </div>-->
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
                         <ul class="list-unstyled list-inline social text-center">
