@@ -1,6 +1,9 @@
 #events-header, #eventView, #home-header, #aboutUs, #event-header {
     margin-top: 150px;
 }
+.event-header {
+    margin-top: 170px;
+}
 #event-search-map, #event-view-map {
     height: 500px;
 
@@ -36,8 +39,84 @@
 
 }
 
+                    /*Section for comment styling*/
+/*-------------------------------------------------------------------------*/
+@media(max-width:768px) {
+    #post {
+        width: 100%
+    }
+}
 
 
+#post {
+    margin: 10px;
+    padding: 6px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    text-align: center;
+    background-color: #13547a;
+    border-color: #00ff66 #00d9ff #00b2ff;
+    color: #ffffff;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 13px;
+    width: 50%
+}
+
+.comment {
+    border: 1px solid #195a7e;
+    background-color: #195a7e;
+    float: left;
+    border-radius: 5px;
+    padding-left: 40px;
+    padding-right: 30px;
+    padding-top: 10px
+}
+
+.comment h4, .comment span{
+    display: inline;
+    color: white;
+}
+
+.comment p, .comment span{
+    color: white;
+}
+
+.commentH {
+    color: white;
+    font-weight: bold
+}
+
+#comment-button {
+    border-color: #030211;
+    background-color: #00d9ff;
+}
+
+label {
+    color: white;
+}
+
+#align-form {
+    margin-top: 20px
+}
+
+.form-group-comments p a {
+    color: white;
+}
+
+.form-group-comments textarea {
+    background-color: white;
+    border: 1px solid rgb(8, 97, 133);
+    border-radius: 12px
+}
+
+form {
+    border: 1px solid rgb(8, 97, 133);
+    background-color: rgb(8, 97, 133);
+    border-radius: 5px;
+    padding: 20px
+}
+/*-------------------------------------------------------------------------*/
 
 
 

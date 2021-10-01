@@ -13,7 +13,7 @@ import java.util.List;
 public class UsersController {
 
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
     public UsersController(UserRepository userRepository, PasswordEncoder passwordEncoder){
         this.userRepository = userRepository;
@@ -26,7 +26,7 @@ public class UsersController {
     }
 
     @PostMapping("/create")
-    private User create(@RequestBody User myUser) {
+    public User create(@RequestBody User myUser) {
         myUser.setPassword(passwordEncoder.encode(myUser.getPassword()));
         return userRepository.save(myUser);
     }

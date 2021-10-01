@@ -22,7 +22,7 @@ public class CommentsController {
     @GetMapping
     private List<Comment> getAll() { return commentsRepository.findAll(); }
 
-    @GetMapping("{eventId}")
+    @GetMapping("/event/{eventId}")
     private List<Comment> getEventComments(@PathVariable Long eventId) {
 
         try {
@@ -33,5 +33,14 @@ public class CommentsController {
         return null;
     }
 
+    @GetMapping("/post/{postId}")
+    private List<Comment> getPostComments(@PathVariable Long postId) {
 
+        try {
+            return commentsRepository.findByPostId(postId);
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
 }

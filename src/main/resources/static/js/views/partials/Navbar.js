@@ -132,8 +132,8 @@ export default function Navbar(props) {
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="myButton glow-on-hover" data-dismiss="modal">Cancel</button>
-                            <button type="button" class="myButton btn-success glow-on-hover" id="create-event">Create Event</button>
+                            <button type="button" class="glow-on-hover" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="glow-on-hover" id="create-event">Create Event</button>
                         </div>
                     </div>
                 </div>
