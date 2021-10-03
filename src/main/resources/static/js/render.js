@@ -259,7 +259,7 @@ function navbarEventListeners(map) {
 
         let outdoors;
         let activityId;
-        let thisDate = new Date(Date.now()).toISOString()
+        let thisDate = new Date(Date.now()).toISOString();
 
         $("#activity-selection").children().each((index, element) => {
             if (element.innerHTML === activityType) {
@@ -308,10 +308,10 @@ function navbarEventListeners(map) {
             map.setZoom(3);
 
             //TODO: fix these 2 to clear selectpickers
-            $("#outdoor-selection").val('default');
-            $("#activity-selection").val('default');
-            $("#outdoor-selection").selectpicker("refresh");
-            $("#activity-selection").selectpicker("refresh");
+            // $("#outdoor-selection").val('default');
+            // $("#activity-selection").val('default');
+            // $("#outdoor-selection").selectpicker("refresh");
+            // $("#activity-selection").selectpicker("refresh");
 
             //TODO: recenter map after an event is created
 
