@@ -2,10 +2,7 @@ package com.codeup.jecsnetwork.web;
 
 import com.codeup.jecsnetwork.data.comment.Comment;
 import com.codeup.jecsnetwork.data.comment.CommentsRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -38,6 +35,17 @@ public class CommentsController {
 
         try {
             return commentsRepository.findByPostId(postId);
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
+    @PostMapping("/create")
+    private Comment createEvent(@RequestBody Comment newComment) {
+        try {
+            System.out.println(newComment);
+            return commentsRepository.save(newComment);
         }catch (Exception e) {
             System.out.println(e.getMessage());
         }
