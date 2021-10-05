@@ -44,6 +44,7 @@ public class CommentsController {
     @PostMapping("/create")
     private Comment createEvent(@RequestBody Comment newComment) {
         try {
+            System.out.println(newComment);
             return commentsRepository.save(newComment);
         }catch (Exception e) {
             System.out.println(e.getMessage());

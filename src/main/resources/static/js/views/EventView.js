@@ -60,6 +60,7 @@ function getCommentsHtml(comments) {
 
 export function EventViewEvent()  {
 
+
     let map = getMap($("#event-view-map").attr("id"), 13);
     let location = $("#location-data").attr("data-tokens").split(",");
     let bounds = new mapboxgl.LngLatBounds();
@@ -94,10 +95,21 @@ export function EventViewEvent()  {
         }
         console.log(postObj);
 
-        if (createCommentFetch(postObj)) {
+        createCommentFetch(postObj).then(data => {
             $("#msg").val("");
-            createView("/event");
-        }
+            console.log(data);
+            let dataArr = [data]
+            $("#comment-bin").append(getCommentsHtml(dataArr));
+        })
+
+        // createCommentFetch(postObj).then((res) => {
+        //     return res.json();
+        // }).then(data => {
+        //     $("#msg").val("");
+        //     console.log(data);
+        //     // $(".comment").insertAfter(getCommentsHtml(dataArr));
+        // })
+
     })
 
     const createCommentFetch = async (dataObj) => {
@@ -110,6 +122,7 @@ export function EventViewEvent()  {
         const fetchResponse = await fetch("/api/comments/create", settings);
         const data = await fetchResponse.json();
         console.log(`Comment was created successfully`);
+        return data;
     }
 }
 
