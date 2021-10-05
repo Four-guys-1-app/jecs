@@ -90,7 +90,7 @@ export function EventViewEvent()  {
                 id: eventID
             },
             user: {
-                id: 3    //TODO: change this later to reflect who's logged in
+                id: 3    //TODO: (Logged in User) change this later to reflect who's logged in
             }
         }
         console.log(postObj);
@@ -99,16 +99,8 @@ export function EventViewEvent()  {
             $("#msg").val("");
             console.log(data);
             let dataArr = [data]
-            $("#comment-bin").append(getCommentsHtml(dataArr));
+            $("#comment-bin").append(getCommentsHtml(dataArr));  //TODO: (Logged in User) Finished, but user shows as null for now until logged in user is implemented.
         })
-
-        // createCommentFetch(postObj).then((res) => {
-        //     return res.json();
-        // }).then(data => {
-        //     $("#msg").val("");
-        //     console.log(data);
-        //     // $(".comment").insertAfter(getCommentsHtml(dataArr));
-        // })
 
     })
 
